@@ -1,0 +1,92 @@
+{
+  "server": {
+    "port": 80,
+    "ip": null
+  },
+  "session": {
+    "secret": "nvasdejkNNmaszdrpoui234hjkasldehfJKNMASJKLvnmawsoui"
+  },
+  "bidding_expiry": 2,
+  "seeds":  {
+      "sms":{
+        "apikey": "6d6ra0u305nggr0cvr9c41niy464r99b",
+        "sender": "SEDEMO"
+      },
+      "roles": {
+          "customer" : 1,
+          "operator" : 2,
+          "admin" : 3,
+          "employee": 4
+      },
+      "verification": {
+          "signup" : 1,
+          "forgetPassword": 2
+      },
+      "ride_status": {
+          "open": 1,
+          "upcoming": 2,
+          "completed": 3,
+          "canceled": 4,
+          "noshow": 5
+      },
+      "vehcile_features": {
+          "ac": 1,
+          "music_system": 2,
+          "air_bag": 3,
+          "false": 4
+      },
+      "document_type": {
+        "permit": 1,
+        "dl": 2,
+        "driver_verification": 3,
+        "rc": 4
+      },
+      "document_status": {
+          "pending": 1,
+          "approved": 2,
+          "decline": 3
+      },
+      "bid_status": {
+          "not_approved": 1,
+          "approved": 2,
+          "canceled": 3
+      },
+      "ride_type": {
+          "one_way": 1,
+          "multi_way": 2,
+          "airport_dropoff": 3,
+          "airport_pickup": 4,
+          "local": 5,
+          "return_trip": 6
+      },
+      "modules": {
+          "Manage Customers" : 1,
+          "Manage Operators" : 2,
+          "Manage Drivers" : 3,
+          "Manage Vehicles": 4,
+          "Manage Cities": 5,
+          "Vehicle Categories": 6,
+          "Preferences": 7,
+          "Open Leads": 8,
+          "Upcoming Rides": 9,
+          "Completed Rides": 10,
+          "Canceled Rides": 11
+      },
+       "PushNotification_credential":{
+        "IonicApplicationID":"7c755297",
+        "IonicApplicationAPItoken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxYjhkMWE1NC1lMmY0LTQ0NmItODMwNS1lMDc2MGY4MDRjYmQifQ.tfJYn8v38U-K5GjO3GwP0hL0HSdJdqBtfYHsL7wLw3I"
+      }
+  },
+  "upload": {
+    "driver": {
+      "main": "public/uploads/driver/"
+    },
+    "vehicle": {
+      "main": "public/uploads/vehicle/"
+    },
+    "images": {
+      "temp":"public/temp/",
+      "main":"public/uploads/images/"
+    }
+}
+}

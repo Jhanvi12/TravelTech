@@ -1,0 +1,131 @@
+<div class="request-heading" ng-controller="OperatorMyBidController" ng-init="getRideList('upcoming')">
+    <!-- <div class="request-right">
+        <div id="custom-search-input">
+            <div class="input-group col-lg-12">
+                <input type="text" class="  search-query form-control" placeholder="Search..." />
+            </div>
+        </div>
+    </div> -->
+    <div class="btn-group request-left" ng-click="getRideList(radioModel)">
+        <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'upcoming'" uncheckable>upcoming</label>
+        <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'completed'" uncheckable>Completed</label>
+    </div>
+    <div class="clearfix"></div>
+     <div ng-if="!myride.length"><h3>Data Not found</h3></div>
+    <div class="grid-box" ng-repeat = "enquiry in myride track by $index" ng-if="!!enquiry.ride">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" >
+            <h4 class="payment"> &nbsp; &nbsp; Passenger Address: </h4>
+            <div class="col-lg-4 col-md-5 col-sm-5 col-xs-12">
+                <h4 class="first"> <i class="fa fa-calendar"></i>&nbsp; {{enquiry.ride.routes[0].date_time | dates}} <br>{{enquiry.ride.routes[0].date_time | time}}</h4>
+                <h4 class="second"><i class="fa fa-clock-o"></i>&nbsp; {{enquiry.ride.routes[enquiry.ride.routes.length-1].stop_time || 'NA'}}</h4>
+                <h4 class="third"><i class="fa fa-user"></i>&nbsp; {{enquiry.ride.passenger_count}}</h4>
+                <h4 class="fourth"><i class="fa fa-car"></i>&nbsp; {{enquiry.ride.vehicles_count}}</h4>
+                <h4 class="fifth">No. Of Cities &nbsp; {{enquiry.ride.route | cities_count}}</h4>
+            </div>
+            <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                <div class="scrollbar">
+                    <p><b> Pickup City: {{enquiry.ride.route[0].address.city}}</b> <br>
+                        <span ng-if="enquiry.ride.route[0].address.street">{{enquiry.ride.route[0].address.street}},</span>
+                         <span ng-if="enquiry.ride.route[0].address.city">{{enquiry.ride.route[0].address.city}},</span>
+                         <span ng-if="enquiry.ride.route[0].address.state">{{enquiry.ride.route[0].address.state}}</span>
+                         <span ng-if="enquiry.ride.route[0].address.zip">, {{enquiry.ride.route[0].address.zip}}</span>
+                    </p>
+                    <p>
+                        <b> Itenary Details</b> <br><br/>
+                        <b style="font-weight:400;padding: 0px 5px;" ng-repeat="route in enquiry.ride.route" ng-if="$index > 0">
+                            <span ng-if="route.address.street">{{route.address.street}}, </span>
+                            <span ng-if="route.address.city">{{route.address.city}}, </span>
+                            <span ng-if="route.address.state">{{route.address.state}} </span>
+                            <span ng-if="route.address.zip">, {{route.address.zip}} </span>
+                              <br/><br/>
+                        </b>
+                    </p>
+                     <p><b>Type </b>: {{enquiry.ride.type | ridetype}}</p>
+                </div>
+            </div>
+            <div class="enquiry.ride clearfix">
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12  bid-detailss">
+         <form name="biddingForm" >
+            <h4 class="payment"> &nbsp; &nbsp; Bidding Details: </h4>
+            <div class="scrollbar-box enquiry.ride clearfix">
+                <div class="scrollbar-right">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="enquiry.ride-heading"> <i class="fa fa-clock-o"></i>&nbsp; Bidding Expires on {{enquiry.ride.created | date_time}}  </div> </div>
+                          <div class="enquiry.ride clearfix" ng-repeat="n in enquiry.vehicle_quote">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">Car Type
+                                <div class="card-select" ng-repeat="m in n.vehicle">
+
+                               <!--      <a class="btn btn-primary"> -->
+                                         <!-- {{n.vehicle_quote[0].vehical[0].id.type}} -->
+                                             {{$index+1}}.<b>{{m.id.type}}</b>
+                                             Registration No <b>{{m.id.registration_number}}</b>
+
+                                 <!--    </a> -->
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="card-select">Your Bid
+                                    <input type="text" class="form-control bid-box" id="" ng-value="n.bid_amount" disabled="">
+                                </div>
+                            </div>
+
+
+
+                             <b>Driver(s) :</b>
+                           <div ng-repeat="drivername in enquiry.vehicle_quote[0].driver">{{$index+1}}.{{drivername.name}} {{drivername.phone_number}}</div>
+
+                            <div class="clearfix"></div>
+                            <div class="clearfix"></div>
+
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                 <input type="checkbox" disabled="" ng-value="n.toll_parking_charges" class="checkbox-margin" />
+                                Toll Charges(Included)
+                            </div>
+
+                              <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" ng-if="enquiry.vehicle_quote[0].driver.length ? assignedStatus = 'Yes' : assignedStatus = 'No'">
+                                 Alloted Driver : <b>{{assignedStatus}}</b>
+                            </div>
+
+
+                        </div> </div>
+                        <div class="enquiry.ride-buttons" style="padding:7px;">
+
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4 button-margin">
+                                <button type="button" class="btn btn-warning type" disabled="">
+                         Gen Voucher
+                                </button>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4 button-margin" ng-if="radioModel != 'completed'">
+                                <button type="button"  ng-disabled="enquiry.vehicle_quote[0].driver.length != 0" class="btn btn-info type" ng-click="Driver(enquiry.ride._id, enquiry,enquiry._id)">
+                                    Assign Driver
+                                </button>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4 button-margin" ng-if = "enquiry.ride.status != 3">
+                                <button type="button" class="btn btn-success type" ng-click="rideCompleted(enquiry.ride._id)">
+                                    Completed
+                                </button>
+                            </div>
+                             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4 button-margin">
+                                <button type="button" class="btn btn-danger type" ng-click="confirmCancel(enquiry.ride._id)">
+                                Cancel Ride
+                                </button>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4 button-margin" ng-if="radioModel != 'completed'" style="padding:3px; left:11px;">
+                                <button type="button"  ng-disabled="enquiry.vehicle_quote[0].driver.length == 0" class="btn btn-info type" ng-click="editDriver(enquiry.ride._id, enquiry,enquiry._id)">
+                                    Edit Driver
+                                </button>
+                            </div>
+
+
+                        <div class="clearfix"></div>
+                     </form>
+                    </div>
+                </div>
+            </div>

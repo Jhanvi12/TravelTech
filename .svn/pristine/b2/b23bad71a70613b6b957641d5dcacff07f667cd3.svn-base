@@ -1,0 +1,129 @@
+<div class="skin-blue">
+    <div ui-view="top"></div>
+    <div ui-view="left"></div>
+    <aside class="right-side">
+        <!-- Content Header (Page header) -->
+        <section class="content-header" ng-controller="ReviewsController">
+            <h1>
+                Reviews 
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/admin/#/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li>Reviews</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content" ng-init="getReviewsList()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box-body table-responsive">
+                        <div class="alert alert-danger alert-dismissable" ng-show="message"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>{{message}}</div>
+                        <div class="box">
+                            <!-- <div class="box-header">
+                            <h3 class="box-title">Data Table With Full Features</h3>
+                        </div> -->
+                            <div class="box-body table-responsive">
+                                <div class="clearfix" style="padding-bottom:15px;">
+                                    <!--                                    <div style="float:right;"><a href="/admin/#/admin/addcity" style="text-align:right">Add new city</a></div>-->
+
+                                    <form name="searchForm" novalidate ng-submit="applyGlobalSearch()">
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button" ng-click="refreshData()">
+                                                    <span class="glyphicon glyphicon-refresh"></span>
+                                                </button>
+                                            </span>
+                                            <input type="text" class="form-control" placeholder="Search term" name="searchTerm" ng-model="globalSearchTerm" required />
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="submit">
+                                                    <span class="glyphicon glyphicon-search"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                                <form role="form">
+                                    <table id="example1" class="table table-bordered table-striped" ng-table="tableParams" show-filter="isFiltersVisible">
+                                        <colgroup>
+                                            <col width="5%"/> 
+                                            <col width="15%"/>
+                                            <col width="15%"/>
+                                            <col width="15%"/>
+                                            <col width="15%"/>
+                                            <col width="15%"/>
+                                            <col width="15%"/>
+                                            <col width="15%"/>                                            
+                                            <col width="15%"/>
+                                        </colgroup>
+                                        <tr ng-repeat = "review in $data">
+                                            <td header="'headerCheckbox.html'"><input type='checkbox' ng-model="checkboxes.items[review._id]" value="{{review._id}}" /></td>    
+
+                                            <td data-title="'Review By'" align="left">{{review.user_id.name}}</td>
+
+                                            <td data-title="'Ride'" align="left">{{review.ride.route[0].address.city}}&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>&nbsp;&nbsp;{{review.ride.route[review.ride.route.length - 1].address.city}}</td>
+
+                                            <td data-title="'Drivers'" align="left">{{review.driversString}}</td>
+
+                                          <!--   <td data-title="'Driver Rating'" align="left">{{review.driver.rating}}</td> -->
+                                           <td data-title="' Driver Rating'" sortable="'rating'" filter="{rating:'number'}" align="left">
+                                            <uib-rating ng-if="review.driver.rating=='1'" ng-model="user.operator_rating" max="1" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+                                             <uib-rating ng-if="review.driver.rating=='2'" ng-model="user.operator_rating" max="2" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+                                              <uib-rating ng-if="review.driver.rating=='3'" ng-model="user.operator_rating" max="3" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+                                               <uib-rating ng-if="review.driver.rating=='4'" ng-model="user.operator_rating" max="4" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+                                                <uib-rating ng-if="review.driver.rating=='5'" ng-model="user.operator_rating" max="5" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+                                               <p  ng-if="review.driver.rating=='0'">No reviews</p></td> 
+
+                                            <td data-title="'Vehicles'" align="left">{{review.vehiclesString}}</td>
+
+                                          <!--   <td data-title="'Vehicle Rating'" align="left">{{review.vehicle.rating}}</td>-->
+
+                                           <td data-title="' Vehicle Rating'" sortable="'rating'" filter="{rating:'number'}" align="left">
+                                            <uib-rating ng-if="review.vehicle.rating=='1'" ng-model="user.operator_rating" max="1" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+                                             <uib-rating ng-if="review.vehicle.rating=='2'" ng-model="user.operator_rating" max="2" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+                                              <uib-rating ng-if="review.vehicle.rating=='3'" ng-model="user.operator_rating" max="3" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+                                               <uib-rating ng-if="review.vehicle.rating=='4'" ng-model="user.operator_rating" max="4" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+                                                <uib-rating ng-if="review.vehicle.rating=='5'" ng-model="user.operator_rating" max="5" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+                                               <p  ng-if="review.vehicle.rating=='0'">No reviews</p></td> 
+ 
+                                            <td data-title="'Driver Message'" align="left">{{review.driver.message}}</td>
+
+                                            <td data-title="'vehicle Message'" align="left">{{review.vehicle.message}}</td>
+                                             <td data-title="'Date'" align="left">{{review.created | date_time}}</td>
+                                        </tr>
+                                       <!--  <tr ng-hide="!$scope.recordFetchedLength">
+                                            <td colspan="5">No Result Found!</td>
+                                        </tr> -->
+                                         <tr ng-if="recordFetchedLength=='0'">
+                                            <td colspan="9" align="center">No Results Found!</td>
+                                        </tr>
+                                        <tr ng-show="!$scope.recordFetchedLength">
+                                            <td colspan='2'>
+                                                <div class="form-group">
+                                                    <select class="form-control" name='selectAction' id='selectAction'>
+                                                        <option value="">Select</option>       
+                                                        <option value="delete">Delete</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td><input type='button' name='go' value='Go' class='btn btn-primary' ng-click="performAction()"></td>
+                                            <td colspan="7">
+                                                <ul class="pagination" style="float:right">
+                                                    <li><a href="" ng-click="getReviewsList(currentPage - 1)"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                                                    <li ng-repeat="page in pagesCount" ng-class="{'active': currentPage == page}"><a href="" ng-click="getReviewsList(page)">{{page}}</a></li>
+                                                    <li><a href="" ng-click="getReviewsList(currentPage + 1)"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                    </div>
+                </div>
+        </section><!-- /.content -->
+    </aside><!-- /.right-side -->
+</div>
+<!-- page script -->
+<script type="text/ng-template" id="headerCheckbox.html">
+    <input type="checkbox" ng-model="checkboxes.checked" class="select-all" value="" />
+</script>

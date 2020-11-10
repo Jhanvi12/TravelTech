@@ -1,0 +1,539 @@
+<div class="request-heading">
+    <uib-tabset>
+        <uib-tab heading="Vehicles">
+            <div class="driver table-responsive" ng-init="showVehiclesInDropDown(); showVehicles(); ">
+
+                <form name="profileform" ng-submit="submitVehicleInfo(profileform)">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Vehicle Category</th>
+                                <th>Vehicle Type</th>
+                                <th>Registration No</th>
+                                <th>Cost per km</th>
+                                <th>Features</th>
+                                <th>Image</th>
+                                <th>RC</th>
+                                <th>Taxi Permit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <select class="btn btn-warning" id="ddlList" ng-model="vehicle_info.category" name="category_info" class="form-control" ng-change="setCar(vehicle_info.category);">
+                                        <option value="">Select your option</option>
+                                        <option ng-repeat="option in options  track by $index " ng-model="vehicle_info.option._id"  value="{{option._id}}">{{option.category}}</option>
+                                    </select>
+                                    <span class="validation-text" ng-show="profileform.$submitted || profileform.category.$touched" >
+                                        <p ng-show="profileform.category.$error.required" class="error" >Tell us your car category.</p>
+                                    </span>
+                                </td>
+                               
+
+                        <td>
+                            <select class="btn btn-warning" id="ddlList" ng-model="category_data.type" name="category_data" class="form-control" ng-change="setCarandCategory(category_data.type);">
+                                <option value="">Select your Car</option>
+                                <option ng-repeat="carc in category_data track by $index" ng-model="category_data.carc" value="{{carc}}">{{carc.type}}&nbsp;&nbsp; {{carc.capacity}}</option>
+                            </select>
+                            <span class="validation-text" ng-show="profileform.$submitted || profileform.category_data.$touched" >
+                                <p ng-show="profileform.category_data.$error.required" class="error" >Tell us your car name.</p>
+                            </span>
+                        </td>
+                      
+                <td><input type="text" ng-model="vehicle_info.registration_number"  id="usr" placeholder="MH-31A-1235" style="padding:1px;" name="registration_number" class="form-control" required />
+                    <span class="validation-text" ng-show="profileform.$submitted || profileform.registration_number.$touched">
+                        <p ng-show="profileform.registration_number.$error.required" class="error" >Tell us your Registration Number of car.</p>
+                    </span>
+                </td>
+                <td><input type="text" id="usr" ng-model="vehicle_info.cost_per_km" ng-pattern="/^(\d)+$/"  placeholder="Rs.19/km" name="cost_per_km" class="form-control" required />
+                    <span class="validation-text" ng-show="profileform.$submitted || profileform.cost_per_km.$touched" >
+                        <p ng-show="profileform.cost_per_km.$error.required" class="error" >Tell us your cost per km of car.</p>
+                        <p ng-show="profileform.cost_per_km.$error.pattern" class="error" >Cost per km should be number.</p>
+                    </span>
+                </td>
+                <td class="driver-checkbox">
+                    <label class="checkbox-inline" style="left:8px;"><input type="checkbox" ng-model="vehicle_info.features[2]" name="music_system" ng-true-value="'music_system'" ng-false-value="'false'">Music</label>
+                    <label class="checkbox-inline"><input type="checkbox" ng-model="vehicle_info.features[0]" name="ac" ng-true-value="'ac'" ng-false-value="'false'">AC</label>
+                    <label class="checkbox-inline"><input type="checkbox" ng-model="vehicle_info.features[1]" name="air_bag" ng-true-value="'air_bag'" ng-false-value="'false'" >Air Bag</label>
+                </td>
+                <td>
+                    <span class="btn btn-success btn-file">Upload1<input type="file" multiple file-model="myFile.file" ng-if="!flag"/></span>{{filename}}
+
+                </td>
+                <td>
+                    <span class="btn btn-success btn-file">Upload <input type="file" file-model="myFile.rc"/></span>{{rcfilename}}
+                </td>
+                <td>
+                    <span class="btn btn-success btn-file">Upload <input type="file" file-model="myFile.permit"/></span>{{permitfilename}}
+                </td>
+            </tr>
+         
+        </tbody>
+    </table>
+     <uib-progressbar ng-show="!Flag" class="progress-striped active" name="vehicle" ng-model="upload.vehicle" value="dynamic"  type="info"></i></uib-progressbar>
+
+    <div class="add-details">
+        <button type="submit" class="btn btn-warning" ><i class="fa fa-plus-circle"></i> &nbsp; Submit</button>
+    </div>
+</form>
+
+<div class="driver table-responsive">
+    <div class="request-right">
+        <div id="custom-search-input">
+            <div class="input-group col-lg-12">
+                <input type="text" class="search-query form-control"  ng-model="search.$" placeholder="Search..." /></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <table class="table table-hover" ng-init="getDriverInfo()" ng-show="vehicle">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Cost per km</th>
+                    <th>Capacity</th>
+                    <th>Registration No.</th>
+                    <th>Features</th>
+                    <th>Images</th>
+                    <th>Rc</th>
+                    <th>Taxi Permit</th>
+                    <th>Options</th>
+                </tr>
+                <tr>
+                    <td><input type="text" class="search-query form-control" placeholder="search by type" ng-model="search.type"/></td>
+                    <td><input type="text" class="search-query form-control" placeholder="search by cost/km"  ng-model="search.cost_per_km"/></td>
+                    <td><input type="text" class="search-query form-control" placeholder="search by capacity" ng-model="search.capacity"/></td>
+                    <td><input type="text" class="search-query form-control" placeholder="search by reg. number" ng-model="search.registration_number"/></td>
+                    <td><input type="text" class="search-query form-control" placeholder="search by features" ng-model="search.featuresString"/></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="data in vehicle | filter:search">
+
+                    <td> {{data.type}}</td>
+                    <td> {{data.cost_per_km}}</td>
+                    <td> {{data.capacity}}</td>
+                    <td> {{data.registration_number}}</td>
+                    <td> {{data.featuresString}}</td>
+                    <td> <img ng-src="{{data.images[0]}}" class="image-100" ng-click="open(data.images)"/></td>
+                    <td >
+                        <img ng-src="{{data.rc[data.rc.length-1].path}}" class="image-100" ng-click="openImageModal(data.rc)"/>
+                    </td>
+                    <td >
+                        <img ng-src="{{data.permit[data.rc.length-1].path}}" class="image-100" ng-click="openImageModal(data.permit)"/>
+                    </td>
+                    <td>
+                        <a ui-sref="operator.editvehicle({'id':data._id})" title="edit vehicle">
+                            <i class="fa fa-pencil color-icon"></i>
+                        </a>
+                        <a  ng-click="confirmCancelForVehicles(data._id);" title="delete vehicle">
+                            <i class="fa fa-times-circle color-icon" ></i>
+                        </a>&nbsp;
+                    </td>
+                </tr>
+                <tr ng-if="!vehicle">
+                    <td colspan="10"><center>No Information To Show.</center></td>
+                </tr>
+                <tr>
+                    <ul class="pagination" style="float:right; margin: 0px 0px;">
+                        <li style="margin: 0px 0px;"><a ng-click="showVehicles(currentVehiclePage-1)"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                        <li style="margin: 0px 0px;"ng-repeat="page in pagesCount" ng-class="{'active': currentVehiclePage == page}"><a ng-click="showVehicles(page)">{{page}}</a></li>
+                        <li style="margin: 0px 0px;"><a ng-click="showVehicles(currentVehiclePage+1)"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                    </ul>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<hr>
+</uib-tab>
+<uib-tab heading="Drivers">
+    <form name="driverInfo" ng-submit="addDriverInfo(driverInfo)">
+        <div class="driver table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Picture</th>
+                        <th>Driving Lisence</th>
+                        <th>Police Verification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span ng-show="driverInfo.name.$touched && driverInfo.name.$invalid" class="error fl">This field is required.</span>
+                            <input type="text" class="form-control" ng-model="driver.name" id="usr" name="name" required />
+                        </td>
+                        <td>
+                            <span ng-show="driverInfo.mobile.$touched && driverInfo.mobile.$invalid" class="error fl">This field is required.</span>
+                            <input type="text" class="form-control"  ng-model="driver.mobile" name="mobile" id="usr" minlength="10" maxlength="10" required />
+                        </td>
+                        <td>
+                            <span class="btn btn-success btn-file">Upload <input type="file" file-model="myFile.file" /></span>{{profilepic}}
+                        </td>
+                        <td>
+                            <span class="btn btn-success btn-file">Upload <input type="file" file-model="myFile.dl" /></span>{{dlname}}
+                        </td>
+                        <td>
+                            <span class="btn btn-success btn-file">Upload <input type="file" file-model="myFile.verification" /></span>{{verification}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <uib-progressbar ng-show="!Flag" class="progress-striped active" name="vehicle" ng-model="upload.vehicle" value="dynamic"  type="info"></i></uib-progressbar>
+        <div class="add-details">
+            <button type="submit" class="btn btn-warning btn-add-details">
+                <i class="fa fa-plus-circle"></i> &nbsp; <span> Submit</span>
+            </button>
+        </div>
+
+    </form>
+    <div class="driver table-responsive">
+        <div class="request-right">
+            <div id="custom-search-input">
+                <div class="input-group col-lg-12">
+                    <input type="text" ng-model="search.$" class="  search-query form-control" placeholder="Search..." /></div></div>
+                </div>
+
+                <div class="clearfix"></div>
+                <table class="table table-hover" ng-init="getDriverInfo()">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>Picture</th>
+                            <th>Dl</th>
+                            <th>Police Verification</th>
+                            <th>Options</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="search-query form-control" placeholder="Search by Name" ng-model="search.name.first"/></td>
+                            <td><input type="text" class="search-query form-control" placeholder="Search by Phone" ng-model="search.phone_number"/></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr ng-repeat="data in drivers_info | filter:search">
+                            <td> {{data.name}}</td>
+                            <td> {{data.phone_number}}</td>
+                            <td> <img ng-src="{{data.profile_pic}}" ng-click="open([data.profile_pic])" class="image-100"/></span></td>
+                            <td>
+                                <img ng-src="{{data.dl[data.dl.length-1].path}}" class="image-100" ng-click="openImageModal(data.dl)"/>
+                            </td>
+                            <td>
+                                <img ng-src="{{data.verification[data.dl.length-1].path}}" class="image-100" ng-click="openImageModal(data.verification)"/>
+                            </td>
+                            <td>
+                                <a ui-sref="operator.editdriver({ id: data._id })"><i class="fa fa-pencil color-icon"></i></a> &nbsp;
+                                <a ng-click="confirmCancel(data._id)"><i class="fa fa-times-circle color-icon"></i></a> &nbsp;
+                            </td>
+                        </tr>
+                        <tr colspan="4" ng-hide="drivers_info.length">
+                            <td>No Information To Show.</td>
+                        </tr>
+                        <tr>
+                            <ul class="pagination" style="float:right; margin: 0px 0px;">
+                                <li style="margin: 0px 0px;"><a ng-click="getDriverInfo(currentDriverPage-1)"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                                <li style="margin: 0px 0px;"ng-repeat="page in pagesDriverCount" ng-class="{'active': currentDriverPage == page}"><a ng-click="getDriverInfo(page)">{{page}}</a></li>
+                                <li style="margin: 0px 0px;"><a ng-click="getDriverInfo(currentDriverPage+1)"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                            </ul>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </uib-tab>
+        <uib-tab heading="Bank Info" ng-click="getBankInfo();">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" >
+                <form name="bankinfo" ng-submit="submitBankInfo(bankinfo,bank_info)">
+                    <div class="col-sm-12 col-sm-offset-4">
+                        <div class="form-group">
+
+                            <input type="text" name="bank_name" id="usr" ng-model="bank_info.bank_name" placeholder="Bank Name" class="form-control" required/>
+                            <span class="validation-text" ng-show="bankinfo.$submitted || bankinfo.bank_name.$touched">
+                                <p ng-show="bankinfo.bank_name.$error.required" class="error" >Tell us your Bank Name</p>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="account_name" id="usr"  ng-model="bank_info.account_name" placeholder="Bank Account Name" class="form-control" required/>
+                            <span class="validation-text" ng-show="bankinfo.$submitted || bankinfo.account_name.$touched">
+                                <p ng-show="bankinfo.account_name.$error.required" class="error" >Tell us your Account Name</p>
+                            </span>
+                        </div>
+                        <div class="form-group">
+
+                            <input type="text" name="account_number" id="usr"  ng-model="bank_info.account_number" placeholder="Bank Account Number"  ng-pattern="/^(\d)+$/"  class="form-control" required/>
+                            <span class="validation-text" ng-show="bankinfo.$submitted || bankinfo.account_number.$touched">
+                                <p ng-show="bankinfo.account_number.$error.required" class="error" >Tell us your Account Number</p>
+                                <p ng-show="bankinfo.account_number.$error.pattern" class="error" >Account Number should be numeric </p>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text"  name="ifsc_code" id="usr" placeholder="IFSC Code" ng-model="bank_info.ifsc_code" class="form-control"  required/>
+                            <span class="validation-text" ng-show="bankinfo.$submitted || bankinfo.ifsc_code.$touched">
+                                <p ng-show="bankinfo.ifsc_code.$error.required" class="error" >Tell us your IFSC Code</p>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="bank_branch" id="usr" placeholder="Bank Branch" ng-model="bank_info.bank_branch" class="form-control"  required/>
+                            <span class="validation-text" ng-show="bankinfo.$submitted || bankinfo.bank_branch.$touched">
+                                <p ng-show="bankinfo.bank_branch.$error.required" class="error" >Tell us your Bank Branch</p>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="branch_address" id="usr" placeholder="Branch Address" ng-model="bank_info.branch_address" class="form-control"  required/>
+                            <span class="validation-text" ng-show="bankinfo.$submitted || bankinfo.branch_address.$touched">
+                                <p ng-show="bankinfo.branch_address.$error.required" class="error" >Tell us your Bank Address</p>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label>Upload Cheque :</label>
+                            <span class="btn btn-success btn-file">Upload 
+                                <input type="file" multiple file-model="myFile.cheque" onchange="angular.element(this).scope().fileChanged(this)"/ >
+                            </span>
+                            <img ng-src="{{updateImgUrl}}" class="image-100" ng-if="updateImgUrl" />
+                       </div> 
+                       <div ng-if='myFile.currentUrl'>
+                            <img ng-src="{{myFile.currentUrl}}" class="image-100"/>
+                       </div>
+                       <uib-progressbar ng-show="!Flag" class="progress-striped active" name="vehicle" ng-model="upload.vehicle" value="dynamic"  type="info"></i></uib-progressbar>
+
+                        <div class="add-location">
+                            <button class="btn btn-warning" type="submit" >
+                                &nbsp; Enter Details
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </uib-tab>
+
+        <uib-tab heading="Personal Info" ng-click="getPersonalInfo();getCityList()">
+
+            <div class="row">
+                <form name="personalinfo" ng-submit="savePersonalInfo(personalinfo,fetchdata)">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <input type="text"  ng-model="fetchdata.vendor_city" name="vendor_city" placeholder="Vendor City" class="form-control" id="usr" required/>
+                            <span class="validation-text" ng-show="personalinfo.$submitted || personalinfo.vendor_city.$touched">
+                                <p ng-show="personalinfo.vendor_city.$error.required" class="error" >Tell us your City</p>
+                            </span>
+                        </div>
+                        <div class="form-group">
+
+                            <textarea class="form-control" name="vendor_address" ng-model="fetchdata.vendor_address" placeholder="Vendor Address" rows="3" id="usr" required/></textarea>
+                            <span class="validation-text" ng-show="personalinfo.$submitted || personalinfo.vendor_address.$touched">
+                                <p ng-show="personalinfo.vendor_address.$error.required" class="error" >Tell us your Address</p>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="owner_name" ng-model="fetchdata.owner_name" placeholder="Owner's Name" class="form-control" id="usr" required/>
+                            <span class="validation-text" ng-show="personalinfo.$submitted || personalinfo.owner_name.$touched">
+                                <p ng-show="personalinfo.owner_name.$error.required" class="error" >Tell us your Name</p>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="owner_phone_number" ng-model="fetchdata.owner_phone_number" placeholder="Owner's Phone number" minlength="10" maxlength="10"  ng-pattern="/^(\d)+$/"  class="form-control" id="usr" required/>
+                            <span class="validation-text" ng-show="personalinfo.$submitted || personalinfo.owner_phone_number.$touched">
+                                <p ng-show="personalinfo.owner_phone_number.$error.required" class="error" >Tell us your Phone Number</p>
+                                <p ng-show="personalinfo.owner_phone_number.$error.pattern" class="error" >Your Phone Number should be numeric</p>
+                            </span>
+                        </div>
+
+                          <div class="form-group">
+                            <input type="text" name="Manager_1" ng-model="fetchdata.manager_name1" placeholder="Manager Name 1"  class="form-control" id="usr" required/>
+                            <span class="validation-text" ng-show="personalinfo.$submitted || personalinfo.Manager_1.$touched">
+                                <p ng-show="personalinfo.Manager_1.$error.required" class="error" >Tell us your Manager 1</p>
+                              </span>
+                        </div>
+                         <div class="form-group">
+                            <input type="text" name="manager_contactno1" ng-model="fetchdata. manager_contactno1" placeholder="Manager Contact 1" minlength="10" maxlength="10"  ng-pattern="/^(\d)+$/"  class="form-control" id="usr" required/>
+                            <span class="validation-text" ng-show="personalinfo.$submitted || personalinfo.manager_contactno1.$touched">
+                                <p ng-show="personalinfo.manager_contactno1.$error.required" class="error" >Tell us your Phone Number</p>
+                                <p ng-show="personalinfo.manager_contactno1.$error.pattern" class="error" >Your Phone Number should be numeric</p>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="Manager_2" ng-model="fetchdata.manager_name2" placeholder="Manager Name 2"  class="form-control" id="usr" required/>
+                            <span class="validation-text" ng-show="personalinfo.$submitted || personalinfo.Manager_2.$touched">
+                                <p ng-show="personalinfo.Manager_2.$error.required" class="error" >Tell us your Manager 2</p>
+                              </span>
+                        </div>
+                         <div class="form-group">
+                            <input type="text" name="manager_contactno2" ng-model="fetchdata. manager_contactno2" placeholder="Manger Contact 2" minlength="10" maxlength="10"  ng-pattern="/^(\d)+$/"  class="form-control" id="usr" required/>
+                            <span class="validation-text" ng-show="personalinfo.$submitted || personalinfo.manager_contactno2.$touched">
+                                <p ng-show="personalinfo.manager_contactno2.$error.required" class="error" >Tell us your Phone Number</p>
+                                <p ng-show="personalinfo.manager_contactno2.$error.pattern" class="error" >Your Phone Number should be numeric</p>
+                            </span>
+                        </div>
+                        <div class="form-group" >
+                            <label>Home Locations :</label>
+                               
+                        <div class="" ng-repeat="fetchdataObj in fetchdata.home_location track by $index">
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                      
+                                <input type="text" class="form-control" id="sel1" name="home_location" ng-model="fetchdata.home_location[$index].address.name" vs-google-autocomplete="{ types: ['address'] }" vs-street-number="fetchdata.home_location[$index].address.streetNumber" vs-street="fetchdata.home_location[$index].address.street" vs-city="fetchdata.home_location[$index].address.city"  vs-state="fetchdata.home_location[$index].address.state" vs-country="fetchdata.home_location[$index].address.country" vs-post-code="fetchdata.home_location[$index].address.postCode" vs-district="fetchdata.home_location[$index].address.district" required=""/>
+                     
+                                 </div>
+                            
+                       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                     <button type="button" class="green_colors_add fr" ng-click="addRouteInfo(fetchdata.home_location[$index].address,$index)" ng-if="fetchdata.home_location.length-1 == $index" >
+                    <i class="fa fa-plus-circle" ></i> Add
+                    </button>
+                    <button type="button" class="green_colors_remove fr" ng-click="removeRouteInfo(fetchdata.home_location[$index].address,$index)" ng-if="!(fetchdata.home_location.length-1 == $index)">
+                        <i class="fa fa-minus-circle"></i> Remove 
+                    </button>
+                           </div>
+                        </div>
+  
+
+                        </div>
+            <!--      /*Remove code from here*/ -->
+                        <!-- <div class="form-group">
+                            <input type="text" placeholder="Cancellation Policy" ng-model="fetchdata.cancellation_policy" name="cancellation_policy" class="form-control" id="usr" required/>
+                            <span class="validation-text" ng-show="personalinfo.$submitted || personalinfo.cancellation_policy.$touched">
+                                <p ng-show="personalinfo.cancellation_policy.$error.required" class="error" >Tell us your Cancellation Policy</p>
+                            </span>
+                        </div>
+                        <div class="form-group"> -->
+                           <!--  <input type="text"  placeholder="Operating Location" ng-model="fetchdata.operating_location" name="operating_location" class="form-control" id="usr" required/> -->
+                           <!-- <ul class="signup-checkbox" ng-repeat="city in fetchdata.operating_location"> -->
+                         <!--   <ul class="signup-checkbox" ng-repeat="city in cities">
+                            <li>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" ng-true-value="city" ng-model="fetchdata.city[$index]" />
+                                    {{city.city}} </label>
+                                </li>
+                            </ul>
+                            <span class="validation-text" ng-show="personalinfo.$submitted || personalinfo.operating_location.$touched">
+                                <p ng-show="personalinfo.operating_location.$error.required" class="error" >Tell us your Operating Location</p>
+                            </span>
+                        </div> -->
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <input type="text" name="working_hours" ng-model="fetchdata.working_hours" class="form-control" id="usr" placeholder="Working Hours"  ng-pattern="/^(\d)+$/"  required/>
+                            <span class="validation-text" ng-show="personalinfo.$submitted || personalinfo.working_hours.$touched">
+                                <p ng-show="personalinfo.working_hours.$error.required" class="error" >Tell us your Working Hours</p>
+                                <p ng-show="personalinfo.working_hours.$error.pattern" class="error" >Working Hours should be numeric</p>
+                            </span>
+                        </div>
+              
+                        <!--Add and remove pan number button and pushed into array-->
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="pan in pan_number" >
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
+                            <input type="text" name="pan_number" placeholder="Pan Number" ng-model="fetchdata.pan_number[$index]" class="form-control" id="usr" required/>
+                            <span class="validation-text" ng-show="personalinfo.$submitted || personalinfo.pan_number.$touched">
+                                <p ng-show="personalinfo.pan_number.$error.required" class="error" >Tell us your Pan Number</p>
+                            </span>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
+                              <button type="button" class="green_colors_add fr" ng-click="addPanNumber(fetchdata.pan_number[$index])" ng-if="pan_number.length-1 == $index" >
+                                <i class="fa fa-plus-circle" ></i> Add
+                             </button>
+                              <button type="button" class="green_colors_remove fr" ng-click="removePanNumber($index)" ng-if="!(pan_number.length-1 == $index)">
+                        <i class="fa fa-minus-circle"></i> Remove 
+                             </button>
+                             </div>
+                        </div>
+                       <!--  Service Tax Number add and remove also -->
+                        <div class="form-group form-group col-lg-12 col-md-12 col-sm-12 col-xs-12"  ng-repeat="service in service_tax_number">
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
+                            <input type="text" name="service_tax_number" placeholder="Service Tax Number" ng-model="fetchdata.service_tax_number[$index]" class="form-control" id="usr" required/>
+                            <span class="validation-text" ng-show="personalinfo.$submitted || personalinfo.service_tax_number.$touched">
+                                <p ng-show="personalinfo.service_tax_number.$error.required" class="error" >Tell us your Service Tax Number</p>
+
+                            </span>
+                            </div>
+                               <div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
+                              <button type="button" class="green_colors_add fr" ng-click="addServiceTaxNumber(fetchdata.service_tax_number[$index])" ng-if="service_tax_number.length-1 == $index" >
+                                <i class="fa fa-plus-circle" ></i> Add
+                             </button>
+                              <button type="button" class="green_colors_remove fr" ng-click="removeServiceTaxNumber($index)" ng-if="!(service_tax_number.length-1 == $index)">
+                        <i class="fa fa-minus-circle"></i> Remove 
+                             </button>
+                             </div>
+                        
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="website"  placeholder="Website" ng-model="fetchdata.website" class="form-control" id="usr" required/>
+                            <span class="validation-text" ng-show="personalinfo.$submitted || personalinfo.website.$touched">
+                                <p ng-show="personalinfo.website.$error.required" class="error" >Tell us your Website</p>
+                            </span>
+
+                        </div>
+                          <label>Cancellation Policy : </label>
+                        <div class="form-group">
+                             
+                              <input type="radio" name="cancellation_policy" ng-model="fetchdata.cancellation_policy" value="Standard"  ng-checked="policy.check"> Standard<br>
+                              <input type="radio" ng-model="fetchdata.cancellation_policy" name="cancellation_policy" value="Custom"  ng-checked="policy.check"> Custom<br>
+                        </div>
+                  
+                       <div class="form-group">
+                       <label>Id Proof : </label>
+                       <span class="btn btn-success btn-file" ngf-select ng-model="fetchdata.id_proof" name="file" >Select</span> 
+                       <img ng-if='!fetchdata.abc' ngf-src="fetchdata.id_proof || picID" class="image-100"  alt ="No image found" >
+                       </div>
+                        <div ng-if='fetchdata.abc'>  
+                            <img ng-src="{{fetchdata.abc}}" class="image-100"/>
+                       </div>
+                         <div class="form-group">
+                         <label>Company Id Proof :</label>
+                       <span class="btn btn-success btn-file"ngf-select ng-model="fetchdata.id_proof_company" name="file" >Select</span>  
+                        <img  ng-if='!fetchdata.def' ngf-src="fetchdata.id_proof_company || picIDCompany" class="image-100"  alt ="No image found">
+                       </div>
+                        <div ng-if='fetchdata.def'>                           
+                          <img ng-src="{{fetchdata.def}}" class="image-100"/>
+                        
+                       </div>
+                        <div class="form-group">
+
+                            <h4 class="signup-title"> Areas of Operation </h4>
+                             <ul class="signup-checkbox"  ng-repeat="city in cities">
+                             <li>
+                                <label class="checkbox-inline">
+                                  <input type="checkbox" ng-checked="city.check" ng-true-value="city._id" ng-click="pushcitiesid(city._id)" ng-model="fetchdata.city[$index]" >
+                                   {{city.city}}
+                                  </input>
+                                 </label>
+                                 </li>
+                          </ul>
+
+                          <!--   <input type="text" placeholder="Company's Email" ng-model="fetchdata.cancellation_policy" name="cancellation_policy" class="form-control" id="usr" required/>
+                            <span class="validation-text" ng-show="personalinfo.$submitted || personalinfo.cancellation_policy.$touched">
+                                <p ng-show="personalinfo.cancellation_policy.$error.required" class="error" >Tell us your Cancellation Policy</p>
+                            </span> -->
+
+                        </div>
+         
+
+                       <!--  <div class="form-group">
+                            <input type="text" placeholder="ID Proof" ng-model="fetchdata.cancellation_policy" name="cancellation_policy" class="form-control" id="usr" required/>
+                            <span class="validation-text" ng-show="personalinfo.$submitted || personalinfo.cancellation_policy.$touched">
+                                <p ng-show="personalinfo.cancellation_policy.$error.required" class="error" >Tell us your Cancellation Policy</p>
+                            </span>
+                        </div> -->
+                      <!--   <div class="form-group">
+                            <input type="text" placeholder="ID Proof (Company)" ng-model="fetchdata.cancellation_policy" name="cancellation_policy" class="form-control" id="usr" required/>
+                            <span class="validation-text" ng-show="personalinfo.$submitted || personalinfo.cancellation_policy.$touched">
+                                <p ng-show="personalinfo.cancellation_policy.$error.required" class="error" >Tell us your Cancellation Policy</p>
+                            </span>
+                        </div> -->
+
+                    </div>
+
+                    <div class="add-location">
+                        <button class="btn btn-warning" type="submit" >
+                            &nbsp; Enter Details
+                        </button>
+                        
+                    </div>
+
+                </form>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+

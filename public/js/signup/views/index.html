@@ -1,0 +1,67 @@
+<header class="navbar navbar-inverse navbar-fixed-top navtopheader" role="header-top" data-spy="affix" data-offset-top="60">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button"class="navbar-toggle collapsed"data-toggle="collapse"data-target="#navbar"aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <a class="navbar-brand" href="#"> <span class="logo"> <img src="img/Travel-logo.png" alt=""> </span> </a> </div>
+        </div>
+    </div>
+</header>
+<section class="merchant-sec">
+    <div class="container-fluid" ng-controller="SignupController">
+        <div class="row">
+            <toast></toast>
+            <div class="col-lg-12">
+                <div class="card card-container">
+                    <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+                    <img src="img/Travel-logo.png" alt="">
+                    <p id="profile-name" class="profile-name-card"></p>
+
+                    <form class="form-signin" name="signupForm" ng-submit="submitForSignUp(user)">
+                        <div class="rdBtns">
+                            <p class="forgot">Sign Up</p>
+                            <label class="radio-inline"><input type="radio"  ng-model="user.type" value="customer" name="optradio">Customer</label>
+                            <label class="radio-inline"><input type="radio"  ng-model="user.type" value="operator" name="optradio">Operator</label>
+                            <!-- <label class="radio-inline"><input type="radio"  ng-model="user.type" value="corporate" name="optradio">Corporate</label> -->
+                        </div>
+                        <span id="reauth-email" class="reauth-email"></span>
+
+
+                        <div id="remember" class="checkbox"><label>* Mandatory Fields</label></div>
+                        <span ng-show="signupForm.email.$touched && signupForm.email.$invalid" class="error fl">This field is required.</span>
+                        <input type="email" id="inputEmail" name="email" class="form-control" ng-model="user.email" placeholder="Email Address *" required autofocus>
+                        <span ng-show="signupForm.first.$touched && signupForm.first.$invalid" class="error fl">This field is required.</span>
+                        <input type="text" id="inputFirstName" name="first" class="form-control" ng-model="user.name.first" placeholder="First Name *" required>
+                        <span ng-show="signupForm.last.$touched && signupForm.last.$invalid" class="error fl">Minimum length should be 6.</span>
+                        <input type="text" id="inputLastName" name="last" class="form-control" ng-model="user.name.last" placeholder="Last Name *" required autofocus>
+                        <span ng-show="signupForm.username.$touched && signupForm.username.$invalid" class="error fl">This field is required.</span>
+                        <input type="text" id="inputUsername" minlength="6" name="username" class="form-control" ng-model="user.username" placeholder="Username *" required autofocus>
+                        <span ng-show="signupForm.phone.$touched && signupForm.phone.$invalid" class="error fl">Minimum length should be 10.</span>
+                        <input type="text" id="inputPhoneNumber" minlength="10" maxlength="10" name="phone" class="form-control" ng-model="user.phone_number" placeholder="Mobile Number *" required>
+                        <span ng-show="signupForm.password.$touched && signupForm.password.$invalid" class="error fl">Minimum length should be 6.</span>
+                        <input type="password" minlength="6" id="inputPassword" name="password" class="form-control" ng-model="user.password" placeholder="Password *" required>
+                        <span ng-show="signupForm.cpassword.$touched && signupForm.cpassword.$invalid" class="error fl">Minimum length should be 6.</span>
+                        <input type="password" minlength="6" id="inputConfirmPassword" name="cpassword" class="form-control" ng-model="user.confirmpassword" placeholder=" Confirm Password *" ng-keyup="matchPassword()" required>
+                        <span ng-show="signupForm.street.$touched && signupForm.street.$invalid" class="error fl">This field is required.</span>
+                        <input type="text" id="inputStreet" name="street" class="form-control" ng-model="user.address.street" placeholder=" Street *" required>
+                        <span ng-show="signupForm.city.$touched && signupForm.city.$invalid" class="error fl">This field is required.</span>
+                        <input type="text" id="inputCity" name="city" class="form-control" ng-model="user.address.city" placeholder=" City *" required>
+                        <span ng-show="signupForm.state.$touched && signupForm.state.$invalid" class="error fl">This field is required.</span>
+                        <input type="text" id="inputState" name="state" class="form-control" ng-model="user.address.state" placeholder=" State *" required>
+                        <span ng-show="signupForm.country.$touched && signupForm.country.$invalid" class="error fl">This field is required.</span>
+                        <input type="text" id="inputCountry" name="country" class="form-control" ng-model="user.address.country" placeholder=" Country *" required>
+                        <span ng-show="signupForm.zip.$touched && signupForm.zip.$invalid" class="error fl">This field is required.</span>
+                        <input type="text" id="inputZip" name="zip" class="form-control" ng-model="user.address.zip" placeholder=" Zip *" required>
+                        <div class="">
+                            <button ng-disabled="signupForm.$invalid" type="submit" class="btn btn-lg btn-primary btn-block btn-signin sign-width sign-up" >
+                                <span id="btn-text">Sign-up</span>
+                            </button>
+                        </div>
+
+                    </form>
+                    <!-- /form -->
+                    <!-- <a href="#" class="forgot-password">Forgot Password ? </a> </div> -->
+                    <!-- /card-container -->
+                </div>
+            </div>
+        </div>
+    </section>

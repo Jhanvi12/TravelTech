@@ -1,0 +1,139 @@
+<uib-tabset active="activeForm">
+ <uib-tab index="0" heading="Away Taxi">
+ 
+         <div class="tab-pane" id="messages" ng-controller="OperatorFleetController">
+             <h2 class="fleet-time" style="text-align: left">Fleet Holdings Time</h2>
+         </div>
+        <div class="row">
+        <form name="fleetForm">
+        <div class="form-group">
+          <div class="row" >
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <p class="input-group">
+                <input type="text" class="form-control"placeholder="Date From" uib-datepicker-popup="{{format}}" name="datefrom" ng-model="awayTaxi.datefrom" is-open="popup4.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open4()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+         <div class="form-group">
+          <div class="row" >
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <p class="input-group">
+                <input type="text" class="form-control"placeholder="Date To" uib-datepicker-popup="{{format}}" name="dateto" ng-model="awayTaxi.dateto" is-open="popup5.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open5()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>   
+          <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="fleet-info">
+              <div class="form-group">
+                <input type="text" id="" class="form-control" placeholder="From Time" required="">
+              </div>
+            </div>
+          </div> -->
+          <div class="form-group">
+              <label for="inputPassword"  style="text-align: left;
+              float: left;">From Time</label>
+              <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <select class="form-control" id="sel1" ng-model="awayTaxi.selected_time.hstep"
+                    ng-options="opt for opt in options.hstep" ></select>
+                    <span class="time"></span>
+                  </div>
+                   <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 margin20">
+                    <select class="form-control" id="sel1" ng-model="awayTaxi.selected_time.mstep" ng-options="opt for opt in options.mstep"></select>
+                    <span class="time"></span>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label for="inputPassword" style="text-align: left;
+              float: left;">To Time &nbsp;&nbsp;&nbsp;&nbsp;</label>
+              <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <select class="form-control" id="sel1" ng-model="awayTaxi.selected_time1.hstep"
+
+                    ng-options="opt for opt in options.hstep" ></select>
+                    <span class="time"></span>
+                  </div>
+                   <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 margin20">
+                    <select class="form-control" id="sel1"ng-model="awayTaxi.selected_time1.mstep" ng-options="opt for opt in options.mstep"></select>
+                    <span class="time"></span>
+                  </div>
+                </div>
+              </div>
+          </div>
+         
+          
+          <div class="form-group">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"> <span class="select-arrow ">
+                  <img alt="" src="img/drop-arrow.png"></span>
+                       <select class="form-control drop-arrow" ng-model="awayTaxi.vehicle_id" id="sel1">
+                        <option value = "">Select car Type</option>
+                        <option ng-repeat="data in vehicleInfo"   value="{{data._id}}">{{data.type}}</option>
+                       </select>
+                </div>
+              </div>
+          </div>
+          
+          <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            <div class="location-info">
+               <a class="btn btn-success" type="button" href="">
+               <i class="fa fa-plus-circle"></i> &nbsp; Add Location</a>
+            </div>
+          </div> -->
+            <div class="form-group">
+                <label for="inputEmail" style="float: left;">Starting Location</label>
+                <div class="row">
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <input type="text" class="form-control" id="sel1" name="location" ng-model="locations" vs-google-autocomplete="{ types: ['address'] }" vs-street-number="awayTaxi.route[0].address.streetNumber" vs-street="awayTaxi.route[0].address.street" vs-city="awayTaxi.route[0].address.city"  vs-state="awayTaxi.route[0].address.state" vs-country="awayTaxi.route[0].address.country" vs-post-code="awayTaxi.route[0].address.postCode" vs-district="awayTaxi.route[0].address.district" required=""/>
+                    <span class="circle_plus"></span>
+                    <span ng-show="oneWayRideForm.location.$touched && oneWayRideForm.pickup_address.$invalid" class="error fl">Please provide location details.</span>
+                  </div>
+                 </div>
+              </div>
+              <div class="form-group">
+                  <label for="inputEmail" style="float: left;">Ending Location</label>
+                <div class="row">
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <input type="text" class="form-control" id="sel2" name="endlocation" ng-model="endlocations" vs-google-autocomplete="{ types: ['address'] }" vs-street-number="awayTaxi.route[1].address.streetNumber" vs-street="awayTaxi.route[1].address.street" vs-city="awayTaxi.route[1].address.city"  vs-state="awayTaxi.route[1].address.state" vs-country="awayTaxi.route[1].address.country" vs-post-code="awayTaxi.route[1].address.postCode" vs-district="awayTaxi.route[1].address.district" required=""/>
+                    <span class="circle_plus"></span>
+                    <span ng-show="oneWayRideForm.endlocation.$touched && oneWayRideForm.endlocation.$invalid" class="error fl">Please provide location details.</span>
+                  </div>
+                 </div>
+              </div>
+            <div class="form-group">
+             <div class="row">
+               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <input type="number" id="" name="priceoffer" ng-model="awayTaxi.priceoffer" class="form-control" placeholder="Price Offer" required="">
+                  <span ng-show="fleetForm.priceoffer.$touched && fleetForm.priceoffer.$invalid" class="error fl">Please provide Price .</span>
+                </div>
+              </div>
+            </div>
+           
+          <div class="col-sm-12 text-center">
+            <div class="add-location ">
+              <a id="btn-login" class="btn btn-lg btn-primary itinarary" ng-click ="updateAwaytaxiInfo(awayTaxi)">Edit</a>
+            </div>
+          </div>
+           <div class="col-sm-12 text-center">
+                    <div class="add-location ">
+                    <button class="btn btn-lg btn-primary itinarary" ui-sref="operator.awaytaxi" id="btn-login" type="submit" >Back </button>
+                    
+                    </div>
+                    </div>
+        </form>
+      </div>
+    </uib-tab>
+    </uib-tabset>

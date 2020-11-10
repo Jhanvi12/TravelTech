@@ -1,0 +1,249 @@
+<uib-tabset active="activeForm">
+     <uib-tab index="0" heading="Fleet Management">
+         <div class="tab-pane active" id="home" ng-controller="OperatorFleetController" >
+            <div class="row">
+              <form name="fleetForm" ng-submit="addInfo(operator,fleetForm)">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            
+                  <div class="fleet-info">
+
+                    <div class="form-group">
+                      <input type="text" id="inputPassenger" name="guest_name" ng-model="operator.guest_name" class="form-control" placeholder="Name of the Passsenger" required="">
+                      <span ng-show="fleetForm.guest_name.$touched && fleetForm.guest_name.$invalid" class="error fl">Please provide name of passenger.</span>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" id="inputMobile" name="guest_phone_number" ng-model="operator.guest_phone_number" class="form-control" placeholder="Mobile Number" ng-pattern="/^[789]\d{9}$/" minlength="10" maxlength="10" required="">
+                      <span ng-show="fleetForm.guest_phone_number.$touched && fleetForm.guest_phone_number.$invalid" class="error fl">Please provide mobile no .</span>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" id="inputEmail" name="guest_email" ng-model="operator.guest_email" class="form-control" placeholder="Email ID" required="">
+                      <span ng-show="fleetForm.guest_email.$touched && fleetForm.guest_email.$invalid" class="error fl">Please provide email .</span>
+                    </div>
+                    <div class="form-group">
+                      <div class="row" >
+                        <div class="col-md-6">
+                          <p class="input-group">
+                            <input type="text" class="form-control"placeholder="Date of Booking" uib-datepicker-popup="{{format}}" name="booking_date" ng-model="operator.booking_date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                            <span class="input-group-btn">
+                              <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                          </p>
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <div class="row" >
+                        <div class="col-md-6">
+                          <p class="input-group">
+                            <input type="text" class="form-control"placeholder="Pick up Date" uib-datepicker-popup="{{format}}" name="pickup_date" ng-model="operator.pickup_date" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                            <span class="input-group-btn">
+                              <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                          </p>
+                        </div>
+                    </div>
+                    </div>
+
+                    
+                    <div class="form-group">
+                    <label for="inputPassword" style="text-align: left;
+                    float: left;">Pickup Time</label>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                          <select class="form-control" id="sel1" ng-model="operator.selected_time.hstep"
+                          ng-options="opt for opt in options.hstep" ></select>
+                          <span class="time"></span>
+                        </div>
+                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 margin20">
+                          <select class="form-control" id="sel1" ng-model="operator.selected_time.mstep" ng-options="opt for opt in options.mstep"></select>
+                          <span class="time"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+          
+                    <div class="form-group">
+                      <div class="row" >
+                        <div class="col-md-6">
+                          <p class="input-group">
+                            <input type="text" class="form-control"placeholder="Drop off Date" uib-datepicker-popup="{{format}}" name="dropoff_date" ng-model="operator.dropoff_date" is-open="popup3.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                            <span class="input-group-btn">
+                              <button type="button" class="btn btn-default" ng-click="open3()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                          </p>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="inputPassword" style="text-align: left;
+                    float: left;">Drop Off Time</label>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                          <select class="form-control" id="sel1" ng-model="operator.selected_time1.hstep"
+
+                          ng-options="opt for opt in options.hstep" ></select>
+                          <span class="time"></span>
+                        </div>
+                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 margin20">
+                          <select class="form-control" id="sel1"ng-model="operator.selected_time1.mstep" ng-options="opt for opt in options.mstep"></select>
+                          <span class="time"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                   <div class="form-group">
+                      <input type="number"  name="holding_time" ng-model="operator.holding_time" class="form-control" placeholder="Holding Time" required="">
+                      <span ng-show="fleetForm.holding_time.$touched && fleetForm.holding_time.$invalid" class="error fl">Please provide Holding Time .</span>
+                    </div>
+
+                    <div class="form-group">
+                      <input type="text"  name="booking_from" ng-model="operator.booking_from" class="form-control" placeholder="Booking From"  required="">
+                      <span ng-show="fleetForm.booking_from.$touched && fleetForm.booking_from.$invalid" class="error fl">Please provide Booking from .</span>
+                    </div>
+                    <div class="form-group">
+                      <input type="text"  name="booking_id" ng-model="operator.booking_id" class="form-control" placeholder="Booking Id"  required="">
+                      <span ng-show="fleetForm.booking_id.$touched && fleetForm.booking_id.$invalid" class="error fl">Please provide Booking Id .</span>
+                    </div>
+                    <div class="upload-button">
+                       <textarea id="comment"   name="remark" ng-model="operator.remark" rows="4" placeholder="Special Remark" class="form-control"></textarea>
+                    </div>
+                   
+                   
+
+               </div>
+          </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left-side">
+
+              <div class="form-group">
+                <input type="number" id="" name="booking_price" ng-model="operator.booking_price" class="form-control" placeholder="Price of Booking" required="">
+                <span ng-show="fleetForm.driver_expense.$touched && fleetForm.booking_price.$invalid" class="error fl">Please provide Booking Price .</span>
+              </div>
+              <div class="form-group">
+                <input type="number" id="" name="driver_expense" ng-model="operator.driver_expense" class="form-control" placeholder="Driver Expenses" required="">
+                <span ng-show="fleetForm.driver_expense.$touched && fleetForm.driver_expense.$invalid" class="error fl">Please provide Driver Expense .</span>
+              </div>
+              <div class="form-group">
+                <input type="number" id="" name="total_bookingAmount" ng-model="operator.total_bookingAmount" class="form-control" placeholder="Total Booking Amount" required="">
+                <span ng-show="fleetForm.total_bookingAmount.$touched && fleetForm.total_bookingAmount.$invalid" class="error fl">Please Total Booking Amount.</span>
+              </div>
+
+              
+              <div >
+                  <div class="dropdown-image"> <span class="select-arrow ">
+                  <img alt="" src="img/drop-arrow.png"></span>
+                       <select class="form-control drop-arrow" ng-model="operator.driver_id" id="sel1">
+                         <option value = "">Select Alloted Driver</option>
+                         <option ng-repeat="data in driverInfo"   value="{{data._id}}">{{data.name}}</option>
+                       </select>
+                     </div>
+              </div>
+              
+              <div>
+                  <div class="dropdown-image"> <span class="select-arrow ">
+                  <img alt="" src="img/drop-arrow.png"></span>
+                       <select class="form-control drop-arrow" ng-model="operator.vehicle_id" id="sel1">
+                        <option value = "">Select Alloted Vehicle</option>
+                        <option ng-repeat="data in vehicleInfo"   value="{{data._id}}">{{data.type}}</option>
+                       </select>
+                     </div>
+              </div>
+
+               <div class="form-group">
+                 <input type="number" id="" name="driver_allowances" ng-model="operator.driver_allowances" class="form-control" placeholder="Duty Driver Allowences" required="">
+                 <span ng-show="fleetForm.driver_allowances.$touched && fleetForm.driver_allowances.$invalid" class="error fl">Please provide Driver Allowance .</span>
+               </div>
+                
+                <div class="form-group">
+                <label for="inputEmail" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Pick Up Address</label>
+                <div class="">
+                  <div class="">
+                    <input type="text" class="form-control" id="sel1" name="pickup_address" ng-model="operator.address.name" vs-google-autocomplete="{ types: ['address'] }" vs-street-number="operator.route[0].address.streetNumber" vs-street="operator.route[0].address.street" vs-city="operator.route[0].address.city"  vs-state="operator.route[0].address.state" vs-country="operator.route[0].address.country" vs-post-code="operator.route[0].address.postCode" vs-district="operator.route[0].address.district" required=""/>
+                    <span class="circle_plus"></span>
+                    <span ng-show="oneWayRideForm.pickup_address.$touched && oneWayRideForm.pickup_address.$invalid" class="error fl">Please provide pickup address details.</span>
+                  </div>
+                 </div>
+              </div>
+
+              <div class=" form-group">
+                <label for="inputPassword" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Drop of Address</label>
+                 <div class="">
+                <div class="">
+                  <input type="text" class="form-control" id="inputPassword" placeholder="Enter City" name="dropoff_address" ng-model="operator.route[1].address.name" vs-google-autocomplete="{ types: ['address'] }" vs-street-number="operator.route[1].address.streetNumber" vs-street="operator.route[1].address.street" vs-city="operator.route[1].address.city"  vs-state="operator.route[1].address.state" vs-country="operator.route[1].address.country" vs-post-code="operator.route[1].address.postCode" vs-district="operator.route[1].address.district" required/>
+                  <span ng-show="oneWayRideForm.dropoff_address.$touched && oneWayRideForm.dropoff_address.$invalid" class="error fl">Please provide dropoff address details.</span>
+                </div>
+                </div>
+             </div>
+
+               <div class="form-group">
+                 <input type="number" id="" name="advance_received" ng-model="operator.advance_received" class="form-control" placeholder="Advanced Received" required="">
+                 <span ng-show="fleetForm.advance_received.$touched && fleetForm.advance_received.$invalid" class="error fl">Please provide Advanced received .</span>
+               </div>
+
+               <div class="upload-button">
+                       <textarea  name="route_itineary" ng-model="operator.route_itineary" rows="4" placeholder="Route Itineary" class="form-control"></textarea>
+              </div>
+
+             
+               
+            </div>
+                  <div class="col-sm-12 text-center">
+                    <div class="add-location ">
+                    <button class="btn btn-lg btn-primary itinarary" href="#" id="btn-login" type="submit">Add Itineraries </button>
+                    
+                    </div>
+                 </div>
+              </form>
+            </div>
+      </div>
+     </uib-tab>
+  
+     <uib-tab index="1" heading="View List" ng-click="getInventory();">
+       <div ng-if="!users.length"><h3>Data Not found</h3></div>  
+          <div ng-if="users.length">
+          <div class="tab-pane" id="profile">
+          <div class="table-responsive">
+            <table ng-table="tableParams" class="table table-condensed table-bordered table-striped">
+              <tr ng-repeat="user in $data">
+                <td data-title="'Booking Id'" ng-if="user.booking_id">{{user.booking_id}}</td>
+                <td data-title="'Booking Id'" ng-if="!user.booking_id">--</td>
+                <td data-title="'Vehicle Type'" ng-if="user.vehicle_id.type">{{user.vehicle_id.type}}</td>
+                <td data-title="'Vehicle Type'" ng-if="!user.vehicle_id.type">--</td>
+                <td data-title="'Vehicle No'" ng-if="user.vehicle_id.registration_number">{{user.vehicle_id.registration_number}}</td>
+                <td data-title="'Vehicle No'" ng-if="!user.vehicle_id.registration_number">--</td>
+                <td data-title="'GuestName'" sortable="'guest_name'">{{user.guest_name}}</td>
+                <td data-title="'GuestPhoneNo'" >{{user.guest_phone_number}}</td>
+                <td data-title="'Email'" sortable="'guest_email'">{{user.guest_email}}</td>
+                <td data-title="'Booking Date'">{{user.booking_date|date:'medium'}}</td>
+              
+               <!--  <td data-title="'Rating'" sortable="'rating'" filter="{rating:'number'}" align="left">
+                                            <uib-rating ng-if="user.operator_id.review=='1'" ng-model="user.operator_rating" max="1" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating> -->
+                                            <!--  <uib-rating ng-if="user.review=='2'" ng-model="user.operator_rating" max="2" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+                                              <uib-rating ng-if="user.review=='3'" ng-model="user.operator_rating" max="3" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+                                               <uib-rating ng-if="user.review=='4'" ng-model="user.operator_rating" max="4" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+                                                <uib-rating ng-if="user.review=='5'" ng-model="user.operator_rating" max="5" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating> -->
+                                               <!-- <p ng-if="user.operator_id.review=='0'">No reviews</p></td> -->
+                <td data-title="'Action'">
+                  <a ui-sref="operator.fleetdetails({'id':user._id})">
+                  <i class="fa fa-eye" ng-click="getdetails(user._id)"></i>
+                  </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a><i class="fa fa-trash" ng-click="confirmCancel1(user._id)"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a ui-sref="operator.editfleet({'id':user._id})">
+                  <i class="fa fa-pencil" ng-click="getInventoryById(user._id);"></i>
+                  </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 
+                </td>
+                </tr>
+          </table>
+          </div>
+          </div>
+          </div>
+     </uib-tab>
+
+  </uib-tabset>
+

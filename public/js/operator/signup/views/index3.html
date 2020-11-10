@@ -1,0 +1,72 @@
+
+    <div class="card signup-2" style="margin-top:0px;">
+        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+        <img src="img/Travel-logo.png" alt="">
+        <p id="profile-name" class="profile-name-card"></p>
+        <form name="signinform" class="form-signin" ng-init="getDataById();">
+            <div class="stepwizard">
+                <div class="stepwizard-row setup-panel">
+                    <div class="stepwizard-step">
+                        <a disabled="disabled" class="btn btn-default btn-circle" type="button">1</a>
+                        <p>Step 1</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a class="btn btn-circle btn-default btn-primary" type="button">2</a>
+                        <p>Step 2</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a disabled="disabled" class="btn btn-default btn-circle" type="button">3</a>
+                        <p>Step 3</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a disabled="disabled" class="btn btn-default btn-circle" type="button">4</a>
+                        <p>Step 4</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <span id="reauth-email" class="reauth-email"></span>
+        <div class="row">
+        <form name="driverInfo" ng-submit="addDriverInfo()">
+            <div class="driver table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>Picture</th>
+                            <th>Driving Lisence</th>
+                            <th>Police Verification</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span ng-show="driverInfo.name.$touched && driverInfo.name.$invalid" class="error fl">This field is required.</span>
+                                <input type="text" class="form-control" ng-model="driver.name" id="usr" name="name" required />
+                            </td>
+                            <td>
+                                <span ng-show="driverInfo.mobile.$touched && driverInfo.mobile.$invalid" class="error fl">This field is required.</span>
+                                <input type="text" class="form-control"  ng-model="driver.mobile" name="mobile" id="usr" minlength="10" maxlength="10" required />
+                            </td>
+                            <td>
+                                <span class="btn btn-success btn-file">Upload <input type="file" file-model="myFile.file" /></span>
+                            </td>
+                            <td>
+                                <span class="btn btn-success btn-file">Upload <input type="file" file-model="myFile.dl" /></span>
+                            </td>
+                            <td>
+                                <span class="btn btn-success btn-file">Upload <input type="file" file-model="myFile.verification" /></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="add-details">
+                <button type="submit" class="btn btn-warning btn-add-details">
+                    <i class="fa fa-plus-circle"></i> &nbsp; <span> Add Details</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

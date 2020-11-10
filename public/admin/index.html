@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>TravelTech</title>
+        <link href="../css/admin/ng-table.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="../dist/css/vendor.css">
+        <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="../css/admin/AdminLTE.css" rel="stylesheet" type="text/css" />
+
+        <link href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+
+        <script type="text/javascript" src="../dist/js/vendor.js"></script>
+        <script type="text/javascript" src="../libs/angular/ng-table.min.js"></script>
+         <!-- <script type="text/javascript" src="../libs/socket.io.js"></script>   -->
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.3.10/tinymce.min.js"></script>
+
+<!-- <script type="text/javascript" src="/javascripts/plugins/tinymce/tinymce.js"></script> -->
+        <!-- directives -->
+        <script type="text/javascript" src="../js/core/filters/date_filters.js"></script>
+        <script type="text/javascript" src="../js/core/filters/vehicle.js"></script>
+        <script type="text/javascript" src="../js/core/filters/cities.js"></script>
+        <script type="text/javascript" src="../js/core/filters/ride.js"></script>
+        <script type="text/javascript" src="../js/core/filters/bid.js"></script>
+        <script type="text/javascript" src="../js/core/filters/chat.js"></script>
+        <script type="text/javascript" src="../js/core/directives/preloader.js"></script>
+        <script type="text/javascript" src="../js/core/directives/filemodel.js"></script>
+        <script type="text/javascript" src="../js/core/directives/chatbox.js"></script>
+      <script type="text/javascript" src="../js/core/directives/tinymce.js"></script>
+
+
+        <!-- Common Services -->
+        <script type="text/javascript" src="../js/core/services/LocalStorage.js"></script>
+        <script type="text/javascript" src="../js/core/services/Interceptor.js"></script>
+        <script type="text/javascript" src="../js/core/services/Signup.js"></script>
+        <script type="text/javascript" src="../js/core/services/VehicleCategories.js"></script>
+        <script type="text/javascript" src="../js/core/services/Count.js"></script>
+        <script type="text/javascript" src="../js/core/services/Login.js"></script>
+        <script type="text/javascript" src="../js/core/services/City.js"></script>
+        <script type="text/javascript" src="../js/core/services/Socket.js"></script>
+        <script type="text/javascript" src="../js/core/services/env.js"></script>
+
+        <!-- Features's Services -->
+        <script type="text/javascript" src="js/admin/logout/service.js"></script>
+        <script type="text/javascript" src="js/admin/profile/service.js"></script>
+        <script type="text/javascript" src="js/admin/employees/service.js"></script>
+        <script type="text/javascript" src="js/admin/operator/service.js"></script>
+        <script type="text/javascript" src="js/admin/customer/service.js"></script>
+        <script type="text/javascript" src="js/admin/city/service.js"></script>
+        <script type="text/javascript" src="js/admin/vehicle_category/service.js"></script>
+        <script type="text/javascript" src="js/admin/default_vehicle/service.js"></script>
+        <script type="text/javascript" src="js/admin/inventory/service.js"></script>
+        <script type="text/javascript" src="js/admin/driver/service.js"></script>
+        <script type="text/javascript" src="js/admin/vehicle/service.js"></script>
+        <script type="text/javascript" src="js/admin/document/service.js"></script>
+        <script type="text/javascript" src="js/admin/permission/service.js"></script>
+        <script type="text/javascript" src="js/admin/openleads/service.js"></script>
+        <script type="text/javascript" src="js/admin/upcomingrides/service.js"></script>
+        <script type="text/javascript" src="js/admin/completedrides/service.js"></script>
+        <script type="text/javascript" src="js/admin/canceledrides/service.js"></script>
+        <script type="text/javascript" src="js/admin/bids/service.js"></script>
+        <script type="text/javascript" src="js/admin/preference/service.js"></script>
+        <script type="text/javascript" src="js/admin/reviews/service.js"></script>
+        <script type="text/javascript" src="js/admin/notifications/service.js"></script>
+        <script type="text/javascript" src="js/admin/payments/service.js"></script>
+        <script type="text/javascript" src="js/admin/coupons/service.js"></script>
+        <script type="text/javascript" src="js/admin/chat/service.js"></script>
+        <script type="text/javascript" src="js/admin/noshow/service.js"></script>
+        <script type="text/javascript" src="js/admin/emailtemplate/service.js"></script>
+        <script type="text/javascript" src="js/admin/corporate/service.js"></script>
+
+
+        <!-- Features's Controllers -->
+        <script type="text/javascript" src="js/admin/dashboard/controller.js"></script>
+        <script type="text/javascript" src="js/admin/profile/controller.js"></script>
+        <script type="text/javascript" src="js/admin/employees/controller.js"></script>
+        <script type="text/javascript" src="js/admin/operator/controller.js"></script>
+        <script type="text/javascript" src="js/admin/customer/controller.js"></script>
+        <script type="text/javascript" src="js/admin/city/controller.js"></script>
+        <script type="text/javascript" src="js/admin/vehicle_category/controller.js"></script>
+        <script type="text/javascript" src="js/admin/default_vehicle/controller.js"></script>
+        <script type="text/javascript" src="js/admin/inventory/controller.js"></script>
+        <script type="text/javascript" src="js/admin/driver/controller.js"></script>
+        <script type="text/javascript" src="js/admin/driver/allcontroller.js"></script>
+        <script type="text/javascript" src="js/admin/vehicle/controller.js"></script>
+        <script type="text/javascript" src="js/admin/vehicle/allcontroller.js"></script>
+        <script type="text/javascript" src="js/admin/document/controller.js"></script>
+        <script type="text/javascript" src="js/admin/permission/controller.js"></script>
+        <script type="text/javascript" src="js/admin/openleads/controller.js"></script>
+        <script type="text/javascript" src="js/admin/upcomingrides/controller.js"></script>
+        <script type="text/javascript" src="js/admin/completedrides/controller.js"></script>
+        <script type="text/javascript" src="js/admin/canceledrides/controller.js"></script>
+        <script type="text/javascript" src="js/admin/bids/controller.js"></script>
+        <script type="text/javascript" src="js/admin/login/controller.js"></script>
+        <script type="text/javascript" src="js/admin/logout/controller.js"></script>
+        <script type="text/javascript" src="js/admin/controller.js"></script>
+        <script type="text/javascript" src="js/admin/headermenu/controller.js"></script>
+        <script type="text/javascript" src="js/admin/leftmenu/controller.js"></script>
+        <script type="text/javascript" src="js/admin/forgot-password/controller.js"></script>
+        <script type="text/javascript" src="js/admin/reset-password/controller.js"></script>
+        <script type="text/javascript" src="js/admin/preference/controller.js"></script>
+        <script type="text/javascript" src="js/admin/reviews/controller.js"></script>
+        <script type="text/javascript" src="js/admin/notifications/controller.js"></script>
+        <script type="text/javascript" src="js/admin/payments/controller.js"></script>
+        <script type="text/javascript" src="js/admin/coupons/controller.js"></script>
+        <script type="text/javascript" src="js/admin/chat/controller.js"></script>
+        <script type="text/javascript" src="js/admin/noshow/controller.js"></script>
+        <script type="text/javascript" src="js/admin/emailtemplate/controller.js"></script>
+        <script type="text/javascript" src="js/admin/corporate/controller.js"></script>
+
+
+        <!-- TravelTechApp -->
+        <script type="text/javascript" src="js/app.js"></script>
+    </head>
+    <body ng-app="TravelTechApp1">
+        <div ui-view></div>
+    </body>
+</html>

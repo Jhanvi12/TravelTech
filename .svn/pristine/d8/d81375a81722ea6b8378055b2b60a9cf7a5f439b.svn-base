@@ -1,0 +1,97 @@
+
+    <div class="card signup-2" style="margin-top:0px;">
+        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+        <img src="img/Travel-logo.png" alt="">
+        <p id="profile-name" class="profile-name-card"></p>
+        <form name="signinform" class="form-signin" ng-init="getDataById();">
+            <div class="stepwizard">
+                <div class="stepwizard-row setup-panel">
+                    <div class="stepwizard-step">
+                        <a disabled="disabled" class="btn btn-default btn-circle" type="button">1</a>
+                        <p>Step 1</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a class="btn btn-circle btn-default btn-primary" type="button">2</a>
+                        <p>Step 2</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a disabled="disabled" class="btn btn-default btn-circle" type="button">3</a>
+                        <p>Step 3</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a disabled="disabled" class="btn btn-default btn-circle" type="button">4</a>
+                        <p>Step 4</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <span id="reauth-email" class="reauth-email"></span>
+        <div class="row">
+        <form name="profileform" ng-init="showVehiclesInDropDown(); showVehicles();" ng-submit="submitVehicleInfo(profileform)">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Vehicle Category</th>
+                        <th>Vehicle Type</th>
+                        <th>Registration No</th>
+                        <th>Cost per km</th>
+                        <th>Features</th>
+                        <th>Image</th>
+                        <th>RC</th>
+                        <th>Taxi Permit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <select class="btn btn-warning" id="ddlList" ng-model="vehicle_info.category" name="category_info" class="form-control" ng-change="setCar(vehicle_info.category);">
+                                <option value="">Select your option</option>
+                                <option ng-repeat="option in options  track by $index " ng-model="vehicle_info.option._id"  value="{{option._id}}">{{option.category}}</option>
+                            </select>
+                            <span class="validation-text" ng-show="profileform.$submitted || profileform.category.$touched" >
+                                <p ng-show="profileform.category.$error.required" class="error" >Tell us your car category.</p>
+                            </span>
+                        </td>
+                        <td>
+                                <select class="btn btn-warning" id="ddlList" ng-model="category_data.type" name="category_data" class="form-control" ng-change="setCarandCategory(category_data.type);">
+                                 <option value="">Select your Car</option>
+                                 <option ng-repeat="carc in category_data track by $index" ng-model="category_data.carc" value="{{carc}}">{{carc.type}}&nbsp;&nbsp; {{carc.capacity}}</option>
+                                </select>
+                                   <span class="validation-text" ng-show="profileform.$submitted || profileform.category_data.$touched" >
+                                   <p ng-show="profileform.category_data.$error.required" class="error" >Tell us your car name.</p>
+                                  </span>
+                                 </td>
+                            <td><input type="text" ng-model="vehicle_info.registration_number"  id="usr" placeholder="MH-31A-1235" name="registration_number" class="form-control" required />
+                            <span class="validation-text" ng-show="profileform.$submitted || profileform.registration_number.$touched">
+                                <p ng-show="profileform.registration_number.$error.required" class="error" >Tell us your Registration Number of car.</p>
+                            </span>
+                        </td>
+                        <td><input type="text" id="usr" ng-model="vehicle_info.cost_per_km" ng-pattern="/^(\d)+$/"  placeholder="Rs.19/km" name="cost_per_km" class="form-control" required />
+                            <span class="validation-text" ng-show="profileform.$submitted || profileform.cost_per_km.$touched" >
+                                <p ng-show="profileform.cost_per_km.$error.required" class="error" >Tell us your cost per km of car.</p>
+                                <p ng-show="profileform.cost_per_km.$error.pattern" class="error" >Cost per km should be number.</p>
+                            </span>
+                        </td>
+                        <td class="driver-checkbox">
+                            <label class="checkbox-inline"><input type="checkbox" ng-model="vehicle_info.features[2]" name="music_system" ng-true-value="'music_system'" ng-false-value="'false'">Music</label>
+                            <label class="checkbox-inline"><input type="checkbox" ng-model="vehicle_info.features[0]" name="ac" ng-true-value="'ac'" ng-false-value="'false'">AC</label>
+                            <label class="checkbox-inline" style="right:9px;"><input type="checkbox" ng-model="vehicle_info.features[1]" name="air_bag" ng-true-value="'air_bag'" ng-false-value="'false'" >Air Bag</label>
+                        </td>
+                        <td>
+                            <span class="btn btn-success btn-file">Upload <input type="file" multiple file-model="myFile.file"/></span>
+                        </td>
+                        <td>
+                            <span class="btn btn-success btn-file">Upload <input type="file" file-model="myFile.rc"/></span>
+                        </td>
+                        <td>
+                            <span class="btn btn-success btn-file">Upload <input type="file" file-model="myFile.permit"/></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="add-details">
+                <button type="submit" class="btn btn-warning"><i class="fa fa-plus-circle"></i> &nbsp; Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

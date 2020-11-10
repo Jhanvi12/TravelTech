@@ -1,0 +1,57 @@
+
+<div class="card card-container" style="margin-top:0px;">
+    <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+    <img src="img/Travel-logo.png" alt="">
+    <p id="profile-name" class="profile-name-card"></p>
+        <div class="rdBtns">
+            <p class="forgot">Sign Up</p>
+        </div>
+        <div class="stepwizard">
+            <div class="stepwizard-row setup-panel">
+                <div class="stepwizard-step">
+                    <a class="btn btn-circle btn-default btn-primary" type="button">1</a><p>Step 1</p>
+                </div>
+                <div class="stepwizard-step">
+                    <a disabled="disabled" class="btn btn-default btn-circle" type="button">2</a> <p>Step 2</p>
+                </div>
+                <div class="stepwizard-step">
+                    <a disabled="disabled" class="btn btn-default btn-circle" type="button">3</a>
+                    <p>Step 3</p>
+                </div>
+                <div class="stepwizard-step">
+                    <a disabled="disabled" class="btn btn-default btn-circle" type="button">4</a>
+                    <p>Step 4</p>
+                </div>
+            </div>
+        </div>
+        <span id="reauth-email" class="reauth-email"></span>
+        <form  name="signupForm"  class="form-signin" ng-submit="gotopage(user)">
+            <input type="text" id="inputName" name="name" class="form-control" placeholder="Name" ng-model="user.name" required autofocus>
+            <span class="validation-text" ng-show="signupForm.$submitted || signupForm.name.$touched">
+                <p ng-show="signupForm.name.$error.required" class="error" >Tell us your Name</p>
+            </span>
+            <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email Address *" ng-model="user.email" required autofocus>
+            <span class="validation-text" ng-show="signupForm.$submitted || signupForm.email.$touched">
+                <p ng-show="signupForm.email.$error.required" class="error" >Tell us your Email</p>
+            </span>
+            <input type="text" id="inputMobile" name="phone" ng-pattern="/^[789]\d{9}$/" minlength="10" maxlength="10"  class="form-control" placeholder="Mobile Number *" ng-model="user.phone_number" ng-pattern="/^(\d)+$/" required>
+            <span class="validation-text" ng-show="signupForm.$submitted || signupForm.phone.$touched">
+                <p ng-show="signupForm.phone.$error.required" class="error" >Tell us your correct Phone Number</p>
+            </span>
+            <input type="text" id="inputPassword" name="password" minlength="6" class="form-control" placeholder="Password *" ng-model="user.password" required>
+            <span class="validation-text" ng-show="signupForm.$submitted || signupForm.password.$touched">
+                <p ng-show="signupForm.password.$error.required" class="error" >Tell us your Password</p>
+                <p ng-show="signupForm.password.$error.minlength" class="error" >Password should be of 6 charactes minimum</p>
+            </span>
+            <div style="margin-right:298px; color:maroon; padding-bottom:10px;">Password minimum of 6 characters</div>
+
+       <!--  <div id="remember" class="checkbox"><label>* Mandatory Fields</label></div> -->
+        <div class="">
+            <button  class="btn btn-lg btn-primary btn-block btn-signin sign-width sign-up" type="submit">
+                Next
+            </button>
+        </div>
+    </form>
+        <!-- /form -->
+    </div>
+    <!-- /card-container -->

@@ -1,0 +1,65 @@
+<uib-tabset active="activeForm">
+     <uib-tab index="0" heading="Fleet Details">
+ <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+       
+        <!-- Main content -->
+        <section class="content" ng-controller="OperatorFleetController">
+
+               <div style="text-align:left">           
+                <div>
+                  <h5>Guest Name : {{operators.guest_name}}</h5>
+                </div>
+                 <div>
+                 <h5>Guest Email : {{operators.guest_email}}</h5>
+                </div>
+                <div>
+                <h5>Guest Phone No : {{operators.guest_phone_number}}</h5>
+                </div>
+                <div>
+                <h5> Booking Id : {{operators.booking_id}}</h5>
+                </div>
+                <div>
+                <h5> Advance Received : {{operators.advance_received}}</h5>
+                </div>
+                <div>
+                <h5> Booking Date : {{operators.booking_date|date:'medium'}}</h5>
+                </div>
+                <div>
+                 <h5>Booking Price : {{operators.booking_price}}</h5>
+                </div>
+                <div>
+                <h5> Driver Allowance : {{operators.driver_allowances}}</h5>
+                </div>
+                <div>
+                <h5> Driver Expense : {{operators.driver_expense}}</h5>
+                </div>
+                <div>
+                <h5> Drop Off Date : {{operators.dropoff_date |date:'medium'}}</h5>
+                </div>
+                <div>
+                <h5> Pickup Date : {{operators.pickup_date |date:'medium'}}</h5>
+                </div>
+                <div>
+                <h5> Holding Time : {{operators.holding_time}}</h5>
+                </div>
+                <div>
+               <h5>  Remark : {{operators.remark}}</h5>
+                </div>
+                <div>
+               <h5>  Route Itineary : {{operators.route_itinearyl}}</h5>
+                </div>
+                 <div>
+               <h5>  Total Booking Amount : {{operators.total_bookingAmount}}</h5>
+                </div>
+                </div>
+                  
+                  <a ui-sref="operator.fleet"  class="btn btn-warning">Back</a>
+               
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper-->
+<!-- Modal -->
+
+         
+  </uib-tab>
+  </uib-tabset>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Travel-Tech App</title>
+    <!-- <link rel="stylesheet" href="libs/ui-bootstrap/bootstrap.min.css" /> -->
+    <!-- Style Css -->
+    <link rel="stylesheet" type="text/css" href="dist/css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+     <link rel="stylesheet" type="text/css" href="css/sweetalert.css"/>
+    <script type="text/javascript" src="dist/js/vendor.js"></script>
+    <script type="text/javascript" src="libs/angular/ng-table/ng-table.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="libs/angular/ng-table/ng-table.min.css"/>
+ 
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css"/>
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+=======-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDI7dj71fwGIOUiypHvebaezI4PCyIp5BM&libraries=places"></script>
+    <script type="text/javascript" src="libs/vs-google-autocomplete.js"></script>
+ 
+    <script type="text/javascript" src="libs/vs-autocomplete-validator.js"></script>
+ 
+    <!-- directives -->
+    <script type="text/javascript" src="js/core/directives/sweetalert.min.js"></script>
+    <script type="text/javascript" src="js/core/directives/ngSweetAlert.js"></script>
+    <script type="text/javascript" src="js/core/directives/SweetAlert.js"></script>
+    <script type="text/javascript" src="js/core/directives/SweetAlert.min.js"></script>
+    <script type="text/javascript" src="js/core/directives/ng-sweet-alert.js"></script>
+    <script type="text/javascript" src="js/core/filters/date_filters.js"></script>
+    <script type="text/javascript" src="js/core/filters/vehicle.js"></script>
+    <script type="text/javascript" src="js/core/filters/cities.js"></script>
+    <script type="text/javascript" src="js/core/filters/ride.js"></script>
+    <script type="text/javascript" src="js/core/directives/sweetalert.min.js"></script>
+    <script type="text/javascript" src="js/core/directives/preloader.js"></script>
+    <script type="text/javascript" src="js/core/directives/ngSweetAlert.js"></script>
+    <script type="text/javascript" src="js/core/directives/SweetAlert.js"></script>
+    <script type="text/javascript" src="js/core/directives/SweetAlert.min.js"></script>
+    <script type="text/javascript" src="js/core/directives/ng-sweet-alert.js"></script>
+    <script type="text/javascript" src="js/core/directives/filemodel.js"></script>
+    <script src="js/core/directives/ui-bootstrap-tpls-1.3.2.js"></script>
+    <!-- Services -->
+
+
+
+    <!-- Features's Controllers -->
+    <script type="text/javascript" src="js/welcome_screen/controller.js"></script>
+    <script type="text/javascript" src="js/verification/controller.js"></script>
+    <script type="text/javascript" src="js/customer/controller.js"></script>
+    <script type="text/javascript" src="js/operator/controller.js"></script>
+    <script type="text/javascript" src="js/customer/rides/controller.js"></script>
+    <script type="text/javascript" src="js/customer/feedback/controller.js"></script>
+    <script type="text/javascript" src="js/customer/congratulation/controller.js"></script>
+ 
+    <script type="text/javascript" src="js/customer/accountsetting/controller.js"></script>
+ 
+    <script type="text/javascript" src="js/customer/notifications/controller.js"></script>
+ 
+    <script type="text/javascript" src="js/forget_password/controller.js"></script>
+    <script type="text/javascript" src="js/reset_password/controller.js"></script>
+    <script type="text/javascript" src="js/customer/bid_details/controller.js"></script>
+    <script type="text/javascript" src="js/logout/controller.js"></script>
+    <script type="text/javascript" src="js/operator/dashboard/controller.js"></script>
+    <script type="text/javascript" src="js/operator/enquiries/controller.js"></script>
+    <script type="text/javascript" src="js/operator/myprofile/controller.js"></script>
+    <script type="text/javascript" src="js/operator/login/controller.js"></script>
+    <script type="text/javascript" src="js/operator/signup/controller.js"></script>
+    <script type="text/javascript" src="js/operator/completeRides/controller.js"></script>
+    <script type="text/javascript" src="js/operator/mybid/controller.js"></script>
+    <script type="text/javascript" src="js/operator/myrides/controller.js"></script>
+    <script type="text/javascript" src="js/operator/fleet/controller.js"></script>
+     <script type="text/javascript" src="js/operator/notifications/controller.js"></script>
+
+
+    <script type="text/javascript" src="js/core/services/LocalStorage.js"></script>
+    <script type="text/javascript" src="js/core/services/Interceptor.js"></script>
+    <script type="text/javascript" src="js/core/services/Signup.js"></script>
+    <script type="text/javascript" src="js/core/services/VehicleCategories.js"></script>
+    <script type="text/javascript" src="js/core/services/Login.js"></script>
+    <script type="text/javascript" src="js/core/services/City.js"></script>
+    <script type="text/javascript" src="js/customer/rides/service.js"></script>
+    <script type="text/javascript" src="js/customer/feedback/service.js"></script>
+    <script type="text/javascript" src="js/customer/congratulation/service.js"></script>
+    <script type="text/javascript" src="js/customer/bid_details/service.js"></script>
+    <script type="text/javascript" src="js/verification/service.js"></script>
+    <script type="text/javascript" src="js/logout/service.js"></script>
+    <script type="text/javascript" src="js/operator/dashboard/service.js"></script>
+    <script type="text/javascript" src="js/operator/enquiries/service.js"></script>
+    <script type="text/javascript" src="js/operator/myprofile/service.js"></script>
+    <script type="text/javascript" src="js/operator/signup/service.js"></script>
+    <script type="text/javascript" src="js/operator/completeRides/service.js"></script>
+    <script type="text/javascript" src="js/operator/mybid/service.js"></script>
+    <script type="text/javascript" src="js/operator/myrides/service.js"></script>
+    <script type="text/javascript" src="js/operator/fleet/service.js"></script>
+    <script type="text/javascript" src="js/customer/notifications/service.js"></script>
+     <script type="text/javascript" src="js/operator/notifications/service.js"></script>
+    <!-- TravelTechApp -->
+    <script type="text/javascript" src="js/app.js"></script>
+    <link href="css/Style.css" rel="stylesheet">
+    <link href="css/media.css" rel="stylesheet">
+    <!-- <link href="css/custom.css" rel="stylesheet"> -->
+    <link href="css/style-social.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,300italic,400italic,900' rel='stylesheet' type='text/css'>
+
+</head>
+<body ng-app="TravelTechApp">
+    <div ui-view></div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script>
+
+             $(document).ready(function(){
+          var i=1;
+         $("#add_row").click(function(){
+          $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='name"+i+"' type='text' placeholder='Name' class='form-control input-md'  /> </td><td><input  name='mail"+i+"' type='text' placeholder='Mail'  class='form-control input-md'></td><td><input  name='mobile"+i+"' type='text' placeholder='Mobile'  class='form-control input-md'></td>");
+
+          $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+          i++;
+      });
+         $("#delete_row").click(function(){
+        	 if(i>1){
+    		 $("#addr"+(i-1)).html('');
+    		 i--;
+    		 }
+    	 });
+
+    });
+    </script>
+
+    <script>
+    	$(document).ready(function() {
+    		$('.circlebox li a').hover(function() {
+    			$(this).addClass('hover');
+    			var id=$(this).attr('id'); //alert(id);
+    			$("#"+id+"-text").addClass('hover-black');
+
+    	    });
+    		$('.circlebox li a').mouseleave(function() {
+    			$(this).removeClass('hover');
+    			var id=$(this).attr('id'); //alert(id);
+    			$("#"+id+"-text").removeClass('hover-black');
+
+    	    });
+
+    	    $('.icon-text').hover(function() {
+    			$(this).addClass('hover-black');
+    			var id=$(this).attr('id'); //alert(id);
+    			var iconId=id.replace('-text','');
+    			$("#"+iconId).addClass('hover');
+
+    	    });
+    		$('.icon-text').mouseleave(function() {
+    			$(this).removeClass('hover-black');
+    			var id=$(this).attr('id'); //alert(id);
+    			var iconId=id.replace('-text','');
+    			$("#"+iconId).removeClass('hover');
+
+    	    });
+
+
+        });
+    </script>
+
+    <script>   $(function(){
+        $(".dropdown").hover(
+                function() {
+                    $('.dropdown-menu', this).stop( true, true ).fadeIn("fast");
+                    $(this).toggleClass('open');
+                    $('b', this).toggleClass("caret caret-up");
+                },
+                function() {
+                    $('.dropdown-menu', this).stop( true, true ).fadeOut("fast");
+                    $(this).toggleClass('open');
+                    $('b', this).toggleClass("caret caret-up");
+                });
+        });
+
+
+        </script>
+
+    <script>
+        var d = document;
+        var safari = (navigator.userAgent.toLowerCase().indexOf('safari') != -1) ? true : false;
+        var gebtn = function(parEl,child) { return parEl.getElementsByTagName(child); };
+        onload = function() {
+
+            var body = gebtn(d,'body')[0];
+
+            //body.className = body.className && body.className != '' ? body.className + ' has-js' : 'has-js';
+
+            if (!d.getElementById || !d.createTextNode) return;
+            var ls = gebtn(d,'label');
+            for (var i = 0; i < ls.length; i++) {
+                var l = ls[i];
+                if (l.className.indexOf('label_') == -1) continue;
+                var inp = gebtn(l,'input')[0];
+                if (l.className == 'label_check') {
+                    l.className = (safari && inp.checked == true || inp.checked) ? 'label_check c_on' : 'label_check c_off';
+                    l.onclick = check_it;
+                };
+                if (l.className == 'label_radio') {
+                    l.className = (safari && inp.checked == true || inp.checked) ? 'label_radio r_on' : 'label_radio r_off';
+                    l.onclick = turn_radio;
+                };
+            };
+        };
+        var check_it = function() {
+            var inp = gebtn(this,'input')[0];
+            if (this.className == 'label_check c_off' || (!safari && inp.checked)) {
+                this.className = 'label_check c_on';
+                if (safari) inp.click();
+            } else {
+                this.className = 'label_check c_off';
+                if (safari) inp.click();
+            };
+        };
+
+    </script>
+
+</body>
+
+</html>

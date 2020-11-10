@@ -1,0 +1,88 @@
+<div class="skin-blue">
+    <div ui-view="top"></div>
+    <div ui-view="left"></div>
+    <aside class="right-side">
+        <!-- Content Header (Page header) -->
+        <section class="content-header" ng-controller="PermissionController">
+            <h1>
+                Permissions
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/admin/#/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="/admin/#/admin/employees"><i class="fa fa-dashboard"></i> Employees</a></li>
+                <li>Permissions</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content" ng-init="getModulesList()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box-body table-responsive">
+                        <div class="alert alert-danger alert-dismissable" ng-show="message"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>{{message}}</div>
+                        <div class="box">
+                            <!-- <div class="box-header">
+                            <h3 class="box-title">Data Table With Full Features</h3>
+                        </div> -->
+                            <div class="box-body table-responsive">
+                                <form role="form">
+                                    <table id="example1" class="table table-bordered table-striped" ng-table="tableParams" show-filter="isFiltersVisible">
+                                        <colgroup>
+                                            <col width="5%"/>                                
+                                            <col width="15%"/>
+                                            <col width="15%"/>
+                                            <col width="15%"/>
+                                            <col width="15%"/>
+                                            <col width="15%"/>
+                                            <!-- <col width="15%"/> -->
+                                        </colgroup>
+                                      <!--   <tr class="row-color" ng-if="!$data.length">
+                                            <td>No data Found.</td>
+                                        </tr> -->
+
+                                        <tr ng-repeat = "module in $data">
+                                            <td header="'headerCheckbox.html'"><input type='checkbox' ng-model="checkboxes.items[module._id]" value="{{module._id}}" /></td>
+
+                                            <td data-title="'Status'" sortable="'enable'" align='left'><div ng-if="module.is_active == true"><img src='/img/enable.png' border='0'></div><div ng-if="module.is_active == false"><img src='/img/disable.png' border='0'></div></td>
+
+                                            <td data-title="'Module'" sortable="'module'" filter="{module:'text'}" align="left">{{module.name}}</td>
+
+                                        </tr>
+                                        <tr ng-hide="!$scope.recordFetchedLength">
+                                            <td colspan="5">No Result Found!</td>
+                                        </tr>
+                                        <tr ng-show="!$scope.recordFetchedLength">
+                                            <td>
+
+                                                <div class="form-group">
+                                                    <select class="form-control" name='selectAction' id='selectAction'>
+                                                        <option value="">Select</option>
+                                                        <option value="enable">Enable</option>
+                                                        <option value="disable">Disable</option>   
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td colspan='2'><input type='button' name='go' value='Go' class='btn btn-primary' ng-click="performAction()"></td>
+                                            <!--  <td colspan="3">
+                                                 <ul class="pagination" style="float:right">
+                                                     <li><a ng-click="getVehicleList(currentPage-1)"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                                                     <li ng-repeat="page in pagesCount" ng-class="{'active': currentPage == page}"><a ng-click="getVehicleList(page)">{{page}}</a></li>
+                                                     <li><a ng-click="getVehicleList(currentPage+1)"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                                                 </ul>
+                                             </td> -->
+                                        </tr>
+                                    </table>
+
+                                </form>
+
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                    </div>
+                </div>
+        </section><!-- /.content -->
+    </aside><!-- /.right-side -->
+</div>
+
+<!-- page script -->
+<script type="text/ng-template" id="headerCheckbox.html">
+    <input type="checkbox" ng-model="checkboxes.checked" class="select-all" value="" />
+</script>

@@ -1,0 +1,203 @@
+<div class="skin-blue">
+    <div ui-view="top"></div>
+    <div ui-view="left"></div>
+    <!-- Right side column. Contains the navbar and content of the page -->
+    <aside class="right-side">
+        <!-- Content Header (Page header) -->
+        <section class="content-header" ng-controller="NoshowController">
+            <h1>
+                No show       
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/#/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="/admin/#/admin/canceledrides">No show</a></li>
+                <li>View</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content" ng-init="NoshowRide()">
+            <h4 class="page-header">
+                View No Show        
+            </h4>
+            <div class="row">
+                <div class="box">
+                    <div class="col-md-2">                    
+                        <img src="/img/profile_pic.png" width="100" height="100" />
+                    </div><!-- /.col -->
+
+                    <div class="col-md-4">
+                        <h5><b>Customer Name</b> : {{lead.customer.name}}</h5>
+                        <h5><b>Phone Number</b> : {{lead.customer.phone_number}}</h5>
+                    </div><!-- /.col -->
+
+                    <div class="col-md-4">
+                        <h5><b>Email</b> : {{lead.customer.email}}</h5>
+                        <h5><b>City</b> : {{lead.customer.address.city|| "NA"}}</h5>
+                    </div><!-- /.col -->
+                </div>
+            </div><!-- /.row -->
+            <div class="border-bottom">&nbsp;</div>
+            <div class="row">
+                <div class="box">
+                    <div class="col-md-6 lockscreen text-center">
+                        <div class="box box-widget widget-user-2">
+                            <h5><b>Passenger Address</b></h5>
+                            <!-- Add the bg color to the header using any of the bg-* classes -->
+                            <div class="box-footer no-padding">
+                                <ul class="nav nav-stacked">
+                                    <li ng-repeat="route in lead.route"><span ng-if="route.address.street">{{route.address.street}},</span>
+                                        <span ng-if="route.address.city">{{route.address.city}},</span>
+                                        <span ng-if="route.address.state">{{route.address.state}}</span>
+                                        <span ng-if="route.address.zip">, {{route.address.zip}}</span><span class="pull-left badge bg-aqua">{{$index + 1}}</span></li>
+                                </ul>
+                            </div>
+                        </div>                                    
+                    </div><!-- /.col -->
+                    <!-- <div class="col-md-6 lockscreen text-center">
+                        <h5><b>Bidding Ends In</b></h5>
+                        <div class="headline" id="time">
+                            6:22:05 PM
+                        </div><!-- /.headline
+                    </div> -->
+                </div>
+            </div><!-- /.row -->        
+
+            <div class="row">
+                <div class="box">
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-aqua">
+                            <div class="inner">
+                                <i class="fa fa-calendar fa-2x icons-color"></i>
+                                <h4>
+                                    <center>{{lead.route[0].date_time| date}}</center>
+
+                                </h4>
+                                <p>
+                                <center>{{lead.route[0].date_time| time}}</center>
+                                </p>                            
+                            </div>
+                            <div class="icon">
+
+                            </div>
+                            <a class="small-box-footer">
+                                &nbsp;
+                            </a>
+                        </div>
+                    </div><!-- ./col -->
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-green">
+                            <div class="inner">
+                                <i class="fa fa-clock-o fa-2x icons-color"></i>
+                                <h4>
+                                    <center>Duration</center>
+                                </h4>
+                                <p>
+                                <center>{{lead.stop_time / 60|| 'N/A'}}</center>
+                                </p>
+                            </div>
+                            <div class="icon">
+
+                            </div>
+                            <a class="small-box-footer">
+                                &nbsp;
+                            </a>
+                        </div>
+                    </div><!-- ./col -->
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-yellow">
+                            <div class="inner">
+                                <i class="fa fa-user fa-2x icons-color"></i>
+                                <h4>
+                                    <center>Passengers</center>
+                                </h4>
+                                <p>
+                                <center>{{lead.passenger_count}}</center>
+                                </p>
+                            </div>
+                            <div class="icon">
+
+                            </div>
+                            <a class="small-box-footer">
+                                &nbsp;
+                            </a>
+                        </div>
+                    </div><!-- ./col -->
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-red">
+                            <div class="inner">
+                                <i class="fa fa-car fa-2x icons-color"></i>
+                                <h4>
+                                    <center>Vehicles</center>
+                                </h4>
+                                <p>
+                                <center>{{lead.vehicles_count}}</center>
+                                </p>
+                            </div>
+                            <div class="icon">
+
+                            </div>
+                            <a class="small-box-footer">
+                                &nbsp;
+                            </a>
+                        </div>
+                    </div><!-- ./col -->
+                </div>
+            </div><!-- /.row -->
+
+            <div class="border-bottom">&nbsp;</div>
+            <div class="row">
+                <div class="box" ng-init="getBidsList()">
+                    <div class="box-header">
+                        <h3 class="box-title">All Bids</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Operator</th>
+                                <th>Car type</th>
+                                <th>Amount</th>                            
+                            </tr>
+                            <tr class="row-color" ng-if="!bids.length">
+                                <td colspan="3">No Bid Found.</td>
+                            </tr>
+                            <tr ng-repeat="bid in bids">
+                                <td>{{bid.operator.name}}</td>
+                                <td>{{bid.vehicleString}}</td>
+                                <td><i class="fa fa-inr"></i>&nbsp;{{bid.bid_amount}}</td>                                             
+                            </tr>      
+                        </table>
+                    </div><!-- /.box-body -->
+                    <!-- <div class="box-footer clearfix">                
+                        <tr ng-show="!$scope.recordFetchedLength">
+                            <td colspan="2">
+                                <ul class="pagination" style="float:right">
+                                    <li><a ng-click="getCustomerList(currentPage-1)"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                                    <li ng-repeat="page in pagesCount" ng-class="{'active': currentPage == page}"><a ng-click="getCustomerList(page)">{{page}}</a></li>
+                                    <li><a ng-click="getCustomerList(currentPage+1)"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                                </ul>
+                            </td>
+                        </tr>                    
+                    </div> -->
+                </div><!-- /.box -->
+            </div><!-- /.row -->            
+            <div class="border-bottom">&nbsp;</div>
+            <!--        <div class="row">
+                        <div class="box">
+                            <div class="col-md-6 lockscreen text-center">
+                                <h4>Car Alloted : </h4>
+                                <h4>Driver Alloted : </h4>
+                                <h4>Mobile Number : </h4>
+                            </div>
+                            <div class="col-md-6 lockscreen text-center">
+            
+                            </div>
+                        </div>
+                    </div> /.row -->
+        </section><!-- /.content -->
+    </aside><!-- /.right-side -->
+</div>

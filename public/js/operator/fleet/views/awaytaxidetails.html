@@ -1,0 +1,39 @@
+
+<uib-tabset active="activeForm">
+     <uib-tab index="0" heading="Away Taxi Details">
+ <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+       
+        <!-- Main content -->
+        <section class="content" ng-controller="OperatorFleetController">
+
+               <div style="text-align:left">           
+                <div>
+                  <h5>Price Offer : {{awayTaxi.priceoffer}}</h5>
+                </div>
+                
+                
+                
+                <div>
+                <h5> Created At : {{awayTaxi.created|date:'medium'}}</h5>
+                </div>
+                
+                
+                
+                <div>
+                <h5> Date From : {{awayTaxi.datefrom |date:'medium'}}</h5>
+                </div>
+                <div>
+                <h5> Date To : {{awayTaxi.dateto |date:'medium'}}</h5>
+                </div>
+                
+                               
+                  <a ui-sref="operator.awaytaxi"  class="btn btn-warning">Back</a>
+               
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper-->
+<!-- Modal -->
+
+         
+  </uib-tab>
+  </uib-tabset>

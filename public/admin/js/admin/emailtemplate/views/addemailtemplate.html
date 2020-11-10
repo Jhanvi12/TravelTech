@@ -1,0 +1,98 @@
+<div class="skin-blue">
+    <div ui-view="top"></div>
+    <div ui-view="left"></div>
+    <aside class="right-side">
+        <section class="content-header" ng-controller="EmailTemplateController">
+            <h1>
+                Add Email Template
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/#/home"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="/admin/#/admin/emailtemplate"><i class="fa fa-dashboard"></i>Email Template</a></li>
+                <li>Add Email Template</li>
+            </ol>
+        </section>
+
+         <section class="content">
+             <div class="row">
+                 <div class="col-xs-12">
+                     <div class="box">
+                         <div class="box-body table-responsive">
+
+                         <ng-form name="signUpForm1" class="" action="" method="post">
+
+                             <div class="alert alert-danger alert-dismissable" ng-show="message"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>{{message}}</div>
+
+
+                            <div class="box-body">
+                            <div class="form-group">
+                            <input type='hidden' name='id'  ng-model="id">
+                            <label>Title</label>
+
+                            <input type="text" class="form-control" id="title" name='title' ng-model="client1.title" placeholder="Enter title" ng-maxlength="200" ng-required="true">
+
+                            <span class="text-danger" tooltip-placement="right" uib-tooltip="On the right place" ng-show="signUpForm1.title.$error.maxlength">Title should not be exceed in 200 character.</span>
+                            <!--
+                            <span class="text-danger" tooltip-placement="right" uib-tooltip="On the right place" ng-show="signUpForm1.title.$error.pattern">Title must be letters.</span> -->
+
+                            <span class="text-danger" ng-show ="signUpForm1.title.$dirty && signUpForm1.title.$error.required"> Required Title</span>
+                            </div>
+
+                            <div class="form-group">
+                            <input type='hidden' name='id'  ng-model="id">
+                            <label>Subject</label>
+                            <input type="text" class="form-control" id="subject" name='subject' ng-model="client1.subject" placeholder="Enter subject" ng-maxlength="200" required/>
+
+                            <span class="text-danger" tooltip-placement="right" uib-tooltip="On the right place" ng-show="signUpForm1.subject.$error.maxlength">Subject should not be exceed in 200 character.</span>
+
+                            <!--
+                            <span class="text-danger" tooltip-placement="right" uib-tooltip="On the right place" ng-show="signUpForm1.subject.$error.pattern">Subject must be letters</span> -->
+
+                            <span class="text-danger" tooltip-placement="right" uib-tooltip="On the right place" ng-show="signUpForm1.subject.$dirty && signUpForm1.subject.$error.required">Required Subject</span>
+                            </div>
+
+
+
+                            <div class="form-group">
+                            <input type='hidden' name='id'  ng-model="id">
+
+                            <label>Description</label>
+                            <!-- <input type="text" class="form-control" id="description" name='description' ng-model="client1.description" placeholder="Enter Company Name" ng-maxlength="50" required/> -->
+                            <!-- <textarea class="form-control" rows="10" ng-model="client1.description" data-ck-editor="", required="true">
+                            </textarea> -->
+                            <textarea ui-tinymce="tinymceOptions" ng-model="client1.description" rows="10" required></textarea>
+                            <!--  <span class="text-danger" tooltip-placement="right" uib-tooltip="On the right place" ng-show="signUpForm1.description.$error.maxlength">Company Name should not be exceed in 50 character.</span> -->
+
+                            <span class="text-danger" tooltip-placement="right" uib-tooltip="On the right place" ng-show="signUpForm1.description.$dirty && signUpForm1.description.$error.required">Required description</span>
+                            </div>
+
+                            <div class="form-group">
+                            <input type='hidden' name='id'  ng-model="id">
+
+                            <label>Code</label>
+                            <input type="text" class="form-control" id="code" name='code' ng-model="client1.code" placeholder="Enter Code" required/>
+
+                            <span class="text-danger" tooltip-placement="right" uib-tooltip="On the right place" ng-show="signUpForm1.code.$dirty && signUpForm1.code.$error.required">Required code</span>
+                            </div>
+
+
+                             </div><!-- /.box-body -->
+
+                             <div class="box-footer">
+
+                                   <a class="btn btn-warning  btn-back" href="/admin/#/admin/emailtemplate" style="width: 150px;">Back</a>
+
+                                   <button type="button" class="btn btn-primary" ng-click="add(client1)" ng-disabled= "signUpForm1.$invalid && signUpForm1.$error"  style="width: 150px;
+                                  margin: 0 auto;">Add</button>
+                             </div>
+
+                             </ng-form>
+
+                         </div><!-- /.box-body -->
+                     </div><!-- /.box -->
+                 </div>
+             </div>
+
+         </section><!-- /.content -->
+     </aside><!-- /.right-side -->
+</div>

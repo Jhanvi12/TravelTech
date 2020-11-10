@@ -1,0 +1,10 @@
+{
+  "db": {
+    "uri": "mongodb://smartian:123456@ds051585.mongolab.com:51585/traveltech",
+    "reconnect": true
+  },
+  "server": {
+    "port": 80,
+    "ip": "127.0.0.1"
+  }
+}

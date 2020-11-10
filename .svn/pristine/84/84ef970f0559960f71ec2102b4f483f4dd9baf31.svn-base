@@ -1,0 +1,137 @@
+<div class="wrapper row-offcanvas row-offcanvas-left" ng-controller="LeftMenuController">
+    <!-- left menu starts -->
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="left-side sidebar-offcanvas">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="{{profile_pic}}" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>{{loggedInUser}}</p>
+                </div>
+            </div>
+            <ul class="sidebar-menu" ng-init="getModulesList()">
+                <li class="active">
+                    <a ui-sref="admin.dashboard">
+                        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.employee">
+                        <i class="fa fa-group"></i> <span>Manage Employees</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="customer == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.customer">
+                        <i class="fa fa-group"></i> <span>Manage Customers</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="operator == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.operator">
+                        <i class="fa fa-group"></i> <span>Manage Operators</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="driver == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.listdriver">
+                        <i class="fa fa-group"></i> <span>Manage Drivers</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="vehicle == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.listvehicle">
+                        <i class="fa fa-cab"></i> <span>Manage Vehicles</span>
+                    </a>
+                </li>
+
+                <li class="active" ng-if="city == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.city">
+                        <i class="fa fa-globe"></i> <span>Manage Cities</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="category == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.vehicle_category">
+                        <i class="fa fa-automobile"></i> <span>Vehicle Categories</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="defaultVehicle == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.default_vehicle">
+                        <i class="fa fa-automobile"></i> <span>Default Vehicles</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="open == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.openlead">
+                        <i class="fa fa-location-arrow"></i> <span>Open Leads</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="preference == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.preference">
+                        <i class="fa fa-cog"></i> <span>Preferences</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="emailtemplate == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.emailtemplate">
+                        <i class="fa fa-envelope"></i> <span>Email Templates</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="upcoming == true || admin.profile.roleKey == 'admin'" >
+                    <a ui-sref="admin.upcomingride">
+                        <i class="fa fa-location-arrow"></i> <span>Upcoming Rides</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="completed == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.completedride">
+                        <i class="fa fa-location-arrow"></i> <span>Completed Rides</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="canceled == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.canceledride">
+                        <i class="fa fa-location-arrow"></i> <span>Cancelled Rides</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="canceled == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.noshow">
+                        <i class="fa fa-location-arrow"></i> <span>No Show</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="noshow == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.bid">
+                        <i class="fa fa-location-arrow"></i> <span>Manage Bids</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="review == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.review">
+                        <i class="fa fa-location-arrow"></i> <span>Manage Reviews</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="notification == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.notification">
+                        <i class="fa fa-location-arrow"></i> <span>Manage Notifications</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="payment == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.payment">
+                        <i class="fa fa-location-arrow"></i> <span>Manage Payments</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="coupon == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.coupon">
+                        <i class="fa fa-location-arrow"></i> <span>Manage Coupons</span>
+                    </a>
+                </li>
+                 <li class="active" ng-if="coupon == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.inventory">
+                        <i class="fa fa-location-arrow"></i> <span>Fleet Management</span>
+                    </a>
+                </li>
+                <li class="active" ng-if="chat == true || admin.profile.roleKey == 'admin'">
+                    <a ui-sref="admin.chat">
+                        <i class="fa fa-location-arrow"></i> <span>Chat</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+    <!-- left menu ends -->

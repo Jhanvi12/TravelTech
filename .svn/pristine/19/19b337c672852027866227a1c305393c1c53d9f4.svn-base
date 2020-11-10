@@ -1,0 +1,202 @@
+<div class="row" ng-controller="BidDetailsController">
+ <!--    <div ng-repeat="data in request_data"> -->
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <h4 class="driver-heading"> Profile Picture </h4>
+
+        <div class="driver-profile"><img alt="" src="img/profile.jpg " /></div>
+
+        <div class="clearfix"></div>
+
+        <ul class="stars">
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star-half-o"></i></li>
+        </ul>
+
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 profile-table">
+        <h4 class="driver-heading"> &nbsp; &nbsp; Driver Details </h4>
+
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" class="table">
+            <tbody>
+                <tr>
+                    <td class="active">Vendor Code</td>
+                    <td class="info">12345</td>
+                </tr>
+                <tr>
+                    <td class="active">Driver Name</td>
+                    <td class="info">Joy Slater</td>
+                </tr>
+                <tr>
+                    <td class="active">Car</td>
+                    <td class="info">Maruti Suzuki Swift</td>
+                </tr>
+                <tr>
+                    <td class="active">Rides Completed</td>
+                    <td class="info">177</td>
+                </tr>
+
+                <tr>
+                    <td class="active"><i class="fa fa-inr"></i></td>
+                    <td class="info">180</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" > 
+
+        <h4 class="driver-heading "> Bid Expires on </h4>
+        <div class="timecss">{{bidendtime || NA}}</div>
+       
+ </div>
+
+
+
+
+
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+      <!--   <h4 class="driver-heading"> Reviews </h4>
+
+        <div class="row">
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="testimonial">
+
+                    <div class="testimonial-image">
+                        <img src="img/2.png" alt="" />
+
+                    </div>
+
+                    <h4 class="testimonial-title">Alex Slater <br />Lives in: New York <br></h4>
+
+                    <div class="stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <p class="testimonial-text"> Travel Tech is my favorite taxi company ever! Cool drivers, amazing cars, top notch services! You won't believe it, but they actually didn't took any tip :) </p>
+
+
+                </div>
+
+
+
+            </div>
+
+
+          
+
+            <div class="clearfix"></div>
+
+            <div class="view-more">
+                <a class="btn btn-warning" type="button"><i class="fa fa-eye"></i> &nbsp; View More</a>
+            </div>
+
+
+        </div> -->
+
+        <div class="clearfix"></div>
+
+        <h4 class="driver-heading"> Policies </h4>
+
+        <div class="row">
+
+
+            <div class="col-lg-4 col-md-6">
+                <div class="panel panel-primary policy-box-left">
+                    <div class="panel-heading policy-box-left">
+                        <div class="row">
+
+                            <div class="col-xs-12 ">
+                                <div class="policy">Cancellation Policy</div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="view-details">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 col-md-6">
+                <div class="panel panel-primary policy-box-middle">
+                    <div class="panel-heading policy-box-middle">
+                        <div class="row">
+
+                            <div class="col-xs-12 ">
+                                <div class="policy">Multiple Pickups Policy</div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="view-details">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 col-md-6">
+                <div class="panel panel-primary policy-box-right">
+                    <div class="panel-heading policy-box-right">
+                        <div class="row">
+
+                            <div class="col-xs-12 ">
+                                <div class="policy">Terms & Conditions</div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="view-details">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+          <!--   <div class="view-more">
+                <a class="btn btn-warning" type="button"><i class="fa fa-thumbs-up"></i> &nbsp; Accept Bid</a>
+            </div> -->
+            <div class = "view-more">
+                <button class= "btn btn-warning" ng-click="acceptBid()"><i class="fa fa-thumbs-up"></i> &nbsp;Accept Bid</button>
+            </div>
+
+        </div>
+
+    </div>
+<!--  </div> -->
+</div>
+<style>
+.timecss
+{color:rgb(255, 181, 2);font-size:17px;margin-top:inherit;}
+</style>

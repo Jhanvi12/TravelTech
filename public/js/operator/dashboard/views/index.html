@@ -1,0 +1,38 @@
+
+<center style="height: 400px;" ng-show="!show.is_approved" >
+    <h1>This is a Dashboard</h1>
+    <h3>Your approved status is :{{show.is_approved}} </h3>
+    <h3>Your information is pending for approval with Adminstration.<br>
+        Meanwhile you can enter the driver and vehicle information
+    </h3>
+    <h4>Enter Car details through my profile section.</h4>
+    <h4>Enter Vehicle details through my profile section.</h4>
+</center>
+<div class="row margin-top" ng-show="show.is_approved" ng-init="getUpcomingRideList('upcoming');">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center"  ui-sref="operator.enquiries">
+        <div class="padd20">
+            <h4>Current Enquiries</h4>
+            <span>{{currentenqcount || 0}}</span>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center" ui-sref="operator.mybid">
+        <div class="padd20">
+            <h4> My Bids</h4>
+            <span>{{countbid || 0}}</span>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center" ui-sref="operator.watchenquiries">
+        <div class="padd20">
+            <h4>Watch Enquiries</h4>
+            <span>{{watchEnquiries || 0}}</span>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center" ui-sref="operator.myride">
+        <div class="padd20">
+            <h4>Upcoming Rides</h4>
+            <span>{{upcomingRide || 0}}</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<div ng-controller="OperatorMyProfileController" ng-init="getDriverById()">
+<form name="driverInfo" ng-submit="updateDriverInfo()">
+        <div class="driver table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Phone Number</th>
+                        <th>Mobile</th>
+                        <th>Picture</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span ng-show="driverInfo.name.$touched && driverInfo.name.$invalid" class="error fl">This field is required.</span>
+                            <input type="text" class="form-control" ng-model="driver_data.name" id="usr" name="name" required />
+                        </td>
+                        <td>
+                            <span ng-show="driverInfo.mobile.$touched && driverInfo.mobile.$invalid" class="error fl">This field is required.</span>
+                            <input type="text" class="form-control"  ng-model="driver_data.phone_number" name="mobile" id="usr" minlength="10" maxlength="10" required />
+                        </td>
+                        <td>
+                            <span class="btn btn-success btn-file">Change <input type="file" file-model="myFile.file" /></span>
+                            <img ng-src="{{driver_data.profile_pic}}" class="image-100" ng-click="open(data.images)"/>
+                           </td>
+                        <td >
+                            <span class="btn btn-success btn-file">Change <input type="file" file-model="myFile.dl" /></span>
+                            <img ng-src="{{driver_data.dl[0].path}}" class="image-100" ng-click="openImageModal(data.rc)"/>
+                        </td>
+                        <td >
+                            <span class="btn btn-success btn-file">Change <input type="file" file-model="myFile.verification" /></span>
+                            <img ng-src="{{driver_data.verification[0].path}}" class="image-100" ng-click="openImageModal(data.permit)"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <uib-progressbar ng-show="!Flag" class="progress-striped active" name="vehicle" ng-model="upload.vehicle" value="dynamic"  type="info"></i></uib-progressbar>
+          <button class="btn btn-primary btn-file" ui-sref="operator.myprofile" >
+                Back
+            </button>
+            <button type="submit" class="btn btn-primary btn-file">
+                Update Info
+            </button>
+
+    </form>
+</div>

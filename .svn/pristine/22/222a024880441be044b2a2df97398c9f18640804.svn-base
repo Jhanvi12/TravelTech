@@ -1,0 +1,275 @@
+<div ng-controller="CustomerRideController" ng-init="fetchingUserRequests()">
+    <div preloader ></div>
+    <toast></toast>
+    <div class="request-heading">
+        <div class="request-left">
+            <div id="custom-search-input">
+                <div class="input-group col-lg-12">
+                      <input class="form-control" style="margin-left:15px;padding-right:2px;"  type="text" placeholder="From Date" ng-click="open2(0)" uib-datepicker-popup="{{format|date}}" ng-model="rr_date_time1" is-open="popup2[0].opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" alt-input-formats="altInputFormats" ng-change="goDate(rr_date_time1,rr_date_time,rr_type);">
+                </div>
+            </div>
+        </div>
+
+              <div class="input-group request-left">
+                 <input class="form-control" style="margin-left:25px;padding-right:2px;"  type="text" placeholder="To Date" ng-click="open1(0)" uib-datepicker-popup="{{format|date}}" ng-model="rr_date_time" is-open="popup1[0].opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" alt-input-formats="altInputFormats" ng-change="goDate(rr_date_time1,rr_date_time,rr_type);">
+                    </div>
+                     <div class="request-right">
+                  <select id="ddlList" ng-model="rr_type" ng-click="goValue(rr_type);" class="btn btn-warning">
+                      <option value="">Sort By</option>
+                      <option value="1">One Way</option>
+                      <option value="2">Multi Way</option>
+                      <option value="6">Return Trip</option>
+                  </select>
+              </div>
+
+        <div class="clearfix"></div>
+        <div>
+            <ul class="pagination" style="float:right; margin: 0px 0px;">
+                <li style="margin: 0px 0px;"><a ng-click="fetchingUserRequests(currentPage-1)"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                <li style="margin: 0px 0px;"ng-repeat="page in pagesCount" ng-class="{'active': currentPage == page}"><a ng-click="fetchingUserRequests(page,rr_date_time1,rr_date_time,rr_type)">{{page}}</a></li>
+                <li style="margin: 0px 0px;"><a ng-click="fetchingUserRequests(currentPage+1)"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+        <uib-accordion close-others="oneAtATime" >
+            <uib-accordion-group  ng-repeat="data in request_data | filter:search:strict" ng-if="data.status == 1">
+                <uib-accordion-heading >
+                    <div class="request-middle table-responsive"  ng-click="getBidDetails(data._id, $index)">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr class="row-color" >
+                                    <td><div class="date-city"><span class="date">
+                                        {{data.route[0].date_time | date }} <br>
+                                        {{data.route[0].date_time | time}}
+                                    </span></div></td>
+                                    <td><div class="date-city" ><span class="date">{{data.route[0].address.city}} <br>
+                                        <i class="fa fa-arrow-down"></i><br>
+                                        {{data.route[data.route.length-1].address.city}}</span></div></td>
+                                        <td><div class="date-city"><span class="date">{{data.type | ridetype}}</span></div></td>
+                                        <td><div class="date-city"><span class="date">Lowest Bid <br>
+                                            <i class="fa fa-inr fa-2x"></i>{{data.lbid}}</span></div></td>
+                                            <td><div class="date-city"><span class="date">Bids <br></span>
+                                                <a href="#demo" class="btn btn-warning bid-button" data-toggle="collapse">{{data.bids.length}}</a> </div></td>
+                                                <td><div class="date-city"><span class="date">Bidding Ends on <br>
+                                                    {{data.bid_approval_time}}</span></div></td>
+                                                <td><div class="date-city"><span class="date">Ride Status <br>
+                                                    <div ng-if="data.status == 4">Canceled</div><div ng-if="data.status == 1">Open</div><div ng-if="data.status == 2">Completed</div></span></div></td>
+                                                    <td><div class="date-city"><span class="date">
+                                                        <!-- <i class="fa fa-inr fa-2x"></i> 180 <br> -->
+                                                        Flat</span></div>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </uib-accordion-heading>
+                                <div id="demo">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="request-heading">
+                                                <div class="request-right">
+
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="grid-box">
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        <h4 class="payment"> &nbsp; &nbsp; Passenger Address: </h4>
+                                                        <div class="address">
+                                                            <div class="passenger-address"> <i class="fa fa-minus-circle fa-2x"></i></div>
+                                                            <span class="stop-overs">Stop Overs</span>
+                                                            <ul class="address-features">
+                                                                <li ng-repeat="route in data.route" class="col-sm-12 col-md-12 col-lg-12 pad-10">
+                                                                    <div class="address-circle">
+                                                                        <span class="address-numbers">{{$index+1}}</span></div>
+                                                                        <p>
+                                                                            <span ng-if="route.address.street">{{route.address.street}},</span>
+                                                                            <span ng-if="route.address.city">{{route.address.city}},</span>
+                                                                           <!--  <span ng-if="route.address.state">{{route.address.state}}</span> -->
+                                                                            <span ng-if="route.address.postCode">{{route.address.postCode}}</span>
+                                                                        </p>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <h4 class="payment"> &nbsp; &nbsp; Bidding Details: </h4>
+
+                                                            <div class="address clearfix" ng-if="tobecomparedate < data.bid_exp_time">
+                                                                <div class="passenger-address"> <i class="fa fa-clock-o fa-2x"></i></div>
+                                                                <span class="bidding-stop">Bidding expires in 2 hours.</span>
+                                                                <span class="time-limit">Ends On:
+                                                                    <div class="digital-clock"> {{data.bidendtime}} </div>  </span>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                                <div class="address clearfix" ng-if="tobecomparedate < data.bid_approval_time  && data.bid_exp_time < tobecomparedate">
+                                                                    <div class="passenger-address"> <i class="fa fa-clock-o fa-2x"></i></div>
+                                                                    <span class="bidding-stop">Bidding has ended,you have to decide for the vendor</span>
+                                                                    <span class="time-limit">Before:
+                                                                        <div class="digital-clock"> {{data.bidapprovaltime}}</div>  You have to Finalise the Vendor Or if this bid will Expire</span>
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+                                                                    <div class="address clearfix" ng-if="data.bid_approval_time < tobecomparedate && data.bid_exp_time < tobecomparedate">
+                                                                        <div class="passenger-address"> <i class="fa fa-clock-o fa-2x"></i></div>
+                                                                        <span class="bidding-stop">Your vendor bids have been expired, Please Repost your enquiry.</span>
+                                                                        <span class="time-limit">
+                                                                        <div class="clearfix"></div>
+                                                                            <center><div class="repost"> <a class="btn btn-warning" type="button" ui-sref="customer.createRide">Repost your Enquiry</a> </div>
+                                                                        </center></div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="clearfix"></div>
+                                                        <div class="grid-box">
+                                                            <div class="col-lg-3 col-md-6">
+                                                                <div class="panel panel-primary grid-box-inside">
+                                                                    <div class="panel-heading grid-box-inside ">
+                                                                        <div class="row">
+                                                                            <div class="col-xs-3"> <i class="fa fa-calendar fa-2x icons-color"></i> </div>
+                                                                            <div class="col-xs-9 ">
+                                                                                <div class="huge">{{data.route[0].date_time | time}}</div>
+                                                                                <div class="huge">{{data.route[0].date_time | date}}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3 col-md-6">
+                                                                <div class="panel panel-primary grid-box-inside">
+                                                                    <div class="panel-heading grid-box-inside ">
+                                                                        <div class="row">
+                                                                            <div class="col-xs-3"> <i class="fa fa-clock-o fa-2x icons-color"></i> </div>
+                                                                            <div class="col-xs-9 ">
+                                                                                <div class="huge">Duration</div>
+                                                                                <div class="huge">{{data.stop_time/60 || 'N/A'}}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3 col-md-6">
+                                                                <div class="panel panel-primary grid-box-inside">
+                                                                    <div class="panel-heading grid-box-inside ">
+                                                                        <div class="row">
+                                                                            <div class="col-xs-3"> <i class="fa fa-user fa-2x icons-color"></i> </div>
+                                                                            <div class="col-xs-9 ">
+                                                                                <div class="huge">Passengers</div>
+                                                                                <div class="huge">{{data.passenger_count}}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3 col-md-6">
+                                                                <div class="panel panel-primary grid-box-inside">
+                                                                    <div class="panel-heading grid-box-inside ">
+                                                                        <div class="row">
+                                                                            <div class="col-xs-3"> <i class="fa fa-car fa-2x icons-color"></i> </div>
+                                                                            <div class="col-xs-9 ">
+                                                                                <div class="huge">Vehicles</div>
+                                                                                <div class="huge">{{data.vehicles_count}}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <h4 class="bid-details" ng-if="!data.bids.length"> &nbsp; &nbsp; No Bids Received </h4>
+                                                        <h4 class="bid-details" ng-if="data.bids.length"> &nbsp; &nbsp; Bids Received </h4>
+                                                        <div ng-if="data.bids.length">
+                                                      <!--   <div class="car-sorter">
+
+                                                    <!--     <div class="car-sorter">
+
+                                                                <select class="btn btn-warning" ng-model="search1.cat" name="category_info" class="form-control">
+                                                                 <option value="">Sort Bids By Car</option>
+                                                                 <option ng-repeat="option in vehicle_ctg" ng-model="vehicle_info.option._id"  value="{{option._id}}">{{option.category}}</option>
+                                                                  </select>
+                                                        </div> -->
+
+                                                        <div class="bid-sorter">
+                                                            <select class="btn btn-warning" ng-model="values" ng-change="sortingforPrice(values)"id="ddlList">
+                                                        <option value="">Sort Bids </option>
+                                                        <option value="1">Low - High</option>
+                                                        <option value="2">High -Low</option>
+                                                        </select>
+                                                        </div>
+                                                      <div class="clearfix"></div>
+                                                      <div class="clearfix"></div>
+                                                      <h4>Lowest Bid is : <i class="fa fa-inr fa"></i> {{data.lbid}}</h4>
+                                                        <div class="request-middle table-responsive">
+                                                            <table class="table table-bordered">
+                                                                <tbody ng-if="!data.bids.length">
+                                                                    <tr class="row-color">
+                                                                        <td>No Bid Found.</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                                <tbody ng-if="data.bids.length" >
+                                                                    <tr class="row-color" ng-repeat="bid in data.bids | filter:search1" ng-click="biddetails(bid._id)">
+                                                                        <td>
+                                                                            <div class="date-city">
+                                                                                <span class="date">{{bid.operator.name}} <br>
+
+                                                                            <!--    <uib-rating ng-model="data.ratings" class="golden" readonly="isReadonly" aria-labelledby="default-rating"></uib-rating> -->
+                                                                             <!--     {{data.ratings}} -->
+
+                                                                              <!--  <uib-rating ng-model="data.ratings" class="golden" readonly="isReadonly" aria-labelledby="default-rating"></uib-rating> -->
+                                            <uib-rating ng-if="data.ratings=='1'" ng-model="data.ratings" max="1" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+
+                                             <uib-rating ng-if="data.ratings=='1.5'" ng-model="data.ratings" max="2" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+                                                                     
+                                             <uib-rating ng-if="data.ratings=='2'" ng-model="data.ratings" max="2" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+                                             
+                                               <uib-rating ng-if="data.ratings=='2.5'" ng-model="data.ratings" max="3" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+
+                                              <uib-rating ng-if="data.ratings=='3'" ng-model="data.ratings" max="3" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+
+                                              <uib-rating ng-if="data.ratings=='3.5'" ng-model="data.ratings" max="4" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+                                              
+                                             <uib-rating ng-if="data.ratings=='4'" ng-model="data.ratings" max="4" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+
+                                               <uib-rating ng-if="data.ratings=='4.5'" ng-model="data.ratings" max="5" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+                                              
+                                                
+                                                <uib-rating ng-if="data.ratings=='5'" ng-model="data.ratings" max="5" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+
+
+                                                <uib-rating ng-if="data.ratings=='0.5'" ng-model="data.ratings" max="1" read-only="isReadonly" aria-labelledby="default-rating"></uib-rating>
+                                               <p  ng-if="data.ratings =='0'">No reviews</p></td>  
+                                                                               
+
+                                                                                </span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                   <div class="date-city">
+                                                   <span class="date" ng-repeat="vehicle_quote in bid.vehicle_quote">Car Type <br>
+
+                                                        <span ng-repeat="m in vehicle_quote.vehicle">
+                                                       
+                                                         {{$index+1}}.{{m.id.type}} &nbsp;<i ng-if="bid.vehicle_quote[$index+1]">/</i>
+                                                            </span>
+                                                                    </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <span class="date">
+                                                                                <i class="fa fa-inr fa-2x"></i>  {{bid.totalAmount}}<br>
+                                                                                <a class="btn btn-warning" type="button" ng-click="bookRide(bid,data)">Book Your Ride</a>
+                                                                            </span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                </div>
+                                                        <div class="bid-sorter"> <a class="btn btn-warning" type="button" ng-click="confirmCancel(data._id, $index)"href="">Cancel Ride Request</a> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </uib-accordion-group>
+                                </uib-accordion>
+                            </div>
+                        </div>

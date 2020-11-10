@@ -1,0 +1,118 @@
+<div class="skin-blue">
+    <div ui-view="top"></div>
+    <div ui-view="left"></div>
+    <aside class="right-side">
+        <!-- Content Header (Page header) -->
+        <section class="content-header" ng-controller="DriverController">
+            <h1>
+                Drivers
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/admin/#/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="/admin/#/admin/operators"><i class="fa fa-dashboard"></i> Operators</a></li>
+                <li>Drivers</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content" ng-init="getDriverList()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box-body table-responsive">
+                        <div class="alert alert-danger alert-dismissable" ng-show="message"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>{{message}}</div>
+                        <div class="box">
+                            <!-- <div class="box-header">
+                            <h3 class="box-title">Data Table With Full Features</h3>
+                        </div> -->
+                            <div class="box-body table-responsive">
+                                <div class="clearfix" style="padding-bottom:15px;">
+                                    <div style="float:right;"><a href="/admin/#/admin/adddriver/{{operatorID}}" style="text-align:right">Add New Driver</a></div>
+                                    <form name="searchForm" novalidate ng-submit="applyGlobalSearch()">
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button" ng-click="refreshData()">
+                                                    <span class="glyphicon glyphicon-refresh"></span>
+                                                </button>
+                                            </span>
+                                            <input type="text" class="form-control" placeholder="Search term" name="searchTerm" ng-model="globalSearchTerm" required />
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="submit">
+                                                    <span class="glyphicon glyphicon-search"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                                <form role="form">
+                                    <table id="example1" class="table table-bordered table-striped" ng-table="tableParams" show-filter="isFiltersVisible">
+                                        <colgroup>
+                                            <col width="5%"/>
+                                            <col width="15%"/>
+                                            <col width="15%"/>
+                                            <col width="15%"/>
+                                            <col width="15%"/>
+                                            <col width="15%"/>
+                                            <col width="15%"/>
+                                        </colgroup>
+<!--                                        <tr class="row-color" ng-if="!$data.length">
+                                            <td>No data Found.</td>
+                                        </tr>-->
+                                        <tr ng-repeat = "driver in $data">
+                                            <td header="'headerCheckbox.html'"><input type='checkbox' ng-model="checkboxes.items[driver._id]" value="{{driver._id}}" /></td>
+                                            <td data-title="'Status'" sortable="'enable'" align='left'><div ng-if="driver.is_active == true"><img src='/img/enable.png' border='0'></div><div ng-if="driver.is_active == false"><img src='/img/disable.png' border='0'></div></td>
+
+                                            <td data-title="'Approval Status'" sortable="'approve'" align='left'><div ng-if="driver.is_approved == true"><img src='/img/enable.png' border='0'></div><div ng-if="driver.is_approved == false"><img src='/img/disable.png' border='0'></div></td>
+
+                                            <td data-title="'Profile Pic'" align="left"><a href="">
+                                                    <img ng-src="{{driver.profile_pic}}" ng-click="open([driver.profile_pic])" class="image-50"/></a></td>
+
+                                            <td data-title="'Name'" sortable="'name'" filter="{name:'text'}" align="left"><a ui-sref="admin.editdriver({ id: driver._id })" alt="Click to edit" title="Click to edit">{{driver.name}}</a></td>
+
+                                            <td data-title="'Phone Number'" sortable="'phone_number'" filter="{phone_number:'text'}" align="left">{{driver.phone_number}}</td>
+
+                                            <td data-title="'Documents'" align="center"><a ui-sref="admin.document({type: 'driver', id: driver._id})" alt="Click to view" title="Click to view"><i class="fa fa-eye"></i></a></td>
+
+                                        </tr>
+                                      <!--   <tr ng-hide="!$scope.recordFetchedLength">
+                                            <td colspan="5">No Result Found!</td>
+                                        </tr> -->
+                                          <tr ng-if="recordFetchedLength=='0'">
+                                            <td colspan="7" align="center">No Results Found!</td>
+                                        </tr>
+                                        <tr ng-show="!$scope.recordFetchedLength">
+                                            <td colspan='2'>
+
+                                                <div class="form-group">
+                                                    <select class="form-control" name='selectAction' id='selectAction'>
+                                                        <option value="">Select</option>
+                                                        <option value="enable">Enable</option>
+                                                        <option value="disable">Disable</option>
+                                                        <option value="approve">Approve</option>
+                                                        <option value="delete">Delete</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td colspan='4'><input type='button' name='go' value='Go' class='btn btn-primary' ng-click="performAction()"></td>
+                                            <td colspan="2">
+                                                <ul class="pagination" style="float:right">
+                                                    <li><a href="" ng-click="getDriverList(currentPage - 1)"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                                                    <li ng-repeat="page in pagesCount" ng-class="{'active': currentPage == page}"><a href="" ng-click="getDriverList(page)">{{page}}</a></li>
+                                                    <li><a href="" ng-click="getDriverList(currentPage + 1)"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </form>
+
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                    </div>
+                </div>
+        </section><!-- /.content -->
+    </aside><!-- /.right-side -->
+</div>
+
+<!-- page script -->
+<script type="text/ng-template" id="headerCheckbox.html">
+    <input type="checkbox" ng-model="checkboxes.checked" class="select-all" value="" />
+</script>

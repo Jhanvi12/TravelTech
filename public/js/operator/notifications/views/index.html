@@ -1,0 +1,36 @@
+<div class="background" ng-init="getNotifications()" >
+<h4 class="congrats">Notifications</h4>
+<div class="request-right">
+                  <select id="ddlList" ng-model="status" ng-change="sortingforStatus(status)"  class="btn btn-warning">
+                      <option value="">Sort By</option>
+                      <option value="read">Read</option>
+                      <option value="unread">Unread</option>
+                  </select>
+                    <input type="text" ng-model="searchText"  class="rounded" placeholder="Search" />
+            
+              </div>
+              <br>
+              <br>
+              <br>
+<div ng-if="recordfetchlength=='0'"><h3>Data Not found</h3></div>
+        <table ng-table="tableParams"class="table table-condensed table-bordered table-striped">
+              <tr ng-repeat="notification in $data | filter:searchText">
+                <td data-title="'Notifications'" >{{notification.description}} {{notification.is_read}}</td>
+                <td data-title="'Date'" sortable="'created'">{{notification.created |date:'dd MMM'}}</td>
+                <td data-title="'Time'">{{notification.created |date:'shortTime'}}</td>
+                <td data-title="'Status'" filter="{status:'text'}" align="left">
+                                                <span ng-if="notification.is_read == 1" class="badge bg-aqua">Read</span>
+                                                <span ng-if="notification.is_read == 0" class="badge bg-yellow">Unread</span>                                                
+                                            </td>    
+                <td data-title="'Action'"><a><i class="fa fa-trash " ng-click="confirmCancel(notification._id)"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a>
+                <i class="fa fa-check-circle" ng-click="readnotification(notification._id);">Mark</i>
+                </a></a>&nbsp;&nbsp;&nbsp;&nbsp;<a>
+              <!--   <img src="img/read.jpg" alt="" style="height:15px;width:20px"/> -->
+                </a></td>
+                </tr>
+              <tr ng-hide="$data.length">
+
+             <td colspan="5"> No records found</td>
+        </tr>
+          </table> 
+        </div>

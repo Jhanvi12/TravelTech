@@ -1,0 +1,30 @@
+<div class="skin-blue">
+    <div ui-view="top"></div>
+    <div ui-view="left"></div>
+    <aside class="right-side">
+        <!-- Content Header (Page header) -->
+        <section class="content-header" ng-controller="OperatorController">
+            <h1>
+                Operator Documents
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/#/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="/#/admin/operators"><i class="fa fa-group"></i> Operators</a></li>
+                <li>Documents</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content" ng-init="getOperatorList()">
+            <div class="row">
+                <div class="col-xs-12">                    
+                </div>
+
+    </section><!-- /.content -->
+</aside><!-- /.right-side -->
+</div>
+
+
+<!-- page script -->
+<script type="text/ng-template" id="headerCheckbox.html">
+    <input type="checkbox" ng-model="checkboxes.checked" class="select-all" value="" />
+</script>

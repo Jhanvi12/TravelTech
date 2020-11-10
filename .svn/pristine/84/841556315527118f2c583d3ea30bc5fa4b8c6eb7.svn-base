@@ -1,0 +1,71 @@
+<div class="skin-blue">
+    <div ui-view="top"></div>
+    <div ui-view="left"></div>
+    <aside class="right-side">
+<!-- Content Header (Page header) -->
+<section class="content-header" ng-controller="OperatorController">
+    <h1>
+        Email Template
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/admin/#/admin/dashboard"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li>Email Template</li>
+    </ol>
+</section>
+<section class="content" ng-init="getAllEmailTemplate();">
+  <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <form name="searchForm" novalidate ng-submit="applyGlobalSearch()">
+            <div class="box-header">
+              <div class="box-title"></div>
+              <div class="box-tools">
+                <div class="input-group input-group-sm">
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="button" ng-dissabled="true" ng-click="refreshData()"><i class="fa fa-refresh"></i></button>
+                    </div>
+                    <input class="form-control pull-right"  type="text" name="" placeholder="Search" ng-model="globalSearchTerm"/>
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="button" ng-dissabled="true" ng-click="applyGlobalSearch()"><i class="fa fa-search"></i></button>
+                        </div>
+                  <div class="input-group-btn">
+                    <a popover="Add" popover-trigger="mouseenter" popover-placement="left" href="/admin/#/admin/addemailtemplate" class="btn btn-sm btn- btn-addon pull-right" ><i class="fa fa-plus"></i> Add</a>
+                  </div>
+               </div>
+              </div>
+            </div>
+        </form>
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover"  ng-table="tableParams" ng-show="data.length > 0" >
+                  <tr ng-repeat="blog in $data">
+                               <td  data-title="'Title'" filter="{ title: 'text'}" sortable="'title'" ng-bind="blog.title"></td>
+                               <td  data-title="'Subject'" filter="{ subject: 'text'}" sortable="'language_name'" ng-bind="blog.subject"></td>
+                               <td  data-title="'Description'" filter="{ description: 'text'}" sortable="'tags'" ng-bind-html="blog.description"></td>
+                               <td  data-title="'Code'" filter="{ code: 'text'}" sortable="'created_by'" ng-bind="blog.code"></td>
+                               <td data-title="'Actions'">
+                                     <!-- <button type="button" ng-click="editForm(blog._id)" class="btn btn-xs btn-info" popover="Edit template" popover-trigger="mouseenter"><i class="fa fa-pencil"></i></button> -->
+                                     <a href="/admin/#/admin/updateemailtemplate/{{blog._id}}" class="btn btn-xs btn-info" popover="Edit template" popover-trigger="mouseenter"><i class="fa fa-pencil"></i></a>
+                                     <a popover="Delete" popover-trigger="mouseenter" ng-click="delete(blog._id)"class="btn  btn-xs btn-danger "><i class="fa fa-trash-o"></i></a>
+                                     <!-- <a popover="View comments" popover-trigger="mouseenter" href="/hotel-admin#!/listComments/{{blog._id}}" class="btn  btn-xs btn-info "><i class="fa fa-eye"></i></a> -->
+                              </td>
+                    </tr>
+              </table>
+               <div class=" head_bg Tmargin30" ng-show="data.length == 0" >
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                    <div class="padd30">
+                        <div class="big_circle">
+                            <i class="fa fa-building-o fa-4x"></i>
+                              <a href="/admin/#/admin/addemailtemplate" class="property_btn">Add Template</a>
+                          </div>
+                          <h3>No templates found</h3>
+                          <p>This section will display list of all email templates.</p>
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+          <!-- /.box -->
+     </div>
+  </div>
+</section>
+</aside><!-- /.right-side -->

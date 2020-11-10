@@ -1,0 +1,169 @@
+<div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+              <h4 class="driver-heading"> Profile Picture </h4>
+              <div class="driver-profile"><img alt="" src="img/profile.jpg " /></div>
+              <div class="clearfix"></div>
+              <ul class="customer-name">
+                <li>Name: </li>
+                <li> A. Bhupati</li>
+              </ul>
+              <div class="clearfix">
+                <div class="invoice"> <a class="btn btn-warning" type="button" href=""><i class="fa fa-file-pdf-o"></i> &nbsp; Generate Invoice</a> </div>
+              </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 profile-table">
+              <h4 class="driver-heading"> &nbsp; &nbsp; Customer Journey Details </h4>
+              <table width="100%" cellspacing="0" cellpadding="0" border="0" class="table">
+                <tbody>
+                  <tr>
+                    <td class="active">Booking ID</td>
+                    <td class="info">Nagpur, 123, Mihan, SEZ IT Park, Nagpur Maharashtra, 440015 India</td>
+                  </tr>
+                  <tr>
+                    <td class="active">Pick UP</td>
+                    <td class="info">Nagpur, 123, Mihan, SEZ IT Park, Nagpur Maharashtra, 440015 India</td>
+                  </tr>
+                  <tr>
+                    <td class="active">Halt 1</td>
+                    <td class="info">Nagpur, 123, Mihan, SEZ IT Park, Nagpur Maharashtra, 440015 India</td>
+                  </tr>
+                  <tr>
+                    <td class="active">Halt 2</td>
+                    <td class="info">Nagpur, 123, Mihan, SEZ IT Park, Nagpur Maharashtra, 440015 India</td>
+                  </tr>
+                  <tr>
+                    <td class="active">Halt 3</td>
+                    <td class="info">Nagpur, 123, Mihan, SEZ IT Park, Nagpur Maharashtra, 440015 India</td>
+                  </tr>
+                  <tr>
+                    <td class="active">Drop Off</td>
+                    <td class="info">Nagpur, 123, Mihan, SEZ IT Park, Nagpur Maharashtra, 440015 India</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="row">
+                <div class="col-lg-3 col-md-2 col-sm-6 col-xs-12">
+                  <div class="panel panel-primary ride-details-1">
+                    <div class="panel-heading ride-details-1">
+                      <div class="row">
+                        <div class="col-xs-12 ">
+                          <div class="ride-details-1"><i class="fa fa-calendar"></i> <br>
+                            25.12.2015  07:00 PM</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-2 col-sm-6 col-xs-12">
+                  <div class="panel panel-primary ride-details-2">
+                    <div class="panel-heading ride-details-2">
+                      <div class="row">
+                        <div class="col-xs-12 ">
+                          <div class="ride-details-2"><i class="fa fa-clock-o"></i> <br>
+                            Duration  10 Days</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-2 col-sm-6 col-xs-12">
+                  <div class="panel panel-primary ride-details-3">
+                    <div class="panel-heading ride-details-3">
+                      <div class="row">
+                        <div class="col-xs-12 ">
+                          <div class="ride-details-3"><i class="fa fa-user"></i> <br>
+                            Passengers  10</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-2 col-sm-6 col-xs-12">
+                  <div class="panel panel-primary ride-details-4">
+                    <div class="panel-heading ride-details-4">
+                      <div class="row">
+                        <div class="col-xs-12 ">
+                          <div class="ride-details-4"><i class="fa fa-car"></i> <br>
+                            Vehicles  01</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+              <h4 class="driver-heading"> Car Photo </h4>
+              <div class="driver-profile"><img alt="" src="img/profile.jpg " /></div>
+              <div class="clearfix"></div>
+              <div class="clearfix"> </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 profile-table">
+              <h4 class="driver-heading"> &nbsp; &nbsp; Car Details </h4>
+              <table width="100%" cellspacing="0" cellpadding="0" border="0" class="table">
+                <tbody>
+                  <tr>
+                    <td class="active">Car Type</td>
+                    <td class="info">Indigo</td>
+                  </tr>
+                  <tr>
+                    <td class="active">Status of Ride</td>
+                    <td class="info">Completed / Dispute / Cancelled</td>
+                  </tr>
+                  <tr>
+                    <td class="active">Payment Status</td>
+                    <td class="info">Payment Due on: 31.12.2016 </td>
+                  </tr>
+                  <tr>
+                    <td class="active"><i class="fa fa-inr fa-2x"></i></td>
+                    <td class="info">5000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+              <h4 class="driver-heading"> Driver Details </h4>
+              <div class="driver-profile"><img alt="" src="img/profile.jpg " /></div>
+              <div class="clearfix"></div>
+              <h4 class="fifth">Driver Allocated: YES </h4>
+              <h4 class="third">Driver Name: Mangesh </h4>
+              <h4 class="first">Mobile: 123456789 </h4>
+              <div class="clearfix"> </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 profile-table">
+              <h4 class="driver-heading"> &nbsp; &nbsp; User Review </h4>
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                  <div class="testimonial">
+                    <div class="testimonial-image"> <img src="img/2.png" alt="" /> </div>
+                    <h4 class="testimonial-title">Alex Slater <br />
+                      Lives in: New York <br>
+                    </h4>
+                    <div class="stars"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                    <i class="fa fa-star-half-o"></i> </div>
+                    <div class="clearfix"></div>
+                    <p class="testimonial-text"> Travel Tech is my favorite taxi company ever! Cool drivers, 
+                    amazing cars, top notch services! You won't believe it, but they actually didn't took any tip :) </p>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                  <div class="testimonial">
+                    <div class="testimonial-image"> <img src="img/2.png" alt="" /> </div>
+                    <h4 class="testimonial-title">Alex Slater <br />
+                      Lives in: New York <br>
+                    </h4>
+                    <div class="stars"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                    <i class="fa fa-star-half-o"></i> </div>
+                    <div class="clearfix"></div>
+                    <p class="testimonial-text"> Travel Tech is my favorite taxi company ever! Cool drivers, 
+                    amazing cars, top notch services! You won't believe it, but they actually didn't took any tip :) </p>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="view-more"> <a class="btn btn-warning" type="button" href=""><i class="fa fa-eye"></i> 
+                &nbsp; View More</a> </div>
+              </div>
+            </div>
+          </div>

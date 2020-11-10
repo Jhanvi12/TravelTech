@@ -1,0 +1,65 @@
+<div class="background">
+<h4 class="congrats">Congratulations</h4>
+        <div class="row">
+          <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="info-box"> <span class="info-box-icon bg-aqua"><i class="fa fa-user congrats-color"></i></span>
+              <div class="info-box-content"> <span class="info-box-text">Name</span> 
+              <span class="info-box-number">Mr. Mahesh Reddy</span> </div>
+              <!-- /.info-box-content --> 
+            </div>
+            <!-- /.info-box --> 
+          </div>
+          <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="info-box"> <span class="info-box-icon bg-aqua"><i class="fa fa-taxi congrats-color"></i></span>
+              <div class="info-box-content"> <span class="info-box-text">Ride ID</span> 
+              <span class="info-box-number">RD: 12311</span> </div>
+              <!-- /.info-box-content --> 
+            </div>
+            <!-- /.info-box --> 
+          </div>
+          <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="info-box"> <span class="info-box-icon bg-aqua"><i class="fa fa-inr congrats-color"></i></span>
+              <div class="info-box-content"> <span class="info-box-text">Amount</span> 
+              <span class="info-box-number">500</span> </div>
+              <!-- /.info-box-content --> 
+            </div>
+            <!-- /.info-box --> 
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="congrats-message">
+          <p>Congratulations, your Ride has been booked, Pay Directly to the vendor</p>
+          <p>Please find below the details of the Vendor. Your Vendor will get in touch with you shortly 
+          for exact addresses and details.</p>
+        </div>
+        <h4 class="congrats"> Vendor Details </h4>
+        <div class="table-responsive profile-table">
+          <table width="100%" cellspacing="0" cellpadding="0" border="0" class="table">
+            <tbody>
+              <tr>
+                <td class="active">Company Name</td>
+                <td class="info">IHPL Corporation Ltd.</td>
+              </tr>
+              <tr>
+                <td class="active">Contact Person</td>
+                <td class="info">Mr. Rohan Agrawal, Manager</td>
+              </tr>
+              <tr>
+                <td class="active">Contact Number</td>
+                <td class="info">+91 1234567890 </td>
+              </tr>
+              <tr>
+                <td class="active">Address 1 </td>
+                <td class="info">Nagpur, 123, Mihan, SEZ IT Park, Nagpur Maharashtra, 440015 India</td>
+              </tr>
+              <tr>
+                <td class="active">Address 2 </td>
+                <td class="info">Nagpur, 123, Mihan, SEZ IT Park, Nagpur Maharashtra, 440015 India</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="congrats-message">
+          <p>Note: Soon we will be sharing the driver details also</p>
+        </div>
+        </div>

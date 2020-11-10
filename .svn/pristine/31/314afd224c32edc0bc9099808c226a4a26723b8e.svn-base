@@ -1,0 +1,164 @@
+<div class="request-heading" ng-controller="OperatorMyBidController" ng-init="getBidList('open');showVehiclesInDropdown();">
+    <!-- <div class="request-right">
+        <div id="custom-search-input">
+            <div class="input-group col-lg-12">
+                <input type="text" class="  search-query form-control" placeholder="Search..." />
+            </div>
+        </div>
+    </div> -->
+    <div class="btn-group request-left" ng-click="getBidList(radioModel)">
+        <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'open'" uncheckable>Open</label>
+        <label class="btn btn-default" ng-model="radioModel" uib-btn-radio="'closed'" uncheckable>Closed</label>
+    </div>
+    <div class="clearfix"></div>
+    <div ng-if="!mybids.length"><h3>Data Not found</h3></div>
+    <div class="grid-box" ng-repeat = "enquiry in mybids track by $index" ng-if="!!enquiry.ride">
+       <span ng-init="c = $index"></span>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" >
+            <h4 class="payment"> &nbsp; &nbsp; Passenger Address: </h4>
+            <div class="col-lg-4 col-md-5 col-sm-5 col-xs-12">
+                <h4 class="first"> <i class="fa fa-calendar"></i>&nbsp; {{enquiry.ride.route[0].date_time | dates}} <br>{{enquiry.ride.route[0].date_time | time}}</h4>
+                <h4 class="second"><i class="fa fa-clock-o"></i>&nbsp; {{enquiry.ride.route[enquiry.ride.routes.length-1].stop_time || 'NA'}}</h4>
+                <h4 class="third"><i class="fa fa-user"></i>&nbsp; {{enquiry.ride.passenger_count}}</h4>
+                <h4 class="fourth"><i class="fa fa-car"></i>&nbsp; {{enquiry.ride.vehicles_count}}</h4>
+                <h4 class="fifth">No. Of Cities &nbsp; {{enquiry.ride.route | cities_count}}</h4>
+            </div>
+            <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                <div class="scrollbar">
+                    <p><b> Pickup City: {{enquiry.ride.route[0].address.city}}</b> <br>
+                        <span ng-if="enquiry.ride.route[0].address.street">{{enquiry.ride.route[0].address.street}},</span>
+                         <span ng-if="enquiry.ride.route[0].address.city">{{enquiry.ride.route[0].address.city}},</span>
+                         <span ng-if="enquiry.ride.route[0].address.state">{{enquiry.ride.route[0].address.state}}</span>
+                         <span ng-if="enquiry.ride.route[0].address.zip">, {{enquiry.ride.route[0].address.zip}}</span>
+                    </p>
+                    <p>
+                        <b> Itenary Details</b> <br><br/>
+                        <b style="font-weight:400;padding: 0px 5px;" ng-repeat="route in enquiry.ride.route" ng-if="$index > 0">
+                            <span ng-if="route.address.street">{{route.address.street}}, </span>
+                            <span ng-if="route.address.city">{{route.address.city}}, </span>
+                            <span ng-if="route.address.state">{{route.address.state}} </span>
+                            <span ng-if="route.address.zip">, {{route.address.zip}} </span>
+                              <br/><br/>
+                        </b>
+                    </p>
+                     <p><b>Type </b>: {{enquiry.ride.type | ridetype}}</p>
+                    
+                </div>
+            </div>
+            <div class="enquiry.ride clearfix">
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12  bid-detailss">
+
+         <form name="biddingForm" ng-submit="BiddingDetails($index, enquiry.ride._id, enquiry.ride.vehicles_count, enquiry.ride.passenger_count,biddingForm)" >
+            <h4 class="payment"> &nbsp; &nbsp; Bidding Details: </h4>
+            <!-- <div ng-repeat = "veh in enquiry.vehicle_quote"><b>Bid Amount</b> : &nbsp;<i class="fa fa-inr" aria-hidden="true"></i>&nbsp;{{veh.bid_amount}}&nbsp;&nbsp;
+          <b>  Ride Duration</b> : &nbsp;<i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;{{veh.ride_duration}}
+           <div ng-repeat = "cartype in veh.vehicle"> <b>Cars </b>:&nbsp;{{cartype.id.type}}</div>
+            </div> -->
+
+            <div class="scrollbar-box enquiry.ride clearfix">
+                <div class="scrollbar-right">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="enquiry.ride-heading"> <i class="fa fa-clock-o"></i>&nbsp; Bidding Expires on {{enquiry.ride.created | date_time}}  </div> </div>
+                         <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 " ng-repeat = "veh in enquiry.vehicle_quote"><div class="card-select">Type
+                          <div><span ng-repeat = "cartype in veh.vehicle">{{cartype.id.type}} {{(veh.vehicle.length != $index+1)?', ':''}} </span></div>     
+                                </div>
+                           </div>
+                             <div class="col-lg-1 col-md-4 col-sm-3 col-xs-12">
+                               
+                                    <div class="card-select"> LowBid <br/>
+                                    {{enquiry.lbid}}
+                           
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 " ng-repeat = "veh in enquiry.vehicle_quote">
+                            <div class="card-select">
+                                 Hours
+                                 <div>{{veh.ride_duration}}</div>
+                                 </div>
+                                
+                           </div>
+                           <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 " ng-repeat = "veh in enquiry.vehicle_quote">
+                           <div class="card-select">
+                                 Your Bid
+                                 <div>{{veh.bid_amount}}</div>
+                                 </div>
+                                
+                           </div>
+                           
+                          <div class="enquiry.ride clearfix" ng-repeat="n in bidsFields[c]" >
+
+                          <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12" >
+                                <div class="card-select" ng-init="bid[c].vehicle_quote[$index].vehicle = []"> Type
+
+                                  <div ng-dropdown-multiselect="" options="options" selected-model="bid[c].vehicle_quote[$index].vehicle" checkboxes="true" extra-settings="example14settings">
+                                  </div>
+                                 <!--    <div ng-dropdown-multiselect="" options="example1data" selected-model="bid[$parent.$index].vehicle_quote.vehicle"></div>
+ -->
+                                </div>
+                            </div>
+                                <div class="col-lg-1 col-md-4 col-sm-3 col-xs-12">
+                               
+                                    <div class="card-select"> LowBid <br/>
+                                    {{enquiry.lbid}}
+                           
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-3 col-xs-12">
+                             
+                                 <div class="card-select">Hours
+                        <input type="text" class="form-control bid-box type" id="" ng-pattern="/^(\d)+$/" ng-model="bid[c].vehicle_quote[$index].ride_duration" name="bid_hours_{{$index}}" required/>
+                         <span class="validation-text" ng-show="biddingForm.$submitted || biddingForm.bid_hours_{{$index}}.$touched " >
+                                        <p ng-show="biddingForm.bid_hours_{{$index}}.$error.required" class="error" >Tell us your own hours.</p>
+                                        <p ng-show="biddingForm.bid_hours_{{$index}}.$error.pattern" class="error" >Hour should be number.</p>
+                                    </span>
+
+                        </div>
+                        </div>
+                          <div class="col-lg-3 col-md-4 col-sm-3 col-xs-12">
+                         <div class="card-select">Your Bid
+                                    <input type="text" class="form-control bid-box type" ng-pattern="/^(\d)+$/" id="" ng-model="bid[c].vehicle_quote[$index].bid_amount" name="bid_amount_{{$index}}" required/>
+                                      <span class="validation-text" ng-show="biddingForm.$submitted || biddingForm.bid_amount_{{$index}}.$touched ">
+                                        <p ng-show="biddingForm.bid_amount_{{$index}}.$error.required" class="error" >Tell us your own bid.</p>
+                                        <p ng-show="biddingForm.bid_amount_{{$index}}.$error.pattern" class="error" >Bid should be number.</p>
+                                    </span>
+                                </div>
+                            </div>
+                    
+  <div class="col-lg-1 col-md-1 plsbtn" >
+
+                            <i class="fa fa-plus-circle greenb" ng-if="$index == (bidsFields[c].length-1)" ng-click="addMyBidInfo(c)"></i>
+
+                            <i class="fa fa-minus-circle redb" ng-if="$index != (bidsFields[c].length-1)" ng-click="removeMyBidInfo(c, $index)"></i>
+
+
+                                </div>
+
+                            </div>
+                            <div class="clearfix"></div>
+
+                        </div> </div>
+                        <div class="enquiry.ride-buttons">
+                          
+                            <div class="col-lg-5 col-md-3 col-sm-3 col-xs-6 button-margin" ng-if="bidType != 'closed'">
+                                <button type="submit" class="btn btn-info type"  ng-hide="!disable" ng-click="changeBid(enquiry.ride._id)">
+                                    <i class="fa fa-bullseye"></i> &nbsp; Change Bid
+                                </button>
+                                <button type="submit" class="btn btn-info type" ng-hide="disable">
+                                    <i class="fa fa-bullseye"></i> &nbsp; Save
+                                </button>
+                            </div>
+                              
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 button-margin">
+                                <button type="button" class="btn btn-warning type" ng-click="confirmCancel(enquiry._id)"><i class="fa fa-trash"></i> &nbsp; Delete Bid </button>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                     </form>
+                    </div>
+                </div>
+            </div>

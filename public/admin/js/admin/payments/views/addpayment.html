@@ -1,0 +1,63 @@
+<div class="skin-blue">
+    <div ui-view="top"></div>
+    <div ui-view="left"></div>
+    <aside class="right-side">
+        <!-- Content Header (Page header) -->
+        <section class="content-header" ng-controller="PaymentsController">
+            <h1>
+                Payments
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/#/home"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li><a href="/#/admin/payments">Payments</a></li>
+                <li>Add</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Add new payment</h3>
+                        </div>
+                        <div class="box-body table-responsive">
+                            <div class="alert alert-danger alert-dismissable" ng-show="message"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>{{message}}</div>
+                            <form role="form" name="myForm" ng-submit="addNotification(notify)">
+                                <div class="box-body">
+                                    <div class="form-field">
+                                        <div class="form-group">
+                                            <label>Type</label>                 
+                                            <select ng-model="values" name="type" ng-change="userslist(values)" id="usersList" class="form-control" required>
+                                                <option value="">Select option </option>
+                                                <option value="operator">Operator</option>
+                                                <option value="customer">Customer</option>
+                                            </select>
+                                            <span ng-show="myForm.type.$touched && myForm.type.$invalid" class="error">This field is required.</span>
+                                        </div>
+                                        <div class="form-group" ng-init="showUsersInDropDown();">
+                                            <label>Users</label>
+                                            <select ng-model="notify.receiver" name="receiver" class="form-control" required>
+                                                <option value="">Select your option</option>
+                                                <option ng-repeat="option in options" value="{{option._id}}">{{option.name}}</option>
+                                            </select>
+                                            <span ng-show="myForm.receiver.$touched && myForm.receiver.$invalid" class="error">This field is required.</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Wallet Money</label>
+                                            <input type="text" class="form-control" id="wallet" name='wallet' ng-model="city.zip" placeholder="Enter Wallet money" value="{{city.zip}}" required>
+                                            <span ng-show="myForm.wallet.$touched && myForm.wallet.$invalid" class="error">This field is required.</span>
+                                        </div>
+                                    </div><!-- /.form-field -->
+                                </div><!-- /.box-body -->
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary" ng-disabled="myForm.$invalid">Submit</button>
+                                </div>
+                            </form>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
+            </div>
+        </section><!-- /.content -->
+    </aside><!-- /.right-side -->
+</div>

@@ -1,0 +1,44 @@
+ <div class="feedForm" ng-controller="FeedbackController">
+
+                    <div class="borderF mTopBottom background">
+                        <h2>Give Feedback</h2>
+
+                            <div class="FeedRating">
+                                <span class="">Operator Feedback:</span>
+                                <uib-rating ng-model="rate.operator.rating" class="golden" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></uib-rating>
+
+                            </div>
+                            <div class="col-sm-12">
+                                <form class="form-horizontal">
+                                    <div class="form-group ">
+                                        <textarea class="form-control mBottom" ng-model="rate.operator.message" id="comment" rows="3" placeholder="Kindly Give Your Feedback"></textarea>
+                                   </div>
+                                </form>
+                            </div>
+
+                            <div class="FeedRating">
+                                <span class="">Vehicle Feedback:</span>
+                                <uib-rating ng-model="rate.vehicle.rating" class="golden" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></uib-rating>
+
+                            </div>
+
+                            <div class="FeedRating">
+                                <span class="">Driver Feedback:</span>
+                                <!-- <span id="stars-existing" class="starrr star-rating" data-rating='4'></span> -->
+                                <uib-rating ng-model="rate.driver.rating" class="golden" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></uib-rating>
+                            </div>
+                            <div class="col-sm-12">
+                                <form class="form-horizontal">
+                                   <div class="form-group">
+                                   <button type="submit" class="btn btn-warning btn-lg" ng-click="ratingInfo(rate.vehicle,rate.driver,rate.vehicleMessage,rate.driverMessage)"> Submit </button></div>
+                                </form>
+                            </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+
+
+
+                 </div>
+
+            </div>

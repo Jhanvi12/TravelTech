@@ -1,0 +1,47 @@
+
+<!-- Modal content-->
+<div class="modal-content" >
+<toast></toast>
+    <div class="modal-body">
+        <div class="card card-container popup">
+
+            <button type="button" class="close close-new" ng-click="cancel()">
+                <i class="fa fa-times-circle-o close-color fa-2x"></i></button>
+
+                <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+                <img alt="" src="img/Travel-logo.png">
+                <p class="profile-name-card" id="profile-name"></p>
+                <form class="form-signin" name="signinForm" ng-if="driversLoaded" ng-submit="update(bid)">
+                    <div  ng-repeat="n in vehicle_quote" 
+                        ng-init="name[$index]= n.vehicle;">
+                           <span ng-init="c = $index"></span> 
+                           <div class=" clearfix" ng-repeat="l in name[$index]">
+                      <div  class="col-lg-4 col-md-4 col-sm-4 col-xs-12"  ng-init="bid.vehicle[$index] = l.id._id">
+                          <div class="card-select"> Car Type
+                              <button type="button" class="btn btn-info type">
+                                  <i class="fa fa-bullseye"></i> &nbsp; {{l.id.type}}
+                              </button>
+                          </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" >
+              <div class="card-select" ng-init="bid.driver[$index] = n.driver[$index]._id;check = n.driver[$index]._id;inEdit == true ? onDriverChange(bid.driver[$index],$index):''">Assign Driver 
+                              <select id="ddlList" class="btn btn-warning type" ng-model="bid.driver[$index]" ng-change="onDriverChange(bid.driver[$index],$index)" >
+                                  <option ng-repeat="data in drivers" ng-disabled="data.active" ng-selected="check == data._id" value="{{data._id}}">{{data.name}}</option>
+                              </select>
+                          </div>
+                      </div>
+                   
+                        </div>
+                      
+                      </div>
+                      <div class="clearfix"></div>
+                          <button type="submit" ng-disabled="check(bid.driver) || checkBid" class="btn btn-success type">
+                              <i class="fa fa-bullseye"></i> &nbsp; Save
+                          </button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>

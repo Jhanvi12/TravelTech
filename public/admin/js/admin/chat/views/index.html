@@ -1,0 +1,28 @@
+<div id="chatBox" ng-class="{hided : hidden, shown : !hidden}" ng-repeat="active in activeMemberChat track by $index">
+    <div class="header">
+        {{active.fname}} {{active.lname}}
+        <i class="fa fa-times minus" ng-click="close($index)"></i>
+        <i class="fa fa-minus minus"  ng-click="minus($index)"></i>
+    </div>
+
+
+    <div class="messageBox">
+        <button ng-show="loadMore" class="loadMore" ng-click="showPreviousMessage()">Load More</button>
+    <div class="message">
+        <div id="{{message.id}}" ng-repeat="message in messages | orderBy: message.id: true" class="messageField" ng-class="{'pull-left': message.reciever.id == user.id, 'pull-right': message.sender.id == user.id}">
+            <span class="dateFromNow">[{{message.createdAt|dayTime}}]</span><br/>
+            <span class="user-name">{{message.sender.fname}} {{message.sender.lname}}:</span>
+              {{message.msg}}
+        </div>
+        <br/>
+        <br/>
+    </div>
+        
+    </div>
+
+    <div class="msgSpace">
+        <textarea class="col-sm-10 textField pull-left" ng-model="msg"></textarea>
+        <span ng-if="!disableSendButton" ng-disabled="disableSendButton" class="col-sm-2 pull-right sendBtn" ng-click="sendMsg(msg, active)"><i class="fa fa-paper-plane"></i></span>
+        <span ng-if="disableSendButton" ng-disabled="disableSendButton" class="col-sm-2 pull-right sendBtn"><i class="fa fa-spinner fa-spin"></i></span>
+    </div>
+</div>

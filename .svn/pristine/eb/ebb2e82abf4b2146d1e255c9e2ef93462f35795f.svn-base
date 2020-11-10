@@ -1,0 +1,80 @@
+<div class="panel">
+    <toast></toast>
+    <div  ng-controller="OperatorEditControllerForVehicles" ng-init="showVehiclesInDropDown();">
+        <form name="profileform" >
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Vehicle Category</th>
+                        <th>Vehicle Type</th>
+                        <th>Registration No</th>
+                        <th>Cost per km</th>
+                        <th>Features</th>
+                        <th>Image</th>
+                        <th>RC</th>
+                        <th>Taxi Permit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+
+                            <select class="btn btn-warning" ng-model="vehicleCategoryId" name="category_info" class="form-control" ng-change="setCar(vehicleCategoryId);">
+                                <option value="">Select your option</option>
+                                <option ng-repeat="option in options   track by $index " ng-model="vehicle_info.option._id"  value="{{option._id}}">{{option.category}}</option>
+                            </select>
+
+                            <span class="validation-text" ng-show="profileform.$submitted || profileform.category.$touched" >
+                                <p ng-show="profileform.category.$error.required" class="error" >Tell us your car category.</p>
+                            </span>
+                        </td>
+                       
+                <td>
+                   <select class="btn btn-warning" name="category_data" id="ddlList"
+                   ng-options="carc.type for carc in category_data.types"
+                   ng-model="category_data.selectedType" ng-change="setCarandCategory(category_data.selectedType)">
+                   </select>
+                    <span class="validation-text" ng-show="profileform.$submitted || profileform.category_data.$touched" >
+                        <p ng-show="profileform.category_data.$error.required" class="error" >Tell us your car name.</p>
+                    </span>
+                </td>
+                <td><input type="text" ng-model="vehicle_info.registration_number"  id="usr" placeholder="MH-31A-1235" name="registration_number" class="form-control" required />
+                    <span class="validation-text" ng-show="profileform.$submitted || profileform.registration_number.$touched">
+                        <p ng-show="profileform.registration_number.$error.required" class="error" >Tell us your Registration Number of car.</p>
+                    </span>
+                </td>
+                <td><input type="text" id="usr" ng-model="vehicle_info.cost_per_km" ng-pattern="/^(\d)+$/"  placeholder="Rs.19/km" name="cost_per_km" class="form-control" required />
+                    <span class="validation-text" ng-show="profileform.$submitted || profileform.cost_per_km.$touched" >
+                        <p ng-show="profileform.cost_per_km.$error.required" class="error" >Tell us your cost per km of car.</p>
+                        <p ng-show="profileform.cost_per_km.$error.pattern" class="error" >Cost per km should be number.</p>
+                    </span>
+                </td>
+                <td class="driver-checkbox">
+                    <label class="checkbox-inline"><input type="checkbox" ng-model="vehicle_info.features[2]" name="music_system" ng-true-value="'music_system'" ng-false-value="'false'">Music</label>
+                    <label class="checkbox-inline"><input type="checkbox" ng-model="vehicle_info.features[0]" name="ac" ng-true-value="'ac'" ng-false-value="'false'">AC</label>
+                    <label class="checkbox-inline"><input type="checkbox" ng-model="vehicle_info.features[1]" name="air_bag" ng-true-value="'air_bag'" ng-false-value="'false'" >Air Bag</label>
+                </td>
+                <td>
+                    <span class="btn btn-success btn-file">Upload <input type="file" multiple file-model="myFile.file"/></span>{{filename}}
+                </td>
+                <td>
+                    <span class="btn btn-success btn-file">Upload <input type="file" file-model="myFile.rc"/></span>{{rcfilename}}
+                </td>
+                <td>
+                    <span class="btn btn-success btn-file">Upload <input type="file" file-model="myFile.permit"/></span>{{permitfilename}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+ 
+     <uib-progressbar ng-show="!Flag" class="progress-striped active" name="vehicle" ng-model="upload.vehicle" value="dynamic"  type="info"></i></uib-progressbar>
+ 
+    <button class="btn btn-primary btn-file" ui-sref="operator.myprofile" >
+        Back
+    </button>
+    <button class="btn btn-primary btn-file" ng-click="updateVehicleInfo();">
+        Update Info
+    </button>
+</form>
+</div>
+</div>

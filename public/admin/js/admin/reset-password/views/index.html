@@ -1,0 +1,20 @@
+<div class="form-box">
+    <div class="alert alert-danger alert-dismissable" ng-show="message"><i class="fa fa-ban"></i><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>{{message}}</div>
+    <div class="header">Reset Password</div>
+    <form name="resetForm">
+        <div class="body bg-gray">
+            <div class="form-group">
+                <input type="text" name="code" class="form-control" placeholder="Verification code" ng-model='admin.code' autocomplete="false" required />
+                <span ng-show="resetForm.code.$touched && resetForm.code.$invalid" class="error">This field is required.</span>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" placeholder="Password" ng-model='admin.password' autocomplete="false" required/>
+                <span ng-show="resetForm.password.$touched && resetForm.password.$invalid" class="error">This field is required.</span>
+            </div> 
+        </div>
+        <div class="footer">                                                               
+            <button type="submit" class="btn bg-olive btn-block" name="resend" ng-disabled="forgotForm.$invalid" ng-click="resetPassword()">Reset Password</button>                     
+    </form>
+</div>
+
+

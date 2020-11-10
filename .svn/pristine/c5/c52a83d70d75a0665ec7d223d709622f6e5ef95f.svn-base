@@ -1,0 +1,266 @@
+
+<div class="card signup-2" style="margin-top:0px;">
+    <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+    <img src="img/Travel-logo.png" alt="">
+    <p id="profile-name" class="profile-name-card"></p>
+    <form name="signinform" class="form-signin" ng-init="getDataById();">
+        <div class="stepwizard">
+            <div class="stepwizard-row setup-panel">
+                <div class="stepwizard-step">
+                    <a disabled="disabled" class="btn btn-default btn-circle" type="button">1</a>
+                    <p>Step 1</p>
+                </div>
+                <div class="stepwizard-step">
+                    <a class="btn btn-circle btn-default btn-primary" type="button">2</a>
+                    <p>Step 2</p>
+                </div>
+                <div class="stepwizard-step">
+                    <a disabled="disabled" class="btn btn-default btn-circle" type="button">3</a>
+                    <p>Step 3</p>
+                </div>
+                <div class="stepwizard-step">
+                    <a disabled="disabled" class="btn btn-default btn-circle" type="button">4</a>
+                    <p>Step 4</p>
+                </div>
+            </div>
+        </div>
+    </form>
+    <span id="reauth-email" class="reauth-email"></span>
+    <div class="row">
+        <form name="signupstep2" ng-submit="gotostep(fetchdata)">
+        <h4 class="signup-title"> Personal Details </h4>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <input type="text" required="" ng-model="fetchdata.name"  class="form-control" id="inputPassword">
+            </div>
+            <div class="form-group">
+               <input type="text"  ng-model="fetchdata.vendor_city" name="vendor_city" placeholder="Vendor City" class="form-control" id="usr" required/>
+                   <span class="validation-text" ng-show="signupstep2.$submitted || signupstep2.vendor_city.$touched">
+                  <p ng-show="signupstep2.vendor_city.$error.required" class="error" >Tell us your City</p>
+                                      </span>
+            </div>
+            <div class="form-group">
+               <textarea class="form-control" name="vendor_address" ng-model="fetchdata.vendor_address" placeholder="Vendor Address" rows="3" id="usr" required/></textarea>
+                      <span class="validation-text" ng-show="signupstep2.$submitted || signupstep2.vendor_address.$touched">
+                  <p ng-show="signupstep2.vendor_address.$error.required" class="error" >Tell us your Address</p>
+                                      </span>
+            </div>
+            <div class="form-group">
+               <input type="text" name="owner_name" ng-model="fetchdata.owner_name" placeholder="Owner's Name" class="form-control" id="usr" required/>
+                   <span class="validation-text" ng-show="signupstep2.$submitted || signupstep2.owner_name.$touched">
+                  <p ng-show="signupstep2.owner_name.$error.required" class="error" >Tell us your Name</p>
+                                      </span>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <input type="text" required="" ng-model="fetchdata.phone_number" class="form-control" id="inputPassword">
+            </div>
+            <div class="form-group">
+                <input type="email" required="" ng-model="fetchdata.email" placeholder="Email" class="form-control" id="inputPassword">
+            </div>
+            <div class="form-group">
+                 <input type="text" name="working_hours" ng-model="fetchdata.working_hours" class="form-control" id="usr" placeholder="Working Hours"  ng-pattern="/^(\d)+$/"  required/>
+                     <span class="validation-text" ng-show="signupstep2.$submitted || signupstep2.working_hours.$touched">
+                  <p ng-show="signupstep2.working_hours.$error.required" class="error" >Tell us your Working Hours</p>
+                    <p ng-show="signupstep2.working_hours.$error.pattern" class="error" >Working Hours should be numeric</p>
+                                      </span>
+            </div>
+            <div class="form-group">
+                <input type="text" name="service_tax_number"  ng-model="fetchdata.service_tax_number" placeholder="Service Tax Number" class="form-control" ng-pattern="/^(\d)+$/"  id="usr" required/>
+                    <span class="validation-text" ng-show="signupstep2.$submitted || signupstep2.service_tax_number.$touched">
+                  <p ng-show="signupstep2.service_tax_number.$error.required" class="error" >Tell us your Service Tax Number</p>
+                    <p ng-show="signupstep2.service_tax_number.$error.pattern" class="error" >Service Tax Number should be numeric</p>
+                                      </span>
+            </div>
+            <div class="form-group">
+                  <input type="text" name="pan_number" placeholder="Pan Number" ng-model="fetchdata.pan_number" class="form-control" id="usr" required/>
+                   <span class="validation-text" ng-show="signupstep2.$submitted || signupstep2.pan_number.$touched">
+                  <p ng-show="signupstep2.pan_number.$error.required" class="error" >Tell us your Pan Number</p>
+                                      </span>
+            </div>
+            <div class="form-group">
+                <input type="text" name="website"  placeholder="Website" ng-model="fetchdata.website" class="form-control" id="usr" required/>
+                  <span class="validation-text" ng-show="signupstep2.$submitted || signupstep2.website.$touched">
+                  <p ng-show="signupstep2.website.$error.required" class="error" >Tell us your Website</p>
+                                      </span>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <h4 class="signup-title"> Official Information </h4>
+         <form name="signupstep2">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" >
+       
+            <div class="form-group">
+                <input type="text" ng-disabled = "true" placeholder="Cancellation Policy" ng-model="fetchdata.cancellation_policy" name="cancellation_policy" class="form-control" id="usr" required/>
+                     <span class="validation-text" ng-show="signupstep2.$submitted || signupstep2.cancellation_policy.$touched">
+                  <p ng-show="signupstep2.cancellation_policy.$error.required" class="error" >Tell us your Cancellation Policy</p>
+                                      </span>
+            </div>
+            <div class="form-group">
+               <input type="text"  placeholder="Operating Location" ng-model="fetchdata.operating_location" name="operating_location" class="form-control" id="usr" required/>
+                  <span class="validation-text" ng-show="signupstep2.$submitted || signupstep2.operating_location.$touched">
+                  <p ng-show="signupstep2.operating_location.$error.required" class="error" >Tell us your Operating Location</p>
+                                      </span>
+            </div>
+            <div class="form-group">
+                    <input type="text" name="owner_phone_number" ng-model="fetchdata.owner_phone_number" placeholder="Owner's Phone number" minlength="10" maxlength="10"  ng-pattern="/^(\d)+$/"  class="form-control" id="usr" required/>
+                   <span class="validation-text" ng-show="signupstep2.$submitted || signupstep2.owner_phone_number.$touched">
+                  <p ng-show="signupstep2.owner_phone_number.$error.required" class="error" >Tell us your Phone Number</p>
+                    <p ng-show="signupstep2.owner_phone_number.$error.pattern" class="error" >Your Phone Number should be numeric</p>
+                                      </span>
+            </div>
+            <div class="form-group">
+                <input type="text" ng-disabled="true" placeholder="Operator's Contact" class="form-control" id="inputPassword">
+            </div>
+            <div class="form-group">
+                <input type="text" ng-disabled="true" placeholder="Working Hours" class="form-control" id="inputPassword">
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" ng-disabled="true">
+            <div class="upload">
+                <div class="upload-text">Service Tax Number</div>
+                <div class="upload-button"><span  ng-disabled="true" class="btn btn-success btn-file">Upload
+                    <input ng-disabled="true" type="file">
+                </span></div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="upload">
+                <div class="upload-text">PAN Card Number</div>
+                <div class="upload-button"><span  ng-disabled="true" class="btn btn-success btn-file">Upload
+                    <input  ng-disabled="true" type="file">
+                </span></div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="upload">
+                <div class="upload-text">ID Proof of Owner</div>
+                <div class="upload-button"><span ng-disabled="true"  class="btn btn-success btn-file">Upload
+                    <input ng-disabled="true" type="file">
+                </span></div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="upload">
+                <div class="upload-text">ID Proof (Company)</div>
+                <div class="upload-button"><span  ng-disabled="true" class="btn btn-success btn-file">Upload
+                    <input ng-disabled="true" type="file">
+                </span></div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="upload">
+                <div class="upload-button">
+                    <textarea class="form-control" ng-disabled="true"  placeholder="Routes" rows="2" id="comment"></textarea>
+                </div>
+            </div>
+        </div>
+        </form>
+        <div class="clearfix"></div>
+        <h4 class="signup-title"> Bank Information </h4>
+           <form name="signinform" >
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="form-group">
+                  <input type="text" name="bank_name" id="usr" ng-model="fetchdata.bank_name" placeholder="Bank Name" class="form-control" required/>
+                   <span class="validation-text" ng-show="signinform.$submitted || signinform.bank_name.$touched">
+                  <p ng-show="signinform.bank_name.$error.required" class="error" >Tell us your Bank Name</p>
+                 </span>
+            </div>
+            <div class="form-group">
+               <input type="text" name="account_name" id="usr"  ng-model="fetchdata.account_name" placeholder="Bank Account Name" class="form-control" required/>
+                     <span class="validation-text" ng-show="signinform.$submitted || signinform.account_name.$touched">
+                  <p ng-show="signinform.account_name.$error.required" class="error" >Tell us your Account Name</p>
+                  </span>
+            </div>
+            <div class="form-group">
+              <input type="text" name="account_number" id="usr" ng-model="fetchdata.account_number" placeholder="Bank Account Number"  ng-pattern="/^(\d)+$/"  class="form-control" required/>
+                    <span class="validation-text" ng-show="signinform.$submitted || signinform.account_number.$touched">
+                    <p ng-show="signinform.account_number.$error.required" class="error" >Tell us your Account Number</p>
+                    <p ng-show="signinform.account_number.$error.pattern" class="error" >Account Number should be numeric </p>
+                    </span>
+            </div>
+            <div class="form-group">
+                <input type="text"  name="ifsc_code" id="usr" placeholder="IFSC Code" ng-model="fetchdata.ifsc_code" class="form-control"  required/>
+                  <span class="validation-text" ng-show="signinform.$submitted || signinform.ifsc_code.$touched">
+                  <p ng-show="signinform.ifsc_code.$error.required" class="error" >Tell us your IFSC Code</p>
+                  </span>
+            </div> 
+            <div class="form-group">
+                <input type="text"  name="rtgs_code" id="rtgs_code" placeholder="RTGS/NEFT Code" ng-model="fetchdata.ifsc_code" class="form-control"  required/>
+                  <span class="validation-text" ng-show="signinform.$submitted || signinform.rtgs_code.$touched">
+                  <p ng-show="signinform.rtgs_code.$error.required" class="error" >Tell us your RTGS Code</p>
+                  </span>
+            </div>
+            <div class="form-group">
+                <!-- <input type="text" ng-disabled="true" placeholder="RTGS / NEFT Code" class="form-control" id="inputPassword"> -->
+                    <input type="text" name="bank_branch" id="usr" placeholder="Bank Branch" ng-model="fetchdata.bank_branch" class="form-control"  required/>
+                   <span class="validation-text" ng-show="signinform.$submitted || signinform.bank_branch.$touched">
+                  <p ng-show="signinform.bank_branch.$error.required" class="error" >Tell us your Bank Branch</p>
+                  </span>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" >
+          <!--   <div class="upload">
+                <div class="upload-text">Cancelled Cheque</div>
+                <div class="upload-button"><span ng-disabled="true" class="btn btn-success btn-file">Upload
+                    <input ng-disabled="true" type="file">
+                </span></div>
+            </div> -->
+         <!--    <div class="clearfix"></div> -->
+            <div class="form-group">
+                <!-- <input type="text" ng-disabled="true" placeholder="Service Tax Registration Number" class="form-control" id="inputPassword"> -->
+                <!--  <input type="text" name="bank_branch" id="usr" placeholder="Bank Branch" ng-model="fetchdata.bank_branch" class="form-control"  required/>
+                   <span class="validation-text" ng-show="signinform.$submitted || signinform.bank_branch.$touched">
+                  <p ng-show="signinform.bank_branch.$error.required" class="error" >Tell us your Bank Branch</p>
+                  </span> -->
+            </div>
+          <!--   <div class="upload-button">
+               
+            </div> -->
+                <div class="form-group">
+                 <textarea name="branch_address" id="usr" placeholder="Branch Address" ng-model="fetchdata.branch_address" class="form-control"  required></textarea>                  <span class="validation-text" ng-show="signinform.$submitted || signinform.branch_address.$touched">
+                  <p ng-show="signinform.branch_address.$error.required" class="error" >Tell us your Bank Address</p>
+                  </span>
+                </div>
+                <div class="upload">
+                  <div class="upload-text">Upload Cheque</div>
+                  <div class="upload-button"><span  ng-disabled="true" class="btn btn-success btn-file">Upload
+                      <input  ng-disabled="true" type="file" multiple file-model="myFile.cheque" onchange="angular.element(this).scope().fileChanged(this)">
+                  </span></div>
+                </div>
+        </div>
+        </form>
+        <div class="clearfix"></div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <h4 class="signup-title"> Home Location: </h4>
+            <div class="upload">
+                <div class="location-text"> </div>
+                <input ng-model="fetchdata.cities.name" type="text" placeholder="Type your City" class="form-control" id="inputPassword"
+                vs-google-autocomplete="{ types: ['address'] }"
+                vs-street-number="fetchdata.cities.streetNumber"
+                vs-street="fetchdata.cities.street"
+                vs-city="fetchdata.cities.city"
+                vs-state="fetchdata.cities.state"
+                vs-country="fetchdata.cities.country"
+                vs-post-code="fetchdata.cities.postCode"
+                vs-district="fetchdata.cities.district">
+                <div class="add-location">
+                    <button class="btn btn-warning" ng-click="gotostep(fetchdata);" type="submit" >
+                        <i class="fa fa-plus-circle"></i> &nbsp; Next
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" >
+            <h4 class="signup-title"> Areas of Operation </h4>
+            <ul class="signup-checkbox" ng-repeat="city in cities">
+                <li>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-true-value="city" ng-model="fetchdata.city[$index]" >
+                        {{city.city}}</input></label>
+                    </li>
+                </ul>
+                <div class="signup-checkbox"> </div>
+            </div>
+        </form>
+        <!-- /form -->
+    </div>
+    <!-- /card-container -->

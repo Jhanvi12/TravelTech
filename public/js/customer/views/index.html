@@ -1,0 +1,169 @@
+<div ng-controller="CustomerController" ng-init="getNotifications()">
+<div preloader ></div>
+    <header id="header">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- <button type="button"class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button> -->
+                    <a class="navbar-brand" href="#">
+                        <img src="img/Travel-logo.png" alt="">
+                    </a>
+                </div>
+                <div class="navbar-collapse ">
+                    <!--<ul class="nav navbar-nav ul-margin navbar-left">
+                </ul>-->
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown notifications-menu" uib-dropdown>
+                        <a class="dropdown-toggle" uib-dropdown-toggle>
+                            <i class="fa fa-bell"></i>
+                            <span class="yello_circle">{{notcount || 0}}</span>
+                        </a>
+                        <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
+                            <li class="header">You have {{notcount || 0}} notifications</li>
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    <li ng-repeat="notification in notdesc">
+                                        <a ui-sref="customer.notifications">
+                                            <i class="fa fa-users text-aqua"></i> {{notification.description}}
+                                        </a>
+                                    </li>
+                                   <!--  <li>
+                                        <a href="#">
+                                            <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the page and may cause design problems
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-users text-red"></i> 5 new members joined
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-user text-red"></i> You changed your username
+                                        </a>
+                                    </li> -->
+                                </ul>
+                            </li>
+                            <li class="view_all"><a ui-sref="customer.notifications">View all</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown" >
+                        <a class="dropdown-toggle" ng-click="logout()"><i class="fa fa-sign-out"></i> logout </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="secondmenu merchant-sec">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12" ng-show="show.navigator">
+                <div class="list-group left-side">
+                    <a ui-sref="customer.createRide"  ng-class="{active:state.name == 'customer.createRide'}" class="list-group-item">Home</a>
+                    <a ui-sref="customer.myrequest" ng-class="{active:state.name == 'customer.myrequest'}" class="list-group-item"> My Request</a>
+                    <a ui-sref='customer.myrides' class="list-group-item">My Ride</a>
+                    <a class="list-group-item">Invite and Earn</a>
+                    <a  ui-sref="customer.notifications" class="list-group-item">Notification </a>
+                    <a class="list-group-item">Payment</a>
+                    <a class="list-group-item" ui-sref='customer.accountsetting'>Account Settings</a>
+                </div>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                <div ui-view></div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+<div class="container">
+<div class="row">
+  <div class="footer-top">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <ul class="quick_links">
+           <!--<li><a href="#"><img src="img/list-icon.png" alt="" />&nbsp; Home</a></li>-->
+          <li><a href="#"><img src="img/list-icon.png" alt="" /> About Us</a></li>
+          <li><a href="#"><img src="img/list-icon.png" alt="" /> How to Work</a></li>
+          <li><a href="#"><img src="img/list-icon.png" alt="" /> Contact Us</a></li>
+          <li><a href="#"><img src="img/list-icon.png" alt="" /> Terms & Condition</a></li>
+          <li><a href="#"><img src="img/list-icon.png" alt="" /> Privacy Policy</a></li>
+         <!-- <li><a href="#"><img src="img/list-icon.png" alt="" /> Register Your Company With Us</a></li>-->
+        </ul>
+        <h4><a href="#">Copyright © 2016 traveltech.com</a></h4>
+    </div>
+  <!--  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+      <div class="footer-heading">
+        <h4>About City Cab</h4>
+        <img alt="" src="img/strip.png" />
+        <p> Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. </p>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+      <div class="footer-heading">
+        <h4>Downloads</h4>
+        <img alt="" src="img/strip.png" />
+        <p> Now you can download our app on every mobile device: </p>
+      </div>
+      <div class="app-store"> <a href="" class="icon-button windows"> <i class="fa fa-windows social-effect"></i><span></span></a> <a href="" class="icon-button android"> <i class="fa fa-android social-effect"></i><span></span></a> <a href="" class="icon-button apple"> <i class="fa fa-apple social-effect"></i><span></span></a> </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+      <div class="footer-heading">
+        <h4>More stuff</h4>
+        <img alt="" src="img/strip.png" /> </div>
+      <ul class="foot-navbar">
+        <li><a href="#"><i class="fa fa-check"></i>&nbsp; Taxi drivers for hire in your city</a></li>
+        <li><a href="#"><i class="fa fa-check"></i>&nbsp; Latest from our blog</a></li>
+        <li><a href="#"><i class="fa fa-check"></i>&nbsp; Useful links - check the complete list</a></li>
+        <li><a href="#"><i class="fa fa-check"></i>&nbsp; New bigger & better F.A.Q. section </a></li>
+      </ul>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+      <div class="footer-heading">
+        <h4>Contacts</h4>
+        <img alt="" src="img/strip.png" /> </div>
+      <ul class="foot-navbar">
+        <li><a href="#"><i class="fa fa-envelope icon-color"></i>&nbsp; info @ traveltech.com</a></li>
+        <li><a href="#"><i class="fa fa-phone icon-color"></i>&nbsp;  +91 123456789</a></li>
+        <li><a href="#"><i class="fa fa-fax icon-color"></i>&nbsp; +91 123456789</a></li>
+        <li><a href="#"><i class="fa fa-building icon-color"></i>&nbsp; info @ traveltech.com </a></li>
+      </ul>
+    </div>
+    <div class="clearfix"></div>-->
+   <!-- <div class="footer-bottom">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <ul class="foot-navbar">
+          <li><a href="#"><img src="img/list-icon.png" alt="" />&nbsp; Home</a></li>
+          <li><a href="#"><img src="img/list-icon.png" alt="" />&nbsp; About Us</a></li>
+          <li><a href="#"><img src="img/list-icon.png" alt="" />&nbsp; How to Work</a></li>
+          <li><a href="#"><img src="img/list-icon.png" alt="" />&nbsp; Contact Us</a></li>
+          <li><a href="#"><img src="img/list-icon.png" alt="" />&nbsp; Terms & Condition</a></li>
+          <li><a href="#"><img src="img/list-icon.png" alt="" />&nbsp; Privacy Policy</a></li>
+          <li><a href="#"><img src="img/list-icon.png" alt="" />&nbsp; Register Your Company With Us</a></li>
+        </ul>
+      </div>-->
+<!--      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="social-store"> <a href="" class="icon-button facebook"> <i class="fa fa-facebook social-effect"></i><span></span></a> <a href="" class="icon-button twitter"> <i class="fa fa-twitter social-effect"></i><span></span></a> <a href="" class="icon-button pinterest"> <i class="fa fa-pinterest-p social-effect"></i><span></span></a> <a href="" class="icon-button google-plus"> <i class="fa fa-google-plus social-effect"></i><span></span></a> <a href="" class="icon-button youtube"> <i class="fa fa-youtube-play social-effect"></i><span></span></a> </div>
+      </div>
+-->    <!--  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <ul class="foot-navbar">
+          <li><a href="#">Copyright © 2016 traveltech.com</a></li>
+        </ul>-->
+      </div>
+    </div>
+  </div>
+</div>
+</footer>
+            </div>

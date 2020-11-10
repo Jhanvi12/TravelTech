@@ -1,0 +1,34 @@
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <toast></toast>
+            <div class="modal-body">
+                <div class="card card-container popup">
+                    <button type="button" class="close close-new" ng-click="cancel()">
+                        <i class="fa fa-times-circle-o close-color fa-2x"></i></button>
+                        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+                        <img alt="" src="img/Travel-logo.png">
+                        <p class="profile-name-card" id="profile-name"></p>
+                        <form class="form-signin" name="signupForm" ng-submit="submitForSignUp(user)">
+
+                            <span id="reauth-email" class="reauth-email"></span>
+                            <div id="remember" class="checkbox"><label>* Mandatory Fields</label></div>
+                            <span ng-show="signupForm.email.$touched && signupForm.email.$invalid" class="error fl">This field is required.</span>
+                            <input type="email" id="inputEmail" name="email" class="form-control" ng-model="user.email" placeholder="Email Address *" required autofocus>
+                            <span ng-show="signupForm.first.$touched && signupForm.first.$invalid" class="error fl">This field is required.</span>
+                            <input type="text" id="inputFirstName" name="first" class="form-control" ng-model="user.name" placeholder="Full Name *" required>
+                            <span ng-show="signupForm.phone.$touched && signupForm.phone.$invalid" class="error fl">Enter correct phone number.</span>
+                            <input type="text" id="inputPhoneNumber" ng-pattern="/^[789]\d{9}$/" minlength="10" maxlength="10" name="phone" class="form-control" ng-model="user.phone_number" placeholder="Mobile Number *" required>
+                            <span ng-show="signupForm.password.$touched && signupForm.password.$invalid" class="error fl">Minimum length should be 6.</span>
+                            <input type="text" minlength="6" id="inputPassword" name="password" class="form-control" ng-model="user.password" placeholder="Password *" required>
+                              <div style="margin-right:298px; color:maroon; padding-bottom:10px;">Password minimum of 6 characters</div>
+                                <button ng-disabled="signupForm.$invalid" type="submit" class="btn btn-lg btn-primary btn-block btn-signin sign-width sign-up" >
+                                    <span id="btn-text">Sign-up</span>
+                                </button>
+                            </div>
+
+                        </form>
+                            <!-- /form -->
+                            <a class="forgot-password" ng-click="forgetpassword()">Forgot Password ? </a> </div>
+                        </div>
+                    </div>

@@ -1,0 +1,10 @@
+
+<div class="modal-body">
+    <center><img ng-src="{{ selected.item }}" class="image-400"/></center>
+</div>
+<!-- <div class="modal-footer">
+
+    <button class="btn btn-warning fl" type="button" ng-click="prev()">Prev</button>
+    <button class="btn btn-primary fr" type="button" ng-click="next()">Next</button>
+    <div class="clear"></div>
+</div> -->

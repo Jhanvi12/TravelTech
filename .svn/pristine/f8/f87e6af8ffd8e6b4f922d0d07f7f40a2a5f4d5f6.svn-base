@@ -1,0 +1,29 @@
+{
+  "server": {
+    "port": 80,
+    "ip": null
+  },
+  "session": {
+    "secret": "nvasdejkNNmaszdrpoui234hjkasldehfJKNMASJKLvnmawsoui",
+    "expiration":1440000
+  },
+  "seeds":  {
+      "roles": {
+          "Admin": "admin",
+          "Operator": "operator",
+          "Customer": "Customer"
+      }
+  },
+  "upload": {
+    "driver": {
+      "main": "public/uploads/driver/"
+    },
+    "vehicle": {
+      "main": "public/uploads/vehicle/"
+    },
+    "images": {
+      "temp":"public/temp/",
+      "main":"public/uploads/images/"
+    }
+}
+}

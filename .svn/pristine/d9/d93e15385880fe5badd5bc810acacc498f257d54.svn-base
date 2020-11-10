@@ -1,0 +1,444 @@
+<header id="header">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button"class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">
+					<img src="img/Travel-logo.png" alt="">
+				</a>
+			</div>
+			<div class="navbar-collapse ">
+				<!--<ul class="nav navbar-nav ul-margin navbar-left">
+			</ul>-->
+			<ul class="nav navbar-nav navbar-right">
+			<li>
+							<a class=" login-dropdown" type="button" ng-click="login()">
+								Login
+							</a>
+						</li>
+
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="menu-items">
+	<div class="container">
+		<div class="row">
+			<div class="">
+				<ul class="top-menu navbar-collapse collapse" id="navbar">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">About Us</a></li>
+					<li><a href="#">How to Work</a></li>
+					<li><a href="#">Our Service</a></li>
+					<li><a href="#">Contact Us</a></li>
+					<li class="active"><a href="#">Book a Ride</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+</header>
+
+<section class="merchant-sec">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="book-my-ride">Book My Ride </h2>
+			</div>
+			<div class="col-lg-8 col-md-8 col-sm-10 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-1">
+				<div class="panel with-nav-tabs panel-default right-side">
+					<div class="panel-body">
+						<div class="tab-content">
+							<uib-tabset>
+								<uib-tab heading="One Way" class="panel-heading panel-color " ng-click="resetRide()">
+									<div id="oneway" class="tab-pane fade active in">
+										<form name="oneWayRideForm" ng-submit="submitRide(oneWayRideForm, 'one_way')" class="form-horizontal">
+											<div class="form-group">
+												<label for="inputEmail" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Pick Up Address</label>
+												<div class="">
+													<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+														<input type="text" class="form-control" id="sel1" name="pickup_address" ng-model="ride.route[0].address.name" vs-google-autocomplete="{ types: ['address'] }" vs-street-number="ride.route[0].address.streetNumber" vs-street="ride.route[0].address.street" vs-city="ride.route[0].address.city"  vs-state="ride.route[0].address.state" vs-country="ride.route[0].address.country" vs-post-code="ride.route[0].address.postCode" vs-district="ride.route[0].address.district" required=""/>
+														<span class="circle_plus"></span>
+														<span ng-show="oneWayRideForm.pickup_address.$touched && oneWayRideForm.pickup_address.$invalid" class="error fl">Please provide pickup address details.</span>
+													</div>
+												</div>
+											</div>
+											<div class=" form-group">
+												<label for="inputPassword" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Drop of Address</label>
+												<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+													<input type="text" class="form-control" id="inputPassword" placeholder="Enter City" name="dropoff_address" ng-model="ride.route[1].address.name" vs-google-autocomplete="{ types: ['address'] }" vs-street-number="ride.route[1].address.streetNumber" vs-street="ride.route[1].address.street" vs-city="ride.route[1].address.city"  vs-state="ride.route[1].address.state" vs-country="ride.route[1].address.country" vs-post-code="ride.route[1].address.postCode" vs-district="ride.route[1].address.district" required/>
+													<span ng-show="oneWayRideForm.dropoff_address.$touched && oneWayRideForm.dropoff_address.$invalid" class="error fl">Please provide dropoff address details.</span>
+												</div>
+											</div>
+											<div class=" form-group">
+												<label for="inputPassword" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Number of Passengers</label>
+												<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+													<div class="row">
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+															<input type="number" name="passenger_count" ng-model="ride.passenger_count" min="1" placeholder="Total Passengers" class="form-control" id="sel1" required/>
+														    <span ng-show="oneWayRideForm.passenger_count.$touched && oneWayRideForm.passenger_count.$invalid" class="error"><br/>Invalid passenger Number.</span>
+														</div>
+													<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
+														<div class="row">
+															<label for="inputPassword" class="control-label col-lg-5 col-md-5 col-sm-5 col-xs-12">Number of Vehicle</label>
+														<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+															<input type="number" name="vehicles_count" ng-model="ride.vehicles_count" min="1" placeholder="Number of Vehicle" class="form-control" id="sel1" required/>
+																	
+										<span ng-show="oneWayRideForm.vehicles_count.$touched && oneWayRideForm.vehicles_count.$invalid" class="error">Please provide number of vehicle.</span>
+														</div>
+														</div>
+													</div>
+
+													</div>
+												</div>
+											</div>
+											<div class=" form-group">
+												<label for="inputPassword" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Date of Pickup</label>
+												<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+													<div class="row">
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+															<input type="text" name="pickup_date" class="form-control" id="inputPassword" placeholder="Enter Date"
+															 ng-click="open1(0)" uib-datepicker-popup="{{format}}" ng-model="ride.route[0].date_time"
+															 is-open="popup1[0].opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
+															 date-disabled="disabled(date, mode)" close-text="Close" alt-input-formats="altInputFormats"/>
+															<span class="calendar"></span>
+														</div>
+														<span ng-show="oneWayRideForm.pickup_date.$touched && oneWayRideForm.pickup_date.$invalid" class="error fl">Please provide pickup date.</span>
+														<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
+															<div class="row">
+																<label for="inputPassword" class="control-label col-lg-5 col-md-5 col-sm-5 col-xs-12">Time of Pickup</label>
+																<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+																			<select class="form-control" id="sel1" ng-model="selected_time[0].hstep" ng-change="updateHours(0)"
+																			ng-options="opt for opt in options.hstep" ></select>
+																			<span class="time"></span>
+																		</div>
+																		<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 margin20">
+																			<select class="form-control" id="sel1"ng-model="selected_time[0].mstep" ng-change="updateMinutes(0)" ng-options="opt for opt in options.mstep"></select>
+																			<span class="time"></span>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class=" form-group">
+												<label for="inputPassword" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Special Request(if any)</label>
+												<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+													<textarea class="form-control" ng-model="ride.special_request" rows="2"></textarea>
+												</div>
+											</div>
+											<div class="form-group">
+													<div class="col-lg-6 col-xs-12 text-right">
+														<button type="submit" class="green_color">Get Live Quotes</button>
+													</div>
+												</div>
+												<div class="form-group">
+													<div class="col-xs-offset-2 col-xs-10">
+													</div>
+												</div>
+											</form>
+										</div>
+
+									</uib-tab>
+									<uib-tab heading="Multi City" class="panel-heading panel-color"  ng-click="resetRide()">
+											<form name="multiWayRideForm" ng-submit="submitRide(multiWayRideForm, 'multi_way')" class="form-horizontal">
+											<div ng-repeat="r in route">
+												<div class="form-group margin-top-10" >
+													<label for="inputEmail" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Pick Up Address</label>
+													<div class="">
+														<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+															<input type="text" class="form-control" id="sel1" name="pickup_address" ng-model="ride.route[$index].address.name" vs-google-autocomplete="{ types: ['address'] }" vs-street-number="ride.route[$index].address.streetNumber" vs-street="ride.route[$index].address.street" vs-city="ride.route[$index].address.city"  vs-state="ride.route[$index].address.state" vs-country="ride.route[$index].address.country" vs-post-code="ride.route[$index].address.postCode" vs-district="ride.route[$index].address.district" required=""/>
+															<span class="circle_plus"></span>
+
+															<span ng-show="multiWayRideForm.pickup_address.$touched && oneWayRideForm.pickup_address.$invalid" class="error fl">Please provide pickup address details.</span>
+														</div>
+													</div>
+												</div>
+												<div class=" form-group">
+													<label for="inputPassword" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Date of Pickup</label>
+													<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+														<div class="row">
+															<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+																<input type="text" name="pickup_date" class="form-control" id="inputPassword" placeholder="Enter Date"
+																 ng-click="open1($index)" uib-datepicker-popup="{{format}}" ng-model="ride.route[$index].date_time"
+																 is-open="popup1[$index].opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
+																 date-disabled="disabled(date, mode)" close-text="Close" alt-input-formats="altInputFormats"/>
+																<span class="calendar"></span>
+															</div>
+															<span ng-show="multiWayRideForm.pickup_date.$touched && oneWayRideForm.pickup_date.$invalid" class="error fl">Please provide pickup date.</span>
+															<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
+																<div class="row">
+																	<label for="inputPassword" class="control-label col-lg-5 col-md-5 col-sm-5 col-xs-12">Time of Pickup</label>
+																	<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+																		<div class="row">
+																			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+																				<select class="form-control" id="sel1" ng-model="selected_time[$index].hstep" ng-change="updateHours($index)"
+																				ng-options="opt for opt in options.hstep" ></select>
+																				<span class="time"></span>
+																			</div>
+																			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 margin20">
+																				<select class="form-control" id="sel1"ng-model="selected_time[$index].mstep" ng-change="updateMinutes($index)" ng-options="opt for opt in options.mstep"></select>
+																				<span class="time"></span>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<button type="button" class="green_color fr" ng-click="addRouteInfo()" ng-if="$index == route.length-1">
+													<i class="fa fa-plus-circle" ></i> Add More Cities
+												</button>
+												<button type="button" class="green_color fr" ng-click="removeRouteInfo($index)" ng-if="$index != route.length-1">
+													<i class="fa fa-minus-circle"></i> Remove This City
+												</button>
+												<br/>
+												<div class="clear"></div>
+											</div>
+												<div class=" form-group margin-top-10">
+													<label for="inputPassword" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Drop of Address</label>
+													<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+														<input type="text" class="form-control" id="inputPassword" placeholder="Enter City" name="dropoff_address" ng-model="ride.route[route.length].address.name" vs-google-autocomplete="{ types: ['address'] }" vs-street-number="ride.route[route.length].address.streetNumber" vs-street="ride.route[route.length].address.street" vs-city="ride.route[route.length].address.city"  vs-state="ride.route[route.length].address.state" vs-country="ride.route[route.length].address.country" vs-post-code="ride.route[route.length].address.postCode" vs-district="ride.route[route.length].address.district" required/>
+														<span ng-show="multiWayRideForm.dropoff_address.$touched && oneWayRideForm.dropoff_address.$invalid" class="error fl">Please provide dropoff address details.</span>
+													</div>
+												</div>
+												<div class=" form-group">
+													<div class="col-lg-3 col-xs-12">
+													</div>
+													<div class=" col-lg-6 col-xs-12">
+														<div >
+															<div >
+																<label for="checkbox-1" class="check-200-left">
+																	<input type="checkbox" ng-model="ride.duration">
+																	Full Duration
+																 </label>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- <div class=" form-group">
+													<label for="inputPassword" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Number of Passengers</label>
+													<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+														<div class="row">
+															<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+																<input type="number" name="passenger_count" ng-model="ride.passenger_count" min="1" placeholder="Number of Passengers" class="form-control" id="sel1" required/>
+																
+															</div>
+															<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
+																<div class="row">
+																	<label for="inputPassword" class="control-label col-lg-5 col-md-5 col-sm-5 col-xs-12">Number of Vehicle</label>
+																	<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+																		<input type="number" name="vehicles_count" ng-model="ride.vehicles_count" min="1" placeholder="Number of Vehicle" class="form-control" id="sel1" required/>
+																		
+																	</div>
+																</div>
+															</div>
+															<span ng-show="multiWayRideForm.vehicles_count.$touched && oneWayRideForm.vehicles_count.$invalid" class="error">Please provide number of vehicle.</span>
+															<span ng-show="multiWayRideForm.passenger_count.$touched && oneWayRideForm.passenger_count.$invalid" class="error"><br/>Please provide number of passenger.</span>
+
+														</div>
+													</div>
+												</div> -->
+													<div class=" form-group">
+												<label for="inputPassword" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Number of Passengers</label>
+												<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+													<div class="row">
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+															<input type="number" name="passenger_count" ng-model="ride.passenger_count" min="1" placeholder="Total Passengers" class="form-control" id="sel1" required/>
+														    <span ng-show="multiWayRideForm.passenger_count.$touched && multiWayRideForm.passenger_count.$invalid" class="error"><br/>Invalid passenger Number.</span>
+														</div>
+													<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
+														<div class="row">
+															<label for="inputPassword" class="control-label col-lg-5 col-md-5 col-sm-5 col-xs-12">Number of Vehicle</label>
+														<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+															<input type="number" name="vehicles_count" ng-model="ride.vehicles_count" min="1" placeholder="Number of Vehicle" class="form-control" id="sel1" required/>
+																	
+										<span ng-show="multiWayRideForm.vehicles_count.$touched && multiWayRideForm.vehicles_count.$invalid" class="error">Please provide number of vehicle.</span>
+														</div>
+														</div>
+													</div>
+
+													</div>
+												</div>
+											</div>
+
+												<div class=" form-group">
+													<label for="inputPassword" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Special Request(if any)</label>
+													<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+														<textarea class="form-control" ng-model="ride.special_request" rows="2"></textarea>
+													</div>
+												</div>
+												<div class="form-group">
+														<div class="col-lg-6 col-xs-12 text-right">
+															<button type="submit" class="green_color">Get Live Quotes</button>
+														</div>
+													</div>
+													<div class="form-group">
+														<div class="col-xs-offset-2 col-xs-10">
+														</div>
+													</div>
+												</form>
+											</uib-tab>
+											<uib-tab heading="Return Trip" class="panel-heading panel-color ">
+												<form name="returnRideForm" ng-submit="submitRide(returnRideForm, 'return_trip')" class="form-horizontal">
+													<div class="form-group">
+														<label for="inputEmail" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Pick Up & Drop Off Address</label>
+														<div class="">
+															<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+																<input type="text" class="form-control" id="sel1" name="pickup_address" ng-model="ride.route[0].address.name" vs-google-autocomplete="{ types: ['address'] }" vs-street-number="ride.route[0].address.streetNumber" vs-street="ride.route[0].address.street" vs-city="ride.route[0].address.city"  vs-state="ride.route[0].address.state" vs-country="ride.route[0].address.country" vs-post-code="ride.route[0].address.postCode" vs-district="ride.route[0].address.district" required=""/>
+																<span class="circle_plus"></span>
+																<span ng-show="returnRideForm.pickup_address.$touched && returnRideForm.pickup_address.$invalid" class="error fl">Please provide pickup address details.</span>
+															</div>
+														</div>
+													</div>
+													<div class=" form-group">
+														<label for="inputPassword" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Travelling To</label>
+														<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+															<input type="text" class="form-control" id="inputPassword" placeholder="Enter City" name="dropoff_address" ng-model="ride.route[1].address.name" vs-google-autocomplete="{ types: ['address'] }" vs-street-number="ride.route[1].address.streetNumber" vs-street="ride.route[1].address.street" vs-city="ride.route[1].address.city"  vs-state="ride.route[1].address.state" vs-country="ride.route[1].address.country" vs-post-code="ride.route[1].address.postCode" vs-district="ride.route[1].address.district" required/>
+															<span ng-show="returnRideForm.dropoff_address.$touched && returnRideForm.dropoff_address.$invalid" class="error fl">Please provide dropoff address details.</span>
+														</div>
+													</div>
+												<!-- 	<div class=" form-group">
+														<label for="inputPassword" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Number of Passengers</label>
+														<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+															<div class="row">
+																<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+																	<input type="number" name="passenger_count" ng-model="ride.passenger_count" min="1" placeholder="Number of Passengers" class="form-control" id="sel1" required/>
+																	
+																</div>
+																<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
+																	<div class="row">
+																		<label for="inputPassword" class="control-label col-lg-5 col-md-5 col-sm-5 col-xs-12">Number of Vehicle</label>
+																		<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+																			<input type="number" name="vehicles_count" ng-model="ride.vehicles_count" min="1" placeholder="Number of Vehicle" class="form-control" id="sel1" required/>
+																			
+																		</div>
+																	</div>
+																</div>
+																<span ng-show="returnRideForm.vehicles_count.$touched && returnRideForm.vehicles_count.$invalid" class="error">Please provide number of vehicle.</span>
+																<span ng-show="returnRideForm.passenger_count.$touched && returnRideForm.passenger_count.$invalid" class="error"><br/>Please provide number of passenger.</span>
+															</div>
+														</div>
+													</div> -->
+													<div class=" form-group">
+												<label for="inputPassword" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Number of Passengers</label>
+												<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+													<div class="row">
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+															<input type="number" name="passenger_count" ng-model="ride.passenger_count" min="1" placeholder="Total Passengers" class="form-control" id="sel1" required/>
+														    <span ng-show="returnRideForm.passenger_count.$touched && returnRideForm.passenger_count.$invalid" class="error"><br/>Invalid passenger Number.</span>
+														</div>
+													<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
+														<div class="row">
+															<label for="inputPassword" class="control-label col-lg-5 col-md-5 col-sm-5 col-xs-12">Number of Vehicle</label>
+														<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+															<input type="number" name="vehicles_count" ng-model="ride.vehicles_count" min="1" placeholder="Number of Vehicle" class="form-control" id="sel1" required/>
+																	
+										<span ng-show="returnRideForm.vehicles_count.$touched && returnRideForm.vehicles_count.$invalid" class="error">Please provide number of vehicle.</span>
+														</div>
+														</div>
+													</div>
+
+													</div>
+												</div>
+											</div>
+
+													<div class=" form-group">
+														<label for="inputPassword" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Date of Pickup</label>
+														<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+															<div class="row">
+																<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+																	<input type="text" name="pickup_date" class="form-control" id="inputPassword" placeholder="Enter Date"
+																	ng-click="open1(0)" uib-datepicker-popup="{{format}}" ng-model="ride.route[0].date_time"
+																	is-open="popup1[0].opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
+																	date-disabled="disabled(date, mode)" close-text="Close" alt-input-formats="altInputFormats"/>
+																	<span class="calendar"></span>
+																</div>
+																<span ng-show="returnRideForm.pickup_date.$touched && returnRideForm.pickup_date.$invalid" class="error fl">Please provide pickup date.</span>
+																<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
+																	<div class="row">
+																		<label for="inputPassword" class="control-label col-lg-5 col-md-5 col-sm-5 col-xs-12">Time of Pickup</label>
+																		<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+																			<div class="row">
+																				<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+																					<select class="form-control" id="sel1" ng-model="selected_time[0].hstep" ng-change="updateHours(0)"
+																					ng-options="opt for opt in options.hstep" ></select>
+																					<span class="time"></span>
+																				</div>
+																				<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 margin20">
+																					<select class="form-control" id="sel1"ng-model="selected_time[0].mstep" ng-change="updateMinutes(0)" ng-options="opt for opt in options.mstep"></select>
+																					<span class="time"></span>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class=" form-group">
+														<label for="inputPassword" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Stoppage Time(in hours)</label>
+														<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+															<input type="number" name="stoppage_time" ng-model="ride.stop_time" min="1" placeholder="Stoppage time" class="form-control" id="sel1" required/>
+															<span ng-show="returnRideForm.stoppage_time.$touched && returnRideForm.stoppage_time.$invalid" class="error"><br/>Please stoppage time.</span>
+														</div>
+													</div>
+													<div class=" form-group">
+														<label for="inputPassword" class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12">Special Request(if any)</label>
+														<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+															<textarea class="form-control" ng-model="ride.special_request" rows="2"></textarea>
+														</div>
+													</div>
+													<div class="form-group">
+														<div class="col-lg-6 col-xs-12 text-right">
+															<button type="submit" class="green_color">Get Live Quotes</button>
+														</div>
+													</div>
+													<div class="form-group">
+														<div class="col-xs-offset-2 col-xs-10">
+														</div>
+													</div>
+												</form>
+											</uib-tab>
+										</uib-tabset>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<footer class="footer">
+				<div class="container">
+					<div class="row">
+						<div class="footer-top">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<ul class="quick_links">
+									<!--<li><a href="#"><img src="img/list-icon.png" alt="" />&nbsp; Home</a></li>-->
+										<li><a ui-sref="operator.login" ><img src="img/list-icon.png" alt="" /> Operator Login</a></li>
+									<li><a href="#"><img src="img/list-icon.png" alt="" /> About Us</a></li>
+									<li><a href="#"><img src="img/list-icon.png" alt="" /> How to Work</a></li>
+									<li><a href="#"><img src="img/list-icon.png" alt="" /> Contact Us</a></li>
+									<li><a href="#"><img src="img/list-icon.png" alt="" /> Terms & Condition</a></li>
+									<li><a href="#"><img src="img/list-icon.png" alt="" /> Privacy Policy</a></li>
+									<!-- <li><a href="#"><img src="img/list-icon.png" alt="" /> Register Your Company With Us</a></li>-->
+								</ul>
+								<h4><a href="#">Copyright © 2016 traveltech.com</a></h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>

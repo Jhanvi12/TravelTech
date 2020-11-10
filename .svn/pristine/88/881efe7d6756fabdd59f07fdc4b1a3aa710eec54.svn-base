@@ -1,0 +1,43 @@
+
+<!-- Modal content-->
+<div class="modal-content">
+<toast></toast>
+    <div class="modal-body">
+        <div class="card card-container popup">
+
+            <button type="button" class="close close-new" ng-click="cancel()">
+                <i class="fa fa-times-circle-o close-color fa-2x"></i></button>
+
+                <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+                <img alt="" src="img/Travel-logo.png">
+                <p class="profile-name-card" id="profile-name"></p>
+                <form class="form-signin" name="signinForm" ng-submit="login(user)">
+                    <div preloader ></div>
+                    
+                    <div id="remember" class="checkbox"><label>* Mandatory Fields</label></div>
+            <input type="radio" name="user_type" ng-model="user.type" value="customer" > Customer
+            &nbsp;&nbsp;<input type="radio" ng-model="user.type" name="user_type" value="corporate" > Corporate<br>
+
+                            <span id="reauth-email" class="reauth-email"></span>
+                            <span ng-show="signinForm.username.$touched && signinForm.username.$invalid" class="error fl">This field is required.</span>
+                            <input type="text" id="inputEmail" name="username" ng-model="user.username" class="form-control" placeholder="Username/ Email Address *" required autofocus>
+                            <span ng-show="signinForm.password.$touched && signinForm.password.$invalid" class="error fl">This field is required.</span>
+                            <input type="text" id="inputPassword" name="password" ng-model="user.password" class="form-control" placeholder="Password *" required>
+                           <div style="margin-right:298px; color:maroon; padding-bottom:10px;">Password minimum of 6 characters</div>
+                            <button ng-disabled="signinForm.$invalid" type="submit" class="btn btn-lg btn-primary btn-block btn-signin sign-width" >
+                                <span id="btn-text" >Login</span>
+                            </button>
+                            <!-- <input type="submit" value="login"/> -->
+                                <button type="button" ng-click="signup()" class="btn btn-lg btn-primary btn-block btn-signin sign-width" >
+                                    <span id="btn-text">Sign Up</span>
+                                </button>
+                                </form>
+                                <br/>
+                                <!-- /form -->
+                                <a ng-click="forgetpassword()" class="forgot-password">Forgot Password ? </a> </div>
+                                <!-- /card-container -->
+
+                </div>
+            </div>
+
+        </div>

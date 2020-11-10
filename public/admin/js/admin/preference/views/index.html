@@ -1,0 +1,68 @@
+<div class="skin-blue">
+    <div ui-view="top"></div>
+    <div ui-view="left"></div>
+    <aside class="right-side">
+        <!-- Content Header (Page header) -->
+        <section class="content-header" ng-controller="PreferenceController">
+            <h1>
+                Preferences
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/admin/#/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li>Preferences</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content" ng-init="getPreference()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box-body table-responsive">
+                        <div class="alert alert-danger alert-dismissable" ng-show="message"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>{{message}}</div>
+                        <div class="box">
+                            <!-- <div class="box-header">
+                            <h3 class="box-title">Data Table With Full Features</h3>
+                        </div> -->
+                            <div class="box-body table-responsive">
+                                <form role="form">
+                                    <table id="example1" class="table table-bordered table-striped" ng-table="tableParams" show-filter="isFiltersVisible">
+                                        <colgroup>
+                                            <col width="15%"/>                                
+                                            <col width="15%"/>
+                                            <col width="15%"/>
+                                            <col width="15%"/>
+                                            <col width="15%"/>
+                                            <col width="15%"/>                                
+                                        </colgroup>
+                                        <tr> 
+                                            <td data-title="'Bidding time limit (Hours)'" align="left">{{preference.bidding_time_limit}}</td>
+
+                                            <td data-title="'Acceptance time limit (<2 Days)'" align="left">{{preference.bidding_acceptance_time.less_than_2_days}}</td>
+
+                                            <td data-title="'Acceptance time limit (3-4 Days)'" align="left">{{preference.bidding_acceptance_time.between_3_4_days}}</td>
+
+                                            <td data-title="'Acceptance time limit (>4 Days)'" align="left">{{preference.bidding_acceptance_time.more_than_4_days}}</td>
+
+                                            <td data-title="'Commission Rate (%)'" sortable="'commission_rate'" filter="{commission_rate:'Number'}" align="left">{{preference.commission_rate}}</td>
+
+                                            <td data-title="'Mark Up Bid Rate (%)'" sortable="'bid_rate'" filter="{bid_rate:'Number'}" align="left">{{preference.markup_bid_rate}}</td>
+
+                                            <td data-title="'Actions'" align="left"><a ui-sref="admin.editpreference()" alt="Click to edit" title="Click to edit"><i class="fa fa-pencil"></i></a></td>
+                                        </tr>
+
+                                       <!--  <tr ng-hide="!$scope.recordFetchedLength">
+                                            <td colspan="5">No Result Found!</td>
+                                        </tr>    --> 
+                                         <tr ng-if="recordFetchedLength=='0'">
+                                            <td colspan="5" align="center">No Results Found!</td>
+                                        </tr>                       
+                                    </table>
+
+                                </form>
+
+                            </div><!-- /.box-body -->
+                        </div><!-- /.box -->
+                    </div>
+                </div>
+        </section><!-- /.content -->
+    </aside><!-- /.right-side -->
+</div>

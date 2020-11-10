@@ -1,0 +1,19 @@
+'use strict';
+var express = require('express');
+var router = express.Router();
+var response = require('../../components/response.js'); // require response js for setting headers variables
+var auth = require('../../components/auth.js');
+var config = require('config');
+var expressJwt = require('express-jwt');
+var jwt = require('jsonwebtoken');
+// Routes for city Api
+router
+.get('/cityexportcsv', expressJwt({secret: config.session.secret}),require('./cityexportcsv')) // getting list route
+.get('/', require('./all')) // route for getting all cities
+.get('/:id', require('./get')) // route for getting city by id
+// .delete('/:id', expressJwt({secret: config.session.secret}),require('./delete')) // route for delete city by id
+.put('/:id', expressJwt({secret: config.session.secret}), auth.isAdmin, require('./put')) // route for update city by id
+.post('/', expressJwt({secret: config.session.secret}), auth.isAdmin, require('./post')) // route for create new city
+.post('/delete', expressJwt({secret: config.session.secret}), auth.isAdmin, require('./delete'));
+
+module.exports = router;

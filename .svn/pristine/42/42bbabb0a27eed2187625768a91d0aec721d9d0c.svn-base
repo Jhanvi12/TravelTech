@@ -1,0 +1,22 @@
+{
+  "db": {
+    "uri": "mongodb://localhost/travelTechDb",
+    "reconnect": true
+  },
+  "server": {
+    "baseurl": "http://localhost:2001/",
+    "port": 2001
+  },
+  "secret": {
+    "fb": {
+        "app_id": "730716427073097",
+        "key": "f5833d2502bd9246641d44a98119078a",
+        "callbackURL": "http://localhost:9000/api/v1/oauth/facebook/authed"
+    },
+    "gplus": {
+        "app_id": "48274548161-v8g0pkfa09rrj1man2b9fs08bp4s9124.apps.googleusercontent.com",
+        "key": "yokr34boXiUsYJCzzYmaPQNV",
+        "callbackURL": "http://localhost:9000/api/v1/oauth/google/authed"
+    }
+  }
+}

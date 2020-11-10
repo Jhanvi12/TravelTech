@@ -1,0 +1,153 @@
+<div ng-init="getDocumentInfo();">
+<h3>Lets start uploading documents {{isShow}}</h3>
+<div class="request-heading">
+
+	<div ng-if="isShow == 'vehicle'"> 
+		<form name="vehicleInfo" ng-submit="addDocuments()">
+                    <div class="driver table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Document Type</th>
+                                    <th>Documents</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                 <td>
+                                    <select class="btn btn-warning" id="ddlList" ng-model="document_info.type" name="document_info" class="form-control" >
+                                        <option value="">Select your option</option>
+                                        <option value="permit">Taxi Permit</option>
+                                        <option value="rc">RC</option>
+                                       </select>
+                                    <span class="validation-text" ng-show="vehicleInfo.$submitted || vehicleInfo.document_info.$touched" >
+                                        <p ng-show="vehicleInfo.document_info.$error.required" class="error" >Tell us your Document Type.</p>
+                                    </span>
+                                </td>
+                                    
+                                    <td>
+                                        <span class="btn btn-success btn-file">Upload <input type="file" file-model="myFile.file" /></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="add-details">
+                        <button type="submit" class="btn btn-warning btn-add-details">
+                            <i class="fa fa-plus-circle"></i> &nbsp; <span> Add Documents</span>
+                        </button>
+                    </div>
+
+                </form>
+                <div class="driver table-responsive">
+                    <div class="request-right">
+                        <div id="custom-search-input">
+                            <div class="input-group col-lg-12">
+                                <input type="text" ng-model="search.$" class="  search-query form-control" placeholder="Search..." /></div></div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Document Type</th>
+                                        <th>Status</th>
+                                        <th>Picture</th>
+                                        <th>Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                     <tr ng-repeat="data in vehicle | filter:search:strict">
+                                        <td> {{data.type}} </td>
+                                        <td> {{data.status}}</td>
+                                        <td> <img ng-src="{{data.path}}" style="width:250px;" class="image-100"/></span></td>
+                                        <td>
+                                          
+                                          <span ng-click="deleteDocuments(data._id);" class="glyphicon glyphicon-trash"></span>
+                                         
+                                     
+                                         
+                                        </td>
+                                    </tr> 
+                                    <tr colspan="4" ng-hide="vehicle.length">
+                                        <td>No Information To Show.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+	</div>
+	<div ng-if="isShow == 'driver'">
+		<form name="driverInfo" ng-submit="addDocuments()">
+                    <div class="driver table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Document Type</th>
+                                    <th>Documents</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                    <select class="btn btn-warning" id="ddlList" ng-model="document_info.type" name="document_info" class="form-control" >
+                                        <option value="">Select your option</option>
+                                        <option value="dl">Driver License</option>
+                                        <option value="driver_verification">Driver Verification</option>
+                                       </select>
+                                    <span class="validation-text" ng-show="driverInfo.$submitted || driverInfo.document_info.$touched" >
+                                        <p ng-show="driverInfo.document_info.$error.required" class="error" >Tell us your Document Type.</p>
+                                    </span>
+                                </td>
+                                    <td>
+                                        <span class="btn btn-success btn-file">Upload <input type="file" file-model="myFile.file" /></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="add-details">
+                        <button type="submit" class="btn btn-warning btn-add-details">
+                            <i class="fa fa-plus-circle"></i> &nbsp; <span> Add Documents</span>
+                        </button>
+                    </div>
+
+                </form>
+                <div class="driver table-responsive">
+                    <div class="request-right">
+                        <div id="custom-search-input">
+                            <div class="input-group col-lg-12">
+                                <input type="text" ng-model="search.$" class="  search-query form-control" placeholder="Search..." />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Document Type</th>
+                                        <th>Status</th>
+                                        <th>Picture</th>
+                                        <th>Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="data in driver| filter:search:strict">
+                                        <td> {{data.type}} </td>
+                                        <td> {{data.status}}</td>
+                                        <td> <img ng-src="{{data.path}}" style="width:250px;" class="image-100"/></span></td>
+                                        <td>
+                                          <span ng-click="deleteDocuments(data._id);" class="glyphicon glyphicon-trash"></span>
+                                         
+                                        </td>
+                                    </tr> 
+                                    <tr colspan="4" ng-hide="driver.length">
+                                        <td>No Information To Show.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+	</div>
+   
+        </div>
+       </div>

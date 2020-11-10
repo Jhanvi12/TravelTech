@@ -1,0 +1,14 @@
+<div class="form-box">
+    <div class="alert alert-danger alert-dismissable" ng-show="message"><i class="fa fa-ban"></i><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>{{message}}</div>
+    <div class="header">Forgot Password</div>
+    <form name="forgotForm">
+        <div class="body bg-gray">
+            <div class="form-group">
+                <input type="text" name="email" class="form-control" placeholder="Email" ng-model='admin.email' autocomplete="false" required />
+                <span ng-show="forgotForm.email.$touched && forgotForm.email.$invalid" class="error">This field is required.</span>
+            </div>
+        </div>
+        <div class="footer"> 
+            <button type="submit" class="btn bg-olive btn-block" name="resend" ng-disabled="forgotForm.$invalid" ng-click="forgotPassword()">Resend Password</button>
+    </form>
+</div>

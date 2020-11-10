@@ -1,0 +1,31 @@
+
+<div class="card card-container" style="margin-top:0px" ng-controller="OperatorLoginController">
+    <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+    <img src="img/Travel-logo.png" alt="">
+    <p id="profile-name" class="profile-name-card"></p>
+    <form class="form-signin" name="signinForm" ng-submit="login(user)">
+        <div preloader ></div>
+        <div class="rdBtns">
+            <p class="forgot">Login</p>
+
+            <div id="remember" class="checkbox"><label>* Mandatory Fields</label></div>
+            <span id="reauth-email" class="reauth-email"></span>
+            <span ng-show="signinForm.username.$touched && signinForm.username.$invalid" class="error fl">This field is required.</span>
+            <input type="text" id="inputEmail" name="username" ng-model="user.username" class="form-control" placeholder="Username/ Email Address *" required autofocus>
+            <span ng-show="signinForm.password.$touched && signinForm.password.$invalid" class="error fl">This field is required.</span>
+            <input type="text" id="inputPassword" name="password" ng-model="user.password" class="form-control" placeholder="Password *" required>
+             <div style="margin-right:298px; color:maroon; padding-bottom:10px;">Password minimum of 6 characters</div>
+
+            <button ng-disabled="signinForm.$invalid" type="submit" class="btn btn-lg btn-primary btn-block btn-signin sign-width" >
+                <span id="btn-text">Login</span>
+            </button>
+            <!-- <input type="submit" value="login"/> -->
+            <button type="button" class="btn btn-lg btn-primary btn-block btn-signin sign-width" ui-sref="operator.signup">
+                <span id="btn-text" >Sign Up</span>
+            </button>
+        </form>
+        <br/>
+        <!-- /form -->
+        <a ui-sref="forgetpassword" class="forgot-password">Forgot Password ? </a> </div>
+        <!-- /card-container -->
+</div>
